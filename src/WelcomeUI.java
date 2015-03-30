@@ -14,6 +14,7 @@ public class WelcomeUI{
 	
 	//WelcomeUI constructor
 	public WelcomeUI(){
+		//create main welcome Panel
 		welcomePanel = new JPanel();
 		welcomePanel.setBackground(Color.WHITE);
 		
@@ -47,9 +48,7 @@ public class WelcomeUI{
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(doctorLoginButton);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
-		
-		welcomePanel.add(layout);
-				
+						
 		//Align all components in the center
 		welcomeLabel.setAlignmentX(welcomeLabel.CENTER_ALIGNMENT);
 		patientLabel.setAlignmentX(patientLabel.CENTER_ALIGNMENT);
@@ -57,8 +56,12 @@ public class WelcomeUI{
 		existingPatientButton.setAlignmentX(existingPatientButton.CENTER_ALIGNMENT);
 		doctorLabel.setAlignmentX(doctorLabel.CENTER_ALIGNMENT);
 		doctorLoginButton.setAlignmentX(doctorLoginButton.CENTER_ALIGNMENT);
+		
+		welcomePanel.add(layout);//add layout to main welcome Panel
+
 	}
 	
+	//public buttonListeners for use in GUI Controller class
 	public void newPatientListener (ActionListener ny){
 		newPatientButton.addActionListener(ny);
 	}
@@ -71,6 +74,7 @@ public class WelcomeUI{
 		doctorLoginButton.addActionListener(dl);
 	}
 	
+	//method to retrieve panel in GUI Controller class
 	public JPanel getWelcomePanel(){
 		return welcomePanel;
 	}

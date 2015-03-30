@@ -28,7 +28,8 @@ public class NewPatientUI{
 	private JButton nextButton;
 	
 	//NewPatientUI constructor
-	public NewPatientUI(){		
+	public NewPatientUI(){	
+		//create main panel
 		newPatientPanel = new JPanel();
 		newPatientPanel.setBackground(Color.WHITE);
 		
@@ -152,13 +153,15 @@ public class NewPatientUI{
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
 		
-		newPatientPanel.add(layout);
+		newPatientPanel.add(layout); //add layout to main panel
 	}
 	
+	//public buttonListeners for use in GUI Controller class
 	public void backListener (ActionListener dl){
 		backButton.addActionListener(dl);
 	}
 	
+	//method to retrieve panel in GUI Controller class
 	public JPanel getNewPatientPanel(){
 		return newPatientPanel;
 	}

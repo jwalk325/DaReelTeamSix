@@ -18,11 +18,12 @@ public class PatientLoginUI{
 	
 	//PatientLoginUI constructor
 	public PatientLoginUI(){
+		//create main panel
 		patientLoginPanel = new JPanel();
 		patientLoginPanel.setBackground(Color.WHITE);
 		
 		//Title creation
-		patientLoginLabel = new JLabel("Patient Log In", SwingConstants.CENTER);
+		patientLoginLabel = new JLabel("Patient Log-In", SwingConstants.CENTER);
 		patientLoginLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		//Create all other components
@@ -93,13 +94,15 @@ public class PatientLoginUI{
 		layout.add(buttonLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 	
-		patientLoginPanel.add(layout);
+		patientLoginPanel.add(layout); //add layout to main panel
 	}
 	
+	//public buttonListeners for use in GUI Controller class
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
 	
+	//method to retrieve panel in GUI Controller class
 	public JPanel getPatientLoginPanel(){
 		return patientLoginPanel;
 	}

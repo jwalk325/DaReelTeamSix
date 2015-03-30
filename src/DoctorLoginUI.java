@@ -19,8 +19,9 @@ public class DoctorLoginUI{
 	
 	//DoctorLoginUI constructor
 	public DoctorLoginUI(){
-		//this.setTitle("Doctor Log In"); //sets title in task bar
+		//create main panel
 		doctorLoginPanel = new JPanel();
+		doctorLoginPanel.setBackground(Color.WHITE);
 		
 		//Title creation
 		doctorLoginLabel = new JLabel("Doctor Log-In", SwingConstants.CENTER);
@@ -99,15 +100,15 @@ public class DoctorLoginUI{
 		layout.add(buttonLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		
-		//getContentPane().add(layout); //adding master JPanel to JFrame
-		doctorLoginPanel.add(layout);
-		doctorLoginPanel.setBackground(Color.WHITE);
+		doctorLoginPanel.add(layout); //add layout to main panel
 	}
 	
+	//public buttonListeners for use in GUI Controller class
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
 	
+	//method to retrieve panel in GUI Controller class
 	public JPanel getDoctorLoginPanel(){
 		return doctorLoginPanel;
 	}
