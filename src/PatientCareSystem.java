@@ -8,6 +8,7 @@ public class PatientCareSystem {
 		WelcomeUI welcome = new WelcomeUI(); //creation of object
 		welcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close program when window closes
 		welcome.setSize(500,500); //dimensions of JFrame
+		welcome.setLocationRelativeTo(null);
 		welcome.setVisible(true); //must set JFrame to be visible
 		welcome.setResizable(false); //does not allow window to be resized
 		
@@ -15,6 +16,7 @@ public class PatientCareSystem {
 		NewUserUI newUser = new NewUserUI();
 		newUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		newUser.setSize(500,500);
+		newUser.setLocationRelativeTo(null);
 		newUser.setVisible(true);
 		newUser.setResizable(false);
 		
@@ -22,6 +24,7 @@ public class PatientCareSystem {
 		PatientLoginUI existingUser = new PatientLoginUI();
 		existingUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		existingUser.setSize(500,500);
+		existingUser.setLocationRelativeTo(null);
 		existingUser.setVisible(true);
 		existingUser.setResizable(false);
 		
@@ -29,6 +32,7 @@ public class PatientCareSystem {
 		DoctorLoginUI doctor = new DoctorLoginUI();
 		doctor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		doctor.setSize(500,500);
+		doctor.setLocationRelativeTo(null);
 		doctor.setVisible(true);
 		doctor.setResizable(false);
 	}
