@@ -8,7 +8,7 @@ public class PatientCareSystem {
 		WelcomeUI welcome = new WelcomeUI(); //creation of object
 		welcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close program when window closes
 		welcome.setSize(500,500); //dimensions of JFrame
-		welcome.setLocationRelativeTo(null);
+		welcome.setLocationRelativeTo(null); //puts window in center of user's screen
 		welcome.setVisible(true); //must set JFrame to be visible
 		welcome.setResizable(false); //does not allow window to be resized
 		
