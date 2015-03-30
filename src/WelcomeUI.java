@@ -57,4 +57,9 @@ public class WelcomeUI extends JFrame{
 		//Add JPanel to the JFrame
 		getContentPane().add(layout);
 	}	
+	
+	private class  implements ActionListener
+		{
+	  			public void actionPerformed(ActionEvent event)
+ 			{
 }

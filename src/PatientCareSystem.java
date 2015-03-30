@@ -12,7 +12,6 @@ public class PatientCareSystem {
 		welcome.setResizable(false); //does not allow window to be resized
 		
 		//created UI objects for testing
-
 		NewUserUI newUser = new NewUserUI();
 		newUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		newUser.setSize(500,500);
