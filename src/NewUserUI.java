@@ -1,9 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
-public class NewUserUI extends JFrame{
+public class NewUserUI{
 	//Instance data
+	private JPanel newUserPanel;
 	private JLabel createProfileLabel;
 	private JLabel nameLabel;
 	private JLabel dobLabel;
@@ -27,7 +29,8 @@ public class NewUserUI extends JFrame{
 	
 	//NewUserUI constructor
 	public NewUserUI(){		
-		this.setTitle("New Patient Sign-Up"); //sets title in task bar
+		newUserPanel = new JPanel();
+		newUserPanel.setBackground(Color.WHITE);
 		
 		//Title Creation
 		createProfileLabel = new JLabel("Create Profile", SwingConstants.CENTER);
@@ -142,12 +145,21 @@ public class NewUserUI extends JFrame{
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
 		layout.add(Box.createRigidArea(new Dimension (0,50)));//add space to top so label isn't smashed at the top
 		layout.add(createProfileLabel); //insert title label
-		createProfileLabel.setAlignmentX(CENTER_ALIGNMENT); //center the label
+		createProfileLabel.setAlignmentX(createProfileLabel.CENTER_ALIGNMENT); //center the label
+		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
 		
-		getContentPane().add(layout); //add the JPanel with all the other panels and components to the JFrame
+		newUserPanel.add(layout);
+	}
+	
+	public void backListener (ActionListener dl){
+		backButton.addActionListener(dl);
+	}
+	
+	public JPanel getNewUserPanel(){
+		return newUserPanel;
 	}
 }

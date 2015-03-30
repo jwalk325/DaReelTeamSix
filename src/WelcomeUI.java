@@ -2,8 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class WelcomeUI extends JFrame{
+public class WelcomeUI{
 	//Instance Data
+	private JPanel welcomePanel;
 	private JLabel welcomeLabel;
 	private JLabel patientLabel;
 	private JLabel doctorLabel;
@@ -13,7 +14,8 @@ public class WelcomeUI extends JFrame{
 	
 	//WelcomeUI constructor
 	public WelcomeUI(){
-		this.setTitle("Welcome"); //sets title in task bar
+		welcomePanel = new JPanel();
+		welcomePanel.setBackground(Color.WHITE);
 		
 		//Title creation
 		welcomeLabel = new JLabel("Welcome");
@@ -46,15 +48,30 @@ public class WelcomeUI extends JFrame{
 		layout.add(doctorLoginButton);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		
+		welcomePanel.add(layout);
+				
 		//Align all components in the center
-		welcomeLabel.setAlignmentX(CENTER_ALIGNMENT);
-		patientLabel.setAlignmentX(CENTER_ALIGNMENT);
-		newUserButton.setAlignmentX(CENTER_ALIGNMENT);
-		existingUserButton.setAlignmentX(CENTER_ALIGNMENT);
-		doctorLabel.setAlignmentX(CENTER_ALIGNMENT);
-		doctorLoginButton.setAlignmentX(CENTER_ALIGNMENT);
-		
-		//Add JPanel to the JFrame
-		getContentPane().add(layout);
-	}	
+		welcomeLabel.setAlignmentX(welcomeLabel.CENTER_ALIGNMENT);
+		patientLabel.setAlignmentX(patientLabel.CENTER_ALIGNMENT);
+		newUserButton.setAlignmentX(newUserButton.CENTER_ALIGNMENT);
+		existingUserButton.setAlignmentX(existingUserButton.CENTER_ALIGNMENT);
+		doctorLabel.setAlignmentX(doctorLabel.CENTER_ALIGNMENT);
+		doctorLoginButton.setAlignmentX(doctorLoginButton.CENTER_ALIGNMENT);
+	}
+	
+	public void newUserListener (ActionListener ny){
+		newUserButton.addActionListener(ny);
+	}
+	
+	public void existingUserListener (ActionListener ny){
+		existingUserButton.addActionListener(ny);
+	}
+	
+	public void doctorLoginListener (ActionListener dl){
+		doctorLoginButton.addActionListener(dl);
+	}
+	
+	public JPanel getWelcomePanel(){
+		return welcomePanel;
+	}
 }

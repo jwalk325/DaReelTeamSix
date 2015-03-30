@@ -1,9 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
-public class PatientLoginUI extends JFrame{
+public class PatientLoginUI{
 	//Instance data
+	private JPanel patientLoginPanel;
 	private JLabel patientLoginLabel;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
@@ -16,7 +18,8 @@ public class PatientLoginUI extends JFrame{
 	
 	//PatientLoginUI constructor
 	public PatientLoginUI(){
-		this.setTitle("Returning Patient Log In"); //sets title in task bar
+		patientLoginPanel = new JPanel();
+		patientLoginPanel.setBackground(Color.WHITE);
 		
 		//Title creation
 		patientLoginLabel = new JLabel("Patient Log In", SwingConstants.CENTER);
@@ -83,12 +86,21 @@ public class PatientLoginUI extends JFrame{
 		
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(patientLoginLabel);
-		patientLoginLabel.setAlignmentX(CENTER_ALIGNMENT);
+		patientLoginLabel.setAlignmentX(patientLoginLabel.CENTER_ALIGNMENT);
+		layout.add(Box.createRigidArea(new Dimension (0,75)));
 		layout.add(inputLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,25)));
+		layout.add(Box.createRigidArea(new Dimension (0,100)));
 		layout.add(buttonLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 	
-		getContentPane().add(layout); //adding master JPanel to JFrame
+		patientLoginPanel.add(layout);
+	}
+	
+	public void backListener (ActionListener bl){
+		backButton.addActionListener(bl);
+	}
+	
+	public JPanel getPatientLoginPanel(){
+		return patientLoginPanel;
 	}
 }

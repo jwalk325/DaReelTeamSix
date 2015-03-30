@@ -1,9 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
-public class DoctorLoginUI extends JFrame{
+public class DoctorLoginUI{
 	//Instance data
+	private JPanel doctorLoginPanel;
 	private JLabel doctorLoginLabel;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
@@ -17,10 +19,11 @@ public class DoctorLoginUI extends JFrame{
 	
 	//DoctorLoginUI constructor
 	public DoctorLoginUI(){
-		this.setTitle("Doctor Log In"); //sets title in task bar
+		//this.setTitle("Doctor Log In"); //sets title in task bar
+		doctorLoginPanel = new JPanel();
 		
 		//Title creation
-		doctorLoginLabel = new JLabel("Doctor Log In", SwingConstants.CENTER);
+		doctorLoginLabel = new JLabel("Doctor Log-In", SwingConstants.CENTER);
 		doctorLoginLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		//Creation of other components
@@ -89,13 +92,23 @@ public class DoctorLoginUI extends JFrame{
 		
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(doctorLoginLabel);
-		doctorLoginLabel.setAlignmentX(CENTER_ALIGNMENT);
+		doctorLoginLabel.setAlignmentX(doctorLoginLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,65)));
 		layout.add(inputLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,25)));
+		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(buttonLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		
-		getContentPane().add(layout); //adding master JPanel to JFrame
+		//getContentPane().add(layout); //adding master JPanel to JFrame
+		doctorLoginPanel.add(layout);
+		doctorLoginPanel.setBackground(Color.WHITE);
+	}
+	
+	public void backListener (ActionListener bl){
+		backButton.addActionListener(bl);
+	}
+	
+	public JPanel getDoctorLoginPanel(){
+		return doctorLoginPanel;
 	}
 }
