@@ -4,7 +4,7 @@ public class PatientCareSystem {
 
 	public static void main(String[] args) {
 		
-		PatientCareSystemUI gui = new PatientCareSystemUI();
+		GUIController gui = new GUIController();
 		
 	}
 }

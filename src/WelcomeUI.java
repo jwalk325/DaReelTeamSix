@@ -8,8 +8,8 @@ public class WelcomeUI{
 	private JLabel welcomeLabel;
 	private JLabel patientLabel;
 	private JLabel doctorLabel;
-	private JButton newUserButton;
-	private JButton existingUserButton;
+	private JButton newPatientButton;
+	private JButton existingPatientButton;
 	private JButton doctorLoginButton;
 	
 	//WelcomeUI constructor
@@ -24,8 +24,8 @@ public class WelcomeUI{
 		//Create other components
 		patientLabel = new JLabel("Are You A Patient?");
 		doctorLabel = new JLabel("Are You A Doctor?");		
-		newUserButton = new JButton("New Patient");
-		existingUserButton = new JButton("Returning Patient");
+		newPatientButton = new JButton("New Patient");
+		existingPatientButton = new JButton("Returning Patient");
 		doctorLoginButton = new JButton ("Doctor Login");
 		
 		//Creating JPanel for components, used BoxLayout in vertical direction
@@ -39,9 +39,9 @@ public class WelcomeUI{
 		layout.add(Box.createRigidArea(new Dimension(0,75)));
 		layout.add(patientLabel);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
-		layout.add(newUserButton);
+		layout.add(newPatientButton);
 		layout.add(Box.createRigidArea(new Dimension (0,5)));
-		layout.add(existingUserButton);
+		layout.add(existingPatientButton);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(doctorLabel);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
@@ -53,18 +53,18 @@ public class WelcomeUI{
 		//Align all components in the center
 		welcomeLabel.setAlignmentX(welcomeLabel.CENTER_ALIGNMENT);
 		patientLabel.setAlignmentX(patientLabel.CENTER_ALIGNMENT);
-		newUserButton.setAlignmentX(newUserButton.CENTER_ALIGNMENT);
-		existingUserButton.setAlignmentX(existingUserButton.CENTER_ALIGNMENT);
+		newPatientButton.setAlignmentX(newPatientButton.CENTER_ALIGNMENT);
+		existingPatientButton.setAlignmentX(existingPatientButton.CENTER_ALIGNMENT);
 		doctorLabel.setAlignmentX(doctorLabel.CENTER_ALIGNMENT);
 		doctorLoginButton.setAlignmentX(doctorLoginButton.CENTER_ALIGNMENT);
 	}
 	
-	public void newUserListener (ActionListener ny){
-		newUserButton.addActionListener(ny);
+	public void newPatientListener (ActionListener ny){
+		newPatientButton.addActionListener(ny);
 	}
 	
-	public void existingUserListener (ActionListener ny){
-		existingUserButton.addActionListener(ny);
+	public void existingPatientListener (ActionListener ny){
+		existingPatientButton.addActionListener(ny);
 	}
 	
 	public void doctorLoginListener (ActionListener dl){

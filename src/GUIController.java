@@ -3,16 +3,16 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class PatientCareSystemUI{
+public class GUIController{
 	private JPanel mainPanel = new JPanel();
-	private WelcomeUI welcome  = new WelcomeUI();
-	private NewUserUI newUser = new NewUserUI();
-	private PatientLoginUI patient = new PatientLoginUI();
-	private DoctorLoginUI doctor = new DoctorLoginUI();
+	private WelcomeUI welcomeUI  = new WelcomeUI();
+	private NewPatientUI newPatientUI = new NewPatientUI();
+	private PatientLoginUI patientLoginUI = new PatientLoginUI();
+	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
 	
 	
-	public PatientCareSystemUI(){
-		mainPanel.add(welcome.getWelcomePanel());
+	public GUIController(){
+		mainPanel.add(welcomeUI.getWelcomePanel());
 		mainPanel.setBackground(Color.WHITE);
 		
 		JFrame frame = new JFrame();
@@ -23,68 +23,68 @@ public class PatientCareSystemUI{
 		frame.setSize(500, 500);
 		frame.getContentPane().setBackground(Color.WHITE);
 		
-		welcome.newUserListener(new ActionListener() {	       
+		welcomeUI.newPatientListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(newUser.getNewUserPanel());
+		    	 mainPanel.add(newPatientUI.getNewPatientPanel());
 		    	 frame.setTitle("New Patient Sign-Up");
 		    }
 		});
 		
-		welcome.existingUserListener(new ActionListener() {	       
+		welcomeUI.existingPatientListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(patient.getPatientLoginPanel());
+		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    	 frame.setTitle("Returning Patient Log-In");
 		    }
 		});
 		
-		welcome.doctorLoginListener(new ActionListener() {	       
+		welcomeUI.doctorLoginListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(doctor.getDoctorLoginPanel());
+		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
 		    	 frame.setTitle("Doctor Log-In");
 		    }
 		});
 		
-		newUser.backListener(new ActionListener() {	       
+		newPatientUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(welcome.getWelcomePanel());
+		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    	 frame.setTitle("Patient Care System");
 		    }
 		});
 		
-		patient.backListener(new ActionListener() {	       
+		patientLoginUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(welcome.getWelcomePanel());
+		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    	 frame.setTitle("Patient Care System");
 		    }
 		});
 		
-		doctor.backListener(new ActionListener() {	       
+		doctorLoginUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(welcome.getWelcomePanel());
+		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    	 frame.setTitle("Patient Care System");
 		    }
 		});

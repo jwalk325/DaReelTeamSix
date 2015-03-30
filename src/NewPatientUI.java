@@ -3,9 +3,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class NewUserUI{
+public class NewPatientUI{
 	//Instance data
-	private JPanel newUserPanel;
+	private JPanel newPatientPanel;
 	private JLabel createProfileLabel;
 	private JLabel nameLabel;
 	private JLabel dobLabel;
@@ -27,10 +27,10 @@ public class NewUserUI{
 	private JButton backButton;
 	private JButton nextButton;
 	
-	//NewUserUI constructor
-	public NewUserUI(){		
-		newUserPanel = new JPanel();
-		newUserPanel.setBackground(Color.WHITE);
+	//NewPatientUI constructor
+	public NewPatientUI(){		
+		newPatientPanel = new JPanel();
+		newPatientPanel.setBackground(Color.WHITE);
 		
 		//Title Creation
 		createProfileLabel = new JLabel("Create Profile", SwingConstants.CENTER);
@@ -152,14 +152,14 @@ public class NewUserUI{
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
 		
-		newUserPanel.add(layout);
+		newPatientPanel.add(layout);
 	}
 	
 	public void backListener (ActionListener dl){
 		backButton.addActionListener(dl);
 	}
 	
-	public JPanel getNewUserPanel(){
-		return newUserPanel;
+	public JPanel getNewPatientPanel(){
+		return newPatientPanel;
 	}
 }
