@@ -157,8 +157,12 @@ public class NewPatientUI{
 	}
 	
 	//public buttonListeners for use in GUI Controller class
-	public void backListener (ActionListener dl){
-		backButton.addActionListener(dl);
+	public void backListener (ActionListener bl){
+		backButton.addActionListener(bl);
+	}
+	
+	public void nextListener (ActionListener nl){
+		nextButton.addActionListener(nl);
 	}
 	
 	//method to retrieve panel in GUI Controller class

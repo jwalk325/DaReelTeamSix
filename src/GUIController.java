@@ -7,6 +7,8 @@ public class GUIController{
 	private JPanel mainPanel = new JPanel();
 	private WelcomeUI welcomeUI  = new WelcomeUI();
 	private NewPatientUI newPatientUI = new NewPatientUI();
+	private DoctorSelectionUI doctorSelectionUI = new DoctorSelectionUI();
+	private RegisterSuccessUI registerSuccessUI = new RegisterSuccessUI();
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
 	
@@ -23,6 +25,7 @@ public class GUIController{
 		frame.setSize(500, 500); //window size
 		frame.setResizable(false); //do not allow window to be resized
 		frame.getContentPane().setBackground(Color.WHITE); //color
+		frame.setLocationRelativeTo(null); //center JFrame to user's desktop
 		frame.setVisible(true); //frame is visible
 		
 		//Action performed when New Patient button is pushed on welcome UI
@@ -70,6 +73,46 @@ public class GUIController{
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    	 //frame.setTitle("Patient Care System");
+		    }
+		});
+		
+		newPatientUI.nextListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(doctorSelectionUI.getDoctorSelctionPanel());
+		    }
+		});
+		
+		doctorSelectionUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(newPatientUI.getNewPatientPanel());
+		    }
+		});
+		
+		doctorSelectionUI.finishListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(registerSuccessUI.getRegisterSuccessPanel());
+		    }
+		});
+		
+		registerSuccessUI.continueListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    }
 		});
 		
