@@ -3,8 +3,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class Symptoms1UI {
-	private JPanel symptoms1Panel;
+public class Symptoms2UI {
+	private JPanel symptoms2Panel;
 	private JLabel feelingLabel;
 	private JLabel noneLabel1;
 	private JLabel noneLabel2;
@@ -12,21 +12,22 @@ public class Symptoms1UI {
 	private JLabel severeLabel1;
 	private JLabel severeLabel2;
 	private JLabel severeLabel3;
-	private JLabel painLabel;
-	private JLabel tirednessLabel;
-	private JLabel nasueaLabel;
+	private JLabel depressionLabel;
+	private JLabel drowsinessLabel;
+	private JLabel anxietyLabel;
 	private JLabel commentsLabel;
 	private JLabel filler;
 	private JTextArea commentsArea;
 	private JScrollPane commentsPane;
-	private JSlider painSlider;
-	private JSlider tirednessSlider;
-	private JSlider nasueaSlider;
-	private JButton nextButton;
+	private JSlider depressionSlider;
+	private JSlider drowsinessSlider;
+	private JSlider anxietySlider;
+	private JButton backButton;
+	private JButton finishButton;
 	
-	public Symptoms1UI(){
-		symptoms1Panel = new JPanel();
-		symptoms1Panel.setBackground(Color.WHITE);
+	public Symptoms2UI(){
+		symptoms2Panel = new JPanel();
+		symptoms2Panel.setBackground(Color.WHITE);
 		
 		feelingLabel = new JLabel("How Are You Feeling?");
 		feelingLabel.setFont(new Font("Helvetica",Font.BOLD, 22));
@@ -37,12 +38,12 @@ public class Symptoms1UI {
 		severeLabel1 = new JLabel("Severe", SwingConstants.CENTER);
 		severeLabel2 = new JLabel("Severe", SwingConstants.CENTER);
 		severeLabel3 = new JLabel("Severe", SwingConstants.CENTER);
-		painLabel = new JLabel("Pain", SwingConstants.CENTER);
-		painLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
-		tirednessLabel = new JLabel("Tiredness", SwingConstants.CENTER);
-		tirednessLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
-		nasueaLabel = new JLabel("Nasuea", SwingConstants.CENTER);
-		nasueaLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
+		depressionLabel = new JLabel("Depression", SwingConstants.CENTER);
+		depressionLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
+		drowsinessLabel = new JLabel("Drowsiness", SwingConstants.CENTER);
+		drowsinessLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
+		anxietyLabel = new JLabel("Anxiety", SwingConstants.CENTER);
+		anxietyLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
 		commentsLabel = new JLabel("Comments:");
 		filler = new JLabel(""); //filler is a blank JLabel
 		filler.setPreferredSize(new Dimension(5,5)); //set dimensions as needed to center grid objects
@@ -52,24 +53,25 @@ public class Symptoms1UI {
 		commentsPane = new JScrollPane(commentsArea);
 		commentsPane.setMaximumSize(new Dimension(300,300));
 		
-		painSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
-		painSlider.setMajorTickSpacing(1);
-		painSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
-		painSlider.setPaintLabels(true);
-		painSlider.setPaintTicks(true);		
-		painSlider.setAlignmentX(JSlider.LEFT_ALIGNMENT);
-		tirednessSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
-		tirednessSlider.setMajorTickSpacing(1);
-		tirednessSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
-		tirednessSlider.setPaintLabels(true);
-		tirednessSlider.setPaintTicks(true);
-		nasueaSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
-		nasueaSlider.setMajorTickSpacing(1);
-		nasueaSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
-		nasueaSlider.setPaintLabels(true);
-		nasueaSlider.setPaintTicks(true);
-	
-		nextButton = new JButton("Next");
+		depressionSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
+		depressionSlider.setMajorTickSpacing(1);
+		depressionSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
+		depressionSlider.setPaintLabels(true);
+		depressionSlider.setPaintTicks(true);		
+		depressionSlider.setAlignmentX(JSlider.LEFT_ALIGNMENT);
+		drowsinessSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
+		drowsinessSlider.setMajorTickSpacing(1);
+		drowsinessSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
+		drowsinessSlider.setPaintLabels(true);
+		drowsinessSlider.setPaintTicks(true);
+		anxietySlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
+		anxietySlider.setMajorTickSpacing(1);
+		anxietySlider.setFont(new Font("Helvetica",Font.PLAIN,10));
+		anxietySlider.setPaintLabels(true);
+		anxietySlider.setPaintTicks(true);
+
+		backButton = new JButton("Back");
+		finishButton = new JButton("Finish");
 		
 		JPanel inputLayout = new JPanel();		
 		inputLayout.setLayout(new GridBagLayout());
@@ -78,7 +80,7 @@ public class Symptoms1UI {
 		GridBagConstraints c = new GridBagConstraints(); //create variable to control constraints
 		c.fill = GridBagConstraints.NONE; //determines if object takes available space in vertical and/or horizontal directions
 		
-		c.insets = new Insets(0,50,0,50);
+		c.insets = new Insets(0,47,0,47);
 		c.gridx = 0; //top-left corner of window is considered (0,0). 
 		c.gridy = 0;
 		inputLayout.add(severeLabel1,c);
@@ -89,11 +91,11 @@ public class Symptoms1UI {
 		
 		c.gridy = 1;
 		c.gridx = 0;
-		inputLayout.add(painSlider,c);
+		inputLayout.add(depressionSlider,c);
 		c.gridx++;
-		inputLayout.add(tirednessSlider,c);
+		inputLayout.add(anxietySlider,c);
 		c.gridx++;
-		inputLayout.add(nasueaSlider,c);
+		inputLayout.add(drowsinessSlider,c);
 		
 		c.gridy = 2;
 		c.gridx = 0;
@@ -103,14 +105,14 @@ public class Symptoms1UI {
 		c.gridx++;
 		inputLayout.add(noneLabel3,c);
 		
-		c.insets = new Insets(5,50,0,50);
+		c.insets = new Insets(5,47,0,47);
 		c.gridy = 3;
 		c.gridx = 0;
-		inputLayout.add(painLabel,c);
+		inputLayout.add(depressionLabel,c);
 		c.gridx++;
-		inputLayout.add(tirednessLabel,c);
+		inputLayout.add(anxietyLabel,c);
 		c.gridx++;
-		inputLayout.add(nasueaLabel,c);						
+		inputLayout.add(drowsinessLabel,c);			
 		
 		JPanel commentsLayout = new JPanel();
 		commentsLayout.setBackground(Color.WHITE);
@@ -124,8 +126,9 @@ public class Symptoms1UI {
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
-		buttonLayout.add(Box.createRigidArea(new Dimension (225,0)));
-		buttonLayout.add(nextButton);
+		buttonLayout.add(backButton);
+		buttonLayout.add(Box.createRigidArea(new Dimension (140,0)));
+		buttonLayout.add(finishButton);
 		
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
@@ -143,14 +146,14 @@ public class Symptoms1UI {
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
 		
-		symptoms1Panel.add(layout);		
+		symptoms2Panel.add(layout);		
 	}
 	
-	public JPanel getSymptoms1Panel(){
-		return symptoms1Panel;
+	public JPanel getSymptoms2Panel(){
+		return symptoms2Panel;
 	}
 	
-	public void nextListener (ActionListener nl){
-		nextButton.addActionListener(nl);
+	public void backListener (ActionListener bl){
+		backButton.addActionListener(bl);
 	}
 }

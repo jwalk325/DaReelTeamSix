@@ -12,6 +12,7 @@ public class GUIController{
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
 	private Symptoms1UI symptoms1UI = new Symptoms1UI();
+	private Symptoms2UI symptoms2UI = new Symptoms2UI();
 	
 	public GUIController(){
 		//add welcomeUI to main JPanel
@@ -129,7 +130,30 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when submit button is pushed in Patient Login UI
 		patientLoginUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(symptoms1UI.getSymptoms1Panel());
+		    }
+		});
+		
+		//Action performed when the next button is pushed in the first page of symptoms UI
+		symptoms1UI.nextListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+			    mainPanel.revalidate();
+			    mainPanel.repaint();
+			    	 
+			    mainPanel.add(symptoms2UI.getSymptoms2Panel());
+		    }
+		});
+		
+		//Action performed when the back button is pushed in the second page of symptoms UI
+		symptoms2UI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
