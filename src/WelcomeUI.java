@@ -58,7 +58,6 @@ public class WelcomeUI{
 		doctorLoginButton.setAlignmentX(doctorLoginButton.CENTER_ALIGNMENT);
 		
 		welcomePanel.add(layout);//add layout to main welcome Panel
-
 	}
 	
 	//public buttonListeners for use in GUI Controller class

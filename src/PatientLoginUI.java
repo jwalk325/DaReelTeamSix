@@ -102,6 +102,10 @@ public class PatientLoginUI{
 		backButton.addActionListener(bl);
 	}
 	
+	public void submitListener (ActionListener sl){
+		submitButton.addActionListener(sl);
+	}
+	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getPatientLoginPanel(){
 		return patientLoginPanel;

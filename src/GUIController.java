@@ -11,6 +11,7 @@ public class GUIController{
 	private RegisterSuccessUI registerSuccessUI = new RegisterSuccessUI();
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
+	private Symptoms1UI symptoms1UI = new Symptoms1UI();
 	
 	public GUIController(){
 		//add welcomeUI to main JPanel
@@ -48,7 +49,6 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
-		    	 //frame.setTitle("Returning Patient Log-In");
 		    }
 		});
 		
@@ -60,7 +60,6 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
-		    	 //frame.setTitle("Doctor Log-In");
 		    }
 		});
 		
@@ -72,20 +71,21 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
-		    	 //frame.setTitle("Patient Care System");
 		    }
 		});
 		
+		//Action performed when next button is pushed in New Patient UI
 		newPatientUI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(doctorSelectionUI.getDoctorSelctionPanel());
+				mainPanel.removeAll();
+			    mainPanel.revalidate();
+			    mainPanel.repaint();
+			    	 
+			    mainPanel.add(doctorSelectionUI.getDoctorSelctionPanel());
 		    }
 		});
 		
+		//Action performed when back button is pushed in Doctor Selection UI
 		doctorSelectionUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
@@ -96,6 +96,7 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when finish button is pushed in Doctor Selection UI
 		doctorSelectionUI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
@@ -106,6 +107,7 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when continue button is pushed in Register Success UI
 		registerSuccessUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
@@ -124,7 +126,16 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
-		    	 //frame.setTitle("Patient Care System");
+		    }
+		});
+		
+		patientLoginUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(symptoms1UI.getSymptoms1Panel());
 		    }
 		});
 		
@@ -136,7 +147,6 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
-		    	 //frame.setTitle("Patient Care System");
 		    }
 		});
 	}
