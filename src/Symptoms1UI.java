@@ -23,6 +23,7 @@ public class Symptoms1UI {
 	private JSlider tirednessSlider;
 	private JSlider nasueaSlider;
 	private JButton nextButton;
+	private JButton logoutButton;
 	
 	public Symptoms1UI(){
 		symptoms1Panel = new JPanel();
@@ -70,6 +71,7 @@ public class Symptoms1UI {
 		nasueaSlider.setPaintTicks(true);
 	
 		nextButton = new JButton("Next");
+		logoutButton = new JButton("Log Out");
 		
 		JPanel inputLayout = new JPanel();		
 		inputLayout.setLayout(new GridBagLayout());
@@ -124,7 +126,8 @@ public class Symptoms1UI {
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
-		buttonLayout.add(Box.createRigidArea(new Dimension (225,0)));
+		buttonLayout.add(logoutButton);
+		buttonLayout.add(Box.createRigidArea(new Dimension (140,0)));
 		buttonLayout.add(nextButton);
 		
 		JPanel layout = new JPanel();
@@ -152,5 +155,9 @@ public class Symptoms1UI {
 	
 	public void nextListener (ActionListener nl){
 		nextButton.addActionListener(nl);
+	}
+	
+	public void logoutListener (ActionListener ll){
+		logoutButton.addActionListener(ll);
 	}
 }

@@ -13,6 +13,9 @@ public class GUIController{
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
 	private Symptoms1UI symptoms1UI = new Symptoms1UI();
 	private Symptoms2UI symptoms2UI = new Symptoms2UI();
+	private UpdateInfoCheckUI updateInfoCheckUI = new UpdateInfoCheckUI();
+	private ThankYouUI thankYouUI = new ThankYouUI();
+	private UpdateInfoUI updateInfoUI = new UpdateInfoUI();
 	
 	public GUIController(){
 		//add welcomeUI to main JPanel
@@ -141,6 +144,17 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when logout button is pushed in the first page of symptoms UI
+		symptoms1UI.logoutListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+			    mainPanel.revalidate();
+			    mainPanel.repaint();
+			    	 
+			    mainPanel.add(welcomeUI.getWelcomePanel());
+		    }
+		});
+		
 		//Action performed when the next button is pushed in the first page of symptoms UI
 		symptoms1UI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -163,6 +177,61 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when the finish button is pushed in the second page of symptoms UI
+		symptoms2UI.finishListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				 mainPanel.removeAll();
+				 mainPanel.revalidate();
+				 mainPanel.repaint();
+				    	 
+				 mainPanel.add(updateInfoCheckUI.getUpdateInfoCheckPanel());
+			}
+		});
+		
+		//Action performed when yes button is pushed in Update Info Check UI
+		updateInfoCheckUI.yesListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+				mainPanel.revalidate();
+				mainPanel.repaint();
+				    	 
+				mainPanel.add(updateInfoUI.getUpdateInfoPanel());
+			}
+		});
+		
+		//Action performed when no button is pushed in Update Info Check UI
+		updateInfoCheckUI.noListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+				mainPanel.revalidate();
+				mainPanel.repaint();
+				    	 
+				mainPanel.add(thankYouUI.getThankYouPanel());
+			}
+		});
+		
+		//Action performed when yes button is pushed in Update Info Check UI
+		updateInfoUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+				mainPanel.revalidate();
+				mainPanel.repaint();
+				    	 
+				mainPanel.add(thankYouUI.getThankYouPanel());
+			}
+		});
+		
+		//Action performed when logout button is pushed in the Thank You UI
+		thankYouUI.logoutListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+				mainPanel.revalidate();
+				mainPanel.repaint();
+					    	 
+				mainPanel.add(welcomeUI.getWelcomePanel());
+			}
+		});
+			
 		//Action performed when back button is pushed in Doctor Login UI
 		doctorLoginUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {

@@ -156,4 +156,8 @@ public class Symptoms2UI {
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
+	
+	public void finishListener (ActionListener fl){
+		finishButton.addActionListener(fl);
+	}
 }
