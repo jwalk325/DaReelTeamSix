@@ -26,24 +26,26 @@ public class GUIController{
 		JFrame frame = new JFrame();
 		frame.setTitle("Patient Care System"); //menu bar text
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close application when frame is closed
-		frame.getContentPane().add(mainPanel); //add main Panel to frame
 		frame.setSize(500, 500); //window size
 		frame.setResizable(false); //do not allow window to be resized
 		frame.getContentPane().setBackground(Color.WHITE); //color
 		frame.setLocationRelativeTo(null); //center JFrame to user's desktop
-		frame.setVisible(true); //frame is visible
-		
+		frame.getContentPane().add(mainPanel); //add main Panel to frame
+		frame.setVisible(true); //frame is visible	
+	}
+	
+	public void enableNavigation(){
 		//Action performed when New Patient button is pushed on welcome UI
 		welcomeUI.newPatientListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll(); //remove everything from main panel
-		    	 mainPanel.revalidate(); //revalidate the panel
-		    	 mainPanel.repaint(); //repaint the panel
-		    	 
-		    	 mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up the New Patient UI
-		    }
+				mainPanel.removeAll(); //remove everything from main panel
+				mainPanel.revalidate(); //revalidate the panel
+				mainPanel.repaint(); //repaint the panel
+				    	 
+				mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up the New Patient UI
+			}
 		});
-		
+				
 		//Action performed when Returning Patient button is pushed on welcome UI
 		welcomeUI.existingPatientListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -53,8 +55,8 @@ public class GUIController{
 		    	 
 		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    }
-		});
-		
+		});		
+				
 		//Action performed when Doctor Login button is pushed in welcome UI
 		welcomeUI.doctorLoginListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -64,8 +66,8 @@ public class GUIController{
 		    	 
 		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
 		    }
-		});
-		
+		});		
+				
 		//Action performed when back button is pushed in New Patient UI
 		newPatientUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -75,8 +77,8 @@ public class GUIController{
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    }
-		});
-		
+		});		
+				
 		//Action performed when next button is pushed in New Patient UI
 		newPatientUI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -241,5 +243,5 @@ public class GUIController{
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
 		    }
 		});
-	}
+	}			
 }
