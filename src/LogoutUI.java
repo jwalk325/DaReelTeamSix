@@ -3,17 +3,17 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class ThankYouUI {
-	private JPanel thankYouPanel;
-	private JLabel thankYouLabel;
+public class LogoutUI {
+	private JPanel logoutPanel;
+	private JLabel logoutLabel;
 	private JButton logoutButton;
 	
-		public ThankYouUI(){			
-			thankYouPanel = new JPanel();
-			thankYouPanel.setBackground(Color.WHITE);
+		public LogoutUI(){			
+			logoutPanel = new JPanel();
+			logoutPanel.setBackground(Color.WHITE);
 			
-			thankYouLabel = new JLabel("Thank you for using our service.");
-			thankYouLabel.setFont(new Font("Helvetica",Font.BOLD, 22));
+			logoutLabel = new JLabel("Thank you for using our service.");
+			logoutLabel.setFont(new Font("Helvetica",Font.BOLD, 22));
 			
 			logoutButton = new JButton("Log Out");
 			
@@ -22,18 +22,18 @@ public class ThankYouUI {
 			layout.setBackground(Color.WHITE);
 			
 			layout.add(Box.createRigidArea(new Dimension (0,150)));
-			layout.add(thankYouLabel);
+			layout.add(logoutLabel);
 			layout.add(Box.createRigidArea(new Dimension (0,75)));
 			layout.add(logoutButton);
 			
-			thankYouLabel.setAlignmentX(thankYouLabel.CENTER_ALIGNMENT);
+			logoutLabel.setAlignmentX(logoutLabel.CENTER_ALIGNMENT);
 			logoutButton.setAlignmentX(logoutButton.CENTER_ALIGNMENT);
 			
-			thankYouPanel.add(layout);		
+			logoutPanel.add(layout);		
 		}
 		
-		public JPanel getThankYouPanel(){
-			return thankYouPanel;
+		public JPanel getLogoutPanel(){
+			return logoutPanel;
 		}
 		
 		public void logoutListener (ActionListener ll){

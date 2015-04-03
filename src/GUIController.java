@@ -14,7 +14,7 @@ public class GUIController{
 	private Symptoms1UI symptoms1UI = new Symptoms1UI();
 	private Symptoms2UI symptoms2UI = new Symptoms2UI();
 	private UpdateInfoCheckUI updateInfoCheckUI = new UpdateInfoCheckUI();
-	private ThankYouUI thankYouUI = new ThankYouUI();
+	private LogoutUI logoutUI = new LogoutUI();
 	private UpdateInfoUI updateInfoUI = new UpdateInfoUI();
 	
 	public GUIController(){
@@ -41,7 +41,6 @@ public class GUIController{
 		    	 mainPanel.repaint(); //repaint the panel
 		    	 
 		    	 mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up the New Patient UI
-		    	 //frame.setTitle("New Patient Sign-Up");
 		    }
 		});
 		
@@ -206,23 +205,23 @@ public class GUIController{
 				mainPanel.revalidate();
 				mainPanel.repaint();
 				    	 
-				mainPanel.add(thankYouUI.getThankYouPanel());
+				mainPanel.add(logoutUI.getLogoutPanel());
 			}
 		});
 		
-		//Action performed when yes button is pushed in Update Info Check UI
+		//Action performed when submit button is pushed in Update Info UI
 		updateInfoUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				mainPanel.removeAll();
 				mainPanel.revalidate();
 				mainPanel.repaint();
 				    	 
-				mainPanel.add(thankYouUI.getThankYouPanel());
+				mainPanel.add(logoutUI.getLogoutPanel());
 			}
 		});
 		
-		//Action performed when logout button is pushed in the Thank You UI
-		thankYouUI.logoutListener(new ActionListener() {	       
+		//Action performed when logout button is pushed in the Logout UI
+		logoutUI.logoutListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				mainPanel.removeAll();
 				mainPanel.revalidate();
