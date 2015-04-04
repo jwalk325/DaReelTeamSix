@@ -111,6 +111,10 @@ public class DoctorLoginUI{
 		forgotButton.addActionListener(fl);
 	}
 	
+	public void registerListener (ActionListener rl){
+		registerButton.addActionListener(rl);
+	}
+	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getDoctorLoginPanel(){
 		return doctorLoginPanel;

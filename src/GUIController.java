@@ -20,6 +20,7 @@ public class GUIController{
 	private SecurityQuestionUI securityQuestionUI = new SecurityQuestionUI();
 	private ResetPasswordUI resetPasswordUI = new ResetPasswordUI();
 	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
+	private NewDoctorUI newDoctorUI = new NewDoctorUI();
 	
 	private String doctor = "Doctor";
 	private String patient = "Patient";
@@ -42,7 +43,7 @@ public class GUIController{
 		frame.setVisible(true); //frame is visible	
 	}
 	
-	public void enableNavigation(){
+	public void enableGUI(){
 		//Action performed when New Patient button is pushed on welcome UI
 		welcomeUI.newPatientListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -51,6 +52,7 @@ public class GUIController{
 				mainPanel.repaint(); //repaint the panel
 				    	 
 				mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up the New Patient UI
+				user = patient;
 			}
 		});
 				
@@ -62,6 +64,7 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 user = patient;
 		    }
 		});		
 				
@@ -73,6 +76,7 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+		    	 user = doctor;
 		    }
 		});		
 				
@@ -127,7 +131,12 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 if(user.equals(patient)){
+			    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 }
+		    	 else{
+		    		 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+		    	 }
 		    }
 		});
 		
@@ -161,7 +170,6 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(lostPasswordUI.getLostPasswordPanel());
-		    	 user = patient;
 		    }
 		});
 		
@@ -172,7 +180,12 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 if(user.equals(patient)){
+		    		 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 }
+		    	 else{
+		    		 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+		    	 }
 		    }
 		});
 		
@@ -232,7 +245,7 @@ public class GUIController{
 		});
 		
 		//Action performed when Log In button is pushed in Reset Success UI
-		resetSuccessUI.loginListener(new ActionListener() {	       
+		resetSuccessUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
@@ -334,6 +347,17 @@ public class GUIController{
 				mainPanel.add(welcomeUI.getWelcomePanel());
 			}
 		});
+		
+		//Action performed when submit button is pushed in Doctor Login UI
+		doctorLoginUI.registerListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(newDoctorUI.getNewDoctorPanel());
+		    }
+		});
 			
 		//Action performed when back button is pushed in Doctor Login UI
 		doctorLoginUI.backListener(new ActionListener() {	       
@@ -346,6 +370,7 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when forgot password button is pushed in Doctor Login UI
 		doctorLoginUI.forgotListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
@@ -353,7 +378,28 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(lostPasswordUI.getLostPasswordPanel());
-		    	 user = doctor;
+		    }
+		});
+		
+		//Action performed when submit button is pushed in New Doctor UI
+		newDoctorUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(registerSuccessUI.getRegisterSuccessPanel());
+		    }
+		});
+		
+		//Action performed when back button is pushed in New Doctor UI
+		newDoctorUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
 		    }
 		});
 	}			

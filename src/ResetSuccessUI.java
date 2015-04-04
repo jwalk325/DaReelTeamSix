@@ -7,7 +7,7 @@ public class ResetSuccessUI {
 	private JPanel resetSuccessPanel;
 	private JLabel resetSuccessLabel;
 	private JLabel clickLoginLabel;
-	private JButton loginButton;
+	private JButton continueButton;
 	
 	public ResetSuccessUI(){
 		resetSuccessPanel = new JPanel();
@@ -15,8 +15,8 @@ public class ResetSuccessUI {
 		
 		resetSuccessLabel = new JLabel("Password Reset Successful!");
 		resetSuccessLabel.setFont(new Font("Helvetica",Font.BOLD, 18));
-		clickLoginLabel = new JLabel("Click Log In to return to Log In.");
-		loginButton = new JButton("Log In");
+		clickLoginLabel = new JLabel("Click Continue to return to Log In.");
+		continueButton = new JButton("Continue");
 		
 		//Creating JPanel for components, used BoxLayout in vertical direction
 		JPanel layout = new JPanel();
@@ -29,17 +29,17 @@ public class ResetSuccessUI {
 		layout.add(Box.createRigidArea(new Dimension (0,100)));
 		layout.add(clickLoginLabel);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
-		layout.add(loginButton);
+		layout.add(continueButton);
 		
 		resetSuccessLabel.setAlignmentX(resetSuccessLabel.CENTER_ALIGNMENT);
 		clickLoginLabel.setAlignmentX(clickLoginLabel.CENTER_ALIGNMENT);
-		loginButton.setAlignmentX(loginButton.CENTER_ALIGNMENT);
+		continueButton.setAlignmentX(continueButton.CENTER_ALIGNMENT);
 
 		resetSuccessPanel.add(layout);
 	}
 	
-	public void loginListener (ActionListener ll){
-		loginButton.addActionListener(ll);
+	public void continueListener (ActionListener ll){
+		continueButton.addActionListener(ll);
 	}
 	
 	public JPanel getResetSuccessPanel(){
