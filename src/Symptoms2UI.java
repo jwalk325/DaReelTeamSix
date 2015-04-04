@@ -80,28 +80,33 @@ public class Symptoms2UI {
 		GridBagConstraints c = new GridBagConstraints(); //create variable to control constraints
 		c.fill = GridBagConstraints.NONE; //determines if object takes available space in vertical and/or horizontal directions
 		
-		c.insets = new Insets(0,47,0,47);
+		c.insets = new Insets(0,50,0,47);
 		c.gridx = 0; //top-left corner of window is considered (0,0). 
 		c.gridy = 0;
 		inputLayout.add(severeLabel1,c);
 		c.gridx++;
 		inputLayout.add(severeLabel2,c);
+		c.insets = new Insets(0,47,0,49);
 		c.gridx++;
 		inputLayout.add(severeLabel3,c);	
 		
+		c.insets = new Insets(0,49,0,47);
 		c.gridy = 1;
 		c.gridx = 0;
 		inputLayout.add(depressionSlider,c);
 		c.gridx++;
 		inputLayout.add(anxietySlider,c);
-		c.gridx++;
+		c.insets = new Insets(0,47,0,49);
+		c.gridx++;		
 		inputLayout.add(drowsinessSlider,c);
 		
+		c.insets = new Insets(0,49,0,47);
 		c.gridy = 2;
 		c.gridx = 0;
 		inputLayout.add(noneLabel1,c);
 		c.gridx++;
 		inputLayout.add(noneLabel2,c);
+		c.insets = new Insets(0,47,0,47);
 		c.gridx++;
 		inputLayout.add(noneLabel3,c);
 		
@@ -111,8 +116,17 @@ public class Symptoms2UI {
 		inputLayout.add(depressionLabel,c);
 		c.gridx++;
 		inputLayout.add(anxietyLabel,c);
+		c.insets = new Insets(5,47,0,49);
 		c.gridx++;
 		inputLayout.add(drowsinessLabel,c);			
+		
+		JPanel titleLayout = new JPanel();
+		titleLayout.setBackground(Color.WHITE);
+		titleLayout.setLayout(new BoxLayout(titleLayout, BoxLayout.X_AXIS));
+		
+		titleLayout.add(feelingLabel);
+		titleLayout.add(Box.createRigidArea(new Dimension (2,0)));
+
 		
 		JPanel commentsLayout = new JPanel();
 		commentsLayout.setBackground(Color.WHITE);
@@ -121,13 +135,14 @@ public class Symptoms2UI {
 		commentsLayout.add(commentsLabel);
 		commentsLayout.add(Box.createRigidArea(new Dimension (5,0)));
 		commentsLayout.add(commentsPane);
+		commentsLayout.add(Box.createRigidArea(new Dimension (2,0)));
 
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
 		buttonLayout.add(backButton);
-		buttonLayout.add(Box.createRigidArea(new Dimension (140,0)));
+		buttonLayout.add(Box.createRigidArea(new Dimension (150,0)));
 		buttonLayout.add(finishButton);
 		
 		JPanel layout = new JPanel();
@@ -136,8 +151,7 @@ public class Symptoms2UI {
 		
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
 		layout.add(Box.createRigidArea(new Dimension (0,15)));//add space to top so label isn't smashed at the top
-		layout.add(feelingLabel);
-		feelingLabel.setAlignmentX(feelingLabel.CENTER_ALIGNMENT);
+		layout.add(titleLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,15))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel

@@ -16,6 +16,14 @@ public class GUIController{
 	private UpdateInfoCheckUI updateInfoCheckUI = new UpdateInfoCheckUI();
 	private LogoutUI logoutUI = new LogoutUI();
 	private UpdateInfoUI updateInfoUI = new UpdateInfoUI();
+	private LostPasswordUI lostPasswordUI = new LostPasswordUI();
+	private SecurityQuestionUI securityQuestionUI = new SecurityQuestionUI();
+	private ResetPasswordUI resetPasswordUI = new ResetPasswordUI();
+	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
+	
+	private String doctor = "Doctor";
+	private String patient = "Patient";
+	private String user;
 	
 	public GUIController(){
 		//add welcomeUI to main JPanel
@@ -145,6 +153,100 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when forgot password button is pushed in Patient Login UI
+		patientLoginUI.forgotListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(lostPasswordUI.getLostPasswordPanel());
+		    	 user = patient;
+		    }
+		});
+		
+		//Action performed when back to log in button is pushed in Forgot Password UI
+		lostPasswordUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    }
+		});
+		
+		//Action performed when continue button is pushed in Forgot Password UI
+		lostPasswordUI.continueListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
+		    }
+		});
+		
+		//Action performed when back button is pushed in Security Question UI
+		securityQuestionUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(lostPasswordUI.getLostPasswordPanel());
+		    }
+		});
+		
+		//Action performed when continue button is pushed in Security Question UI
+		securityQuestionUI.continueListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
+		    }
+		});
+		
+		//Action performed when back button is pushed in Reset Password UI
+		resetPasswordUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
+		    }
+		});
+		
+		//Action performed when reset password button is pushed in Reset Password UI
+		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+		    }
+		});
+		
+		//Action performed when Log In button is pushed in Reset Success UI
+		resetSuccessUI.loginListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 if(user.equals(patient)){
+		    		 mainPanel.add(patientLoginUI.getPatientLoginPanel());
+		    	 }
+		    	 else{
+		    		 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+		    	 }
+		    }
+		});
+		
 		//Action performed when logout button is pushed in the first page of symptoms UI
 		symptoms1UI.logoutListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
@@ -241,6 +343,17 @@ public class GUIController{
 		    	 mainPanel.repaint();
 		    	 
 		    	 mainPanel.add(welcomeUI.getWelcomePanel());
+		    }
+		});
+		
+		doctorLoginUI.forgotListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(lostPasswordUI.getLostPasswordPanel());
+		    	 user = doctor;
 		    }
 		});
 	}			

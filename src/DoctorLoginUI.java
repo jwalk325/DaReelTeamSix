@@ -24,17 +24,17 @@ public class DoctorLoginUI{
 		doctorLoginPanel.setBackground(Color.WHITE);
 		
 		//Title creation
-		doctorLoginLabel = new JLabel("Doctor Log-In", SwingConstants.CENTER);
+		doctorLoginLabel = new JLabel("Doctor Log In", SwingConstants.CENTER);
 		doctorLoginLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		//Creation of other components
-		usernameLabel = new JLabel("Username:",SwingConstants.RIGHT);
+		usernameLabel = new JLabel("E-mail:",SwingConstants.RIGHT);
 		passwordLabel = new JLabel("Password:",SwingConstants.RIGHT);
 		filler = new JLabel("");
 		filler.setPreferredSize(new Dimension(60,0));		
-		usernameField = new JTextField(10);
-		passwordField = new JTextField(10);
-		forgotButton = new JButton("Forgot Username/Password");
+		usernameField = new JTextField(15);
+		passwordField = new JTextField(15);
+		forgotButton = new JButton("Forgot Password");
 		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
 		registerButton = new JButton("Register New Doctor");
@@ -69,7 +69,6 @@ public class DoctorLoginUI{
 		c.gridy = 3;
 		inputLayout.add(submitButton, c);
 		
-		c.fill = GridBagConstraints.BOTH;
 		c.insets = new Insets(35,5,0,0);
 		c.gridy = 4;
 		inputLayout.add(forgotButton, c);
@@ -106,6 +105,10 @@ public class DoctorLoginUI{
 	//public buttonListeners for use in GUI Controller class
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
+	}
+	
+	public void forgotListener (ActionListener fl){
+		forgotButton.addActionListener(fl);
 	}
 	
 	//method to retrieve panel in GUI Controller class

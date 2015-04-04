@@ -14,7 +14,7 @@ public class RegisterSuccessUI {
 		registerSuccessPanel.setBackground(Color.WHITE);
 		
 		thankYouLabel = new JLabel("Thank you for registering with us!");
-		thankYouLabel.setFont(new Font("Helvetica",Font.PLAIN, 18));
+		thankYouLabel.setFont(new Font("Helvetica",Font.BOLD, 18));
 		clickContinueLabel = new JLabel("Click continue to go to the login page.");
 		continueButton = new JButton("Continue");
 		

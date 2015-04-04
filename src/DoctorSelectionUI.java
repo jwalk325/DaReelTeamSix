@@ -126,17 +126,17 @@ public class DoctorSelectionUI {
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
 		buttonLayout.add(backButton);
-		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
+		buttonLayout.add(Box.createRigidArea(new Dimension (122,0)));
 		buttonLayout.add(finishButton);
 		
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		layout.setBackground(Color.WHITE);
 		
-		layout.add(Box.createRigidArea(new Dimension (0,50)));
+		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(enterInformationLabel);
 		enterInformationLabel.setAlignmentX(enterInformationLabel.CENTER_ALIGNMENT);
-		layout.add(Box.createRigidArea(new Dimension (0,25)));
+		layout.add(Box.createRigidArea(new Dimension (0,54)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel

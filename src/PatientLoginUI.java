@@ -23,17 +23,17 @@ public class PatientLoginUI{
 		patientLoginPanel.setBackground(Color.WHITE);
 		
 		//Title creation
-		patientLoginLabel = new JLabel("Patient Log-In", SwingConstants.CENTER);
+		patientLoginLabel = new JLabel("Patient Log In", SwingConstants.CENTER);
 		patientLoginLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		//Create all other components
-		usernameLabel = new JLabel("Username:",SwingConstants.RIGHT);
+		usernameLabel = new JLabel("E-mail:",SwingConstants.RIGHT);
 		passwordLabel = new JLabel("Password:",SwingConstants.RIGHT);
 		filler = new JLabel("");
 		filler.setPreferredSize(new Dimension(60,0));	
-		usernameField = new JTextField(10);
-		passwordField = new JTextField(10);		
-		forgotButton = new JButton("Forgot Username/Password");
+		usernameField = new JTextField(15);
+		passwordField = new JTextField(15);		
+		forgotButton = new JButton("Forgot Password");
 		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
 		
@@ -67,7 +67,6 @@ public class PatientLoginUI{
 		c.gridy = 3;
 		inputLayout.add(submitButton, c);
 		
-		c.fill = GridBagConstraints.BOTH;
 		c.insets = new Insets(5,5,0,0);
 		c.gridy = 4;
 		inputLayout.add(forgotButton, c);
@@ -104,6 +103,10 @@ public class PatientLoginUI{
 	
 	public void submitListener (ActionListener sl){
 		submitButton.addActionListener(sl);
+	}
+	
+	public void forgotListener (ActionListener fl){
+		forgotButton.addActionListener(fl);
 	}
 	
 	//method to retrieve panel in GUI Controller class

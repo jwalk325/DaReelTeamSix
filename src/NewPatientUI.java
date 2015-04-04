@@ -12,18 +12,20 @@ public class NewPatientUI{
 	private JLabel emailLabel;
 	private JLabel confirmEmailLabel;
 	private JLabel phoneNumberLabel;
-	private JLabel usernameLabel;
+	private JLabel questionLabel;
 	private JLabel passwordLabel;
 	private JLabel confirmPasswordLabel;
+	private JLabel answerLabel;
 	private JLabel filler; //to fill space to center grids
 	private JTextField nameField;
 	private JTextField dobField;
 	private JTextField emailField;
 	private JTextField confirmEmailField;
 	private JTextField phoneNumberField;
-	private JTextField usernameField;
+	private JTextField questionField;
 	private JTextField passwordField;
 	private JTextField confirmPasswordField;
+	private JTextField answerField;
 	private JButton backButton;
 	private JButton nextButton;
 	
@@ -43,21 +45,23 @@ public class NewPatientUI{
 		emailLabel = new JLabel("E-Mail:", SwingConstants.RIGHT);
 		confirmEmailLabel = new JLabel("Confirm E-Mail:", SwingConstants.RIGHT);
 		phoneNumberLabel = new JLabel("Phone Number:", SwingConstants.RIGHT);
-		usernameLabel = new JLabel("Username:", SwingConstants.RIGHT);
+		questionLabel = new JLabel("Security Question:", SwingConstants.RIGHT);
 		passwordLabel = new JLabel("Password:", SwingConstants.RIGHT);
 		confirmPasswordLabel = new JLabel("Confirm Password:", SwingConstants.RIGHT);
+		answerLabel = new JLabel("Answer:", SwingConstants.RIGHT);
 		filler = new JLabel(""); //filler is a blank JLabel
 		filler.setPreferredSize(new Dimension(0,0)); //set dimensions as needed to center grid objects
 		
 		//Create JTextFields with dimensions
-		nameField = new JTextField(10);
-		dobField = new JTextField(10);
-		emailField = new JTextField(10);
-		confirmEmailField = new JTextField(10);
-		phoneNumberField = new JTextField(10);
-		usernameField = new JTextField(10);
-		passwordField = new JTextField(10);
-		confirmPasswordField = new JTextField(10);
+		nameField = new JTextField(15);
+		dobField = new JTextField(15);
+		emailField = new JTextField(15);
+		confirmEmailField = new JTextField(15);
+		phoneNumberField = new JTextField(15);
+		questionField = new JTextField(15);
+		passwordField = new JTextField(15);
+		confirmPasswordField = new JTextField(15);
+		answerField = new JTextField(15);
 		
 		//Create JButtons
 		backButton = new JButton("Back");
@@ -112,21 +116,27 @@ public class NewPatientUI{
 		
 		c.gridy = 6;
 		c.gridx = 0;
-		inputLayout.add(usernameLabel,c);
-		c.gridx++;
-		inputLayout.add(usernameField,c);
-		
-		c.gridy = 7;
-		c.gridx = 0;
 		inputLayout.add(passwordLabel,c);
 		c.gridx++;
 		inputLayout.add(passwordField,c);
 		
-		c.gridy = 8;
+		c.gridy = 7;
 		c.gridx = 0;
 		inputLayout.add(confirmPasswordLabel,c);
 		c.gridx++;
 		inputLayout.add(confirmPasswordField,c);
+		
+		c.gridy = 8;
+		c.gridx = 0;
+		inputLayout.add(questionLabel,c);
+		c.gridx++;
+		inputLayout.add(questionField,c);
+		
+		c.gridy = 9;
+		c.gridx = 0;
+		inputLayout.add(answerLabel,c);
+		c.gridx++;
+		inputLayout.add(answerField,c);
 		
 		//Create a JPanel for buttons, using BoxLayout in horizontal direction this time.
 		JPanel buttonLayout = new JPanel();
@@ -144,10 +154,10 @@ public class NewPatientUI{
 		layout.setBackground(Color.WHITE);
 		
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
-		layout.add(Box.createRigidArea(new Dimension (0,50)));//add space to top so label isn't smashed at the top
+		layout.add(Box.createRigidArea(new Dimension (0,25)));//add space to top so label isn't smashed at the top
 		layout.add(createProfileLabel); //insert title label
 		createProfileLabel.setAlignmentX(createProfileLabel.CENTER_ALIGNMENT); //center the label
-		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between label and middle panel
+		layout.add(Box.createRigidArea(new Dimension (0,20))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel

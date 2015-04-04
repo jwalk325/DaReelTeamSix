@@ -27,7 +27,7 @@ public class WelcomeUI{
 		doctorLabel = new JLabel("Are You A Doctor?");		
 		newPatientButton = new JButton("New Patient");
 		existingPatientButton = new JButton("Returning Patient");
-		doctorLoginButton = new JButton ("Doctor Login");
+		doctorLoginButton = new JButton ("Doctor Log In");
 		
 		//Creating JPanel for components, used BoxLayout in vertical direction
 		JPanel layout = new JPanel();
