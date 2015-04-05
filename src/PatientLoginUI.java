@@ -10,6 +10,7 @@ public class PatientLoginUI{
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel filler; //filler to center grid
+	private JLabel errorLabel;
 	private JTextField usernameField;
 	private JTextField passwordField;
 	private JButton forgotButton;
@@ -36,6 +37,11 @@ public class PatientLoginUI{
 		forgotButton = new JButton("Forgot Password");
 		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
+		
+		//Error Label
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);
 		
 		//JPanel to hold middle section of login
 		//explanation for GridBagLayout in NewUserUI class
@@ -87,7 +93,10 @@ public class PatientLoginUI{
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(patientLoginLabel);
 		patientLoginLabel.setAlignmentX(patientLoginLabel.CENTER_ALIGNMENT);
-		layout.add(Box.createRigidArea(new Dimension (0,75)));
+		layout.add(Box.createRigidArea(new Dimension (0,65)));
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,100)));
 		layout.add(buttonLayout);
@@ -111,6 +120,7 @@ public class PatientLoginUI{
 	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getPatientLoginPanel(){
+		errorLabel.setVisible(false);
 		return patientLoginPanel;
 	}
 }

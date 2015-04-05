@@ -9,6 +9,7 @@ public class ResetPasswordUI {
 	private JLabel enterInfoLabel;
 	private JLabel newPasswordLabel;
 	private JLabel confirmPasswordLabel;
+	private JLabel errorLabel;
 	private JTextField newPasswordField;
 	private JTextField confirmPasswordField;
 	private JButton resetPasswordButton;
@@ -28,6 +29,10 @@ public class ResetPasswordUI {
 		confirmPasswordField = new JTextField(15);
 		resetPasswordButton = new JButton("Reset Password");
 		backButton = new JButton("Back");
+		
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);	
 		
 		JPanel passwordLayout = new JPanel();
 		passwordLayout.setBackground(Color.WHITE);
@@ -63,6 +68,9 @@ public class ResetPasswordUI {
 		layout.add(resetPasswordButton);
 		layout.add(Box.createRigidArea(new Dimension (0,5)));
 		layout.add(backButton);
+		layout.add(Box.createRigidArea(new Dimension (0,10))); 
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		resetPasswordLabel.setAlignmentX(resetPasswordLabel.CENTER_ALIGNMENT);
 		enterInfoLabel.setAlignmentX(enterInfoLabel.CENTER_ALIGNMENT);
@@ -73,6 +81,7 @@ public class ResetPasswordUI {
 	}
 	
 	public JPanel getResetPasswordPanel(){
+		errorLabel.setVisible(false);
 		return resetPasswordPanel;
 	}
 	

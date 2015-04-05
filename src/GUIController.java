@@ -94,11 +94,14 @@ public class GUIController{
 		//Action performed when next button is pushed in New Patient UI
 		newPatientUI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				mainPanel.removeAll();
-			    mainPanel.revalidate();
-			    mainPanel.repaint();
-			    	 
-			    mainPanel.add(doctorSelectionUI.getDoctorSelctionPanel());
+				//Example of next button calling check in New Patietn UI
+				if(newPatientUI.check()){
+					mainPanel.removeAll();
+				    mainPanel.revalidate();
+				    mainPanel.repaint();
+				    	 
+				    mainPanel.add(doctorSelectionUI.getDoctorSelctionPanel());
+				}
 		    }
 		});
 		

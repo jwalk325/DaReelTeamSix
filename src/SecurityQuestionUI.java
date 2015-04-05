@@ -9,6 +9,7 @@ public class SecurityQuestionUI {
 	private JLabel enterInfoLabel;
 	private JLabel answerLabel;
 	private JLabel securityQuestionLabel;
+	private JLabel errorLabel;
 	private JTextField answerField;
 	private JButton continueButton;
 	private JButton backButton;
@@ -28,6 +29,10 @@ public class SecurityQuestionUI {
 		answerField = new JTextField(15);
 		continueButton = new JButton("Continue");
 		backButton = new JButton("Back");
+		
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);	
 		
 		JPanel answerLayout = new JPanel();
 		answerLayout.setBackground(Color.WHITE);
@@ -53,6 +58,9 @@ public class SecurityQuestionUI {
 		layout.add(continueButton);
 		layout.add(Box.createRigidArea(new Dimension (0,5)));
 		layout.add(backButton);
+		layout.add(Box.createRigidArea(new Dimension (0,10))); 
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		answerBelowLabel.setAlignmentX(answerBelowLabel.CENTER_ALIGNMENT);
 		enterInfoLabel.setAlignmentX(enterInfoLabel.CENTER_ALIGNMENT);
@@ -64,6 +72,7 @@ public class SecurityQuestionUI {
 	}
 	
 	public JPanel getSecurityQuestionPanel(){
+		errorLabel.setVisible(false);
 		return securityQuestionPanel;
 	}
 	

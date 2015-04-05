@@ -15,6 +15,7 @@ public class UpdateInfoUI {
 	private JLabel confirmEmailLabel;
 	private JLabel phoneNumberLabel;
 	private JLabel filler; //to fill space to center grids
+	private JLabel errorLabel;
 	private JTextField streetField;
 	private JTextField cityField;
 	private JTextField stateField;
@@ -43,6 +44,11 @@ public class UpdateInfoUI {
 		phoneNumberLabel = new JLabel("Phone Number:", SwingConstants.RIGHT);
 		filler = new JLabel(""); //filler is a blank JLabel
 		filler.setPreferredSize(new Dimension(10,0)); //set dimensions as needed to center grid objects
+		
+		//Error Label
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);		
 		
 		streetField = new JTextField(16);
 		cityField = new JTextField(10);
@@ -133,12 +139,15 @@ public class UpdateInfoUI {
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
-		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
+		layout.add(Box.createRigidArea(new Dimension (0,10))); 
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		updateInfoPanel.add(layout);
 	}
 	
 	public JPanel getUpdateInfoPanel(){
+		errorLabel.setVisible(false);
 		return updateInfoPanel;
 	}
 	

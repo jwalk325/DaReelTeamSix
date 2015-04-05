@@ -16,7 +16,7 @@ public class NewPatientUI{
 	private JLabel passwordLabel;
 	private JLabel confirmPasswordLabel;
 	private JLabel answerLabel;
-	private JLabel filler; //to fill space to center grids
+	private JLabel errorLabel;
 	private JTextField nameField;
 	private JTextField dobField;
 	private JTextField emailField;
@@ -49,8 +49,11 @@ public class NewPatientUI{
 		passwordLabel = new JLabel("Password:", SwingConstants.RIGHT);
 		confirmPasswordLabel = new JLabel("Confirm Password:", SwingConstants.RIGHT);
 		answerLabel = new JLabel("Answer:", SwingConstants.RIGHT);
-		filler = new JLabel(""); //filler is a blank JLabel
-		filler.setPreferredSize(new Dimension(0,0)); //set dimensions as needed to center grid objects
+		
+		//Error Label
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);
 		
 		//Create JTextFields with dimensions
 		nameField = new JTextField(15);
@@ -81,9 +84,7 @@ public class NewPatientUI{
 		inputLayout.add(nameLabel, c); //must add components with constraint variable c
 		c.gridx++; //moving to next column
 		inputLayout.add(nameField, c);
-		c.gridx++;
-		inputLayout.add(filler, c); //filler used to center grid
-		
+				
 		c.gridy = 1; //move to next row
 		c.gridx = 0; //reset column
 		inputLayout.add(dobLabel,c);
@@ -145,7 +146,7 @@ public class NewPatientUI{
 		
 		//adding buttons to JPanel and adding space between them
 		buttonLayout.add(backButton);
-		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
+		buttonLayout.add(Box.createRigidArea(new Dimension (127,0)));
 		buttonLayout.add(nextButton);
 		
 		//Creating JPanel to hold all other JPanels and components, BoxLayout again in vertical direction
@@ -154,14 +155,16 @@ public class NewPatientUI{
 		layout.setBackground(Color.WHITE);
 		
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
-		layout.add(Box.createRigidArea(new Dimension (0,25)));//add space to top so label isn't smashed at the top
+		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space to top so label isn't smashed at the top
 		layout.add(createProfileLabel); //insert title label
 		createProfileLabel.setAlignmentX(createProfileLabel.CENTER_ALIGNMENT); //center the label
 		layout.add(Box.createRigidArea(new Dimension (0,20))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
-		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
+		layout.add(Box.createRigidArea(new Dimension (0,10))); //add space to the bottom
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		newPatientPanel.add(layout); //add layout to main panel
 	}
@@ -177,6 +180,27 @@ public class NewPatientUI{
 	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getNewPatientPanel(){
+		errorLabel.setVisible(false);
 		return newPatientPanel;
+	}
+	
+	//Example of check method checking for email match
+	public boolean check(){
+		String email = emailField.getText();
+		String confirmEmail = confirmEmailField.getText();
+		
+		if (email.equals(confirmEmail) && email.isEmpty() == false){
+			return true;
+		}
+		else if(email.equalsIgnoreCase(confirmEmail) == false){
+			errorLabel.setText("Email fields don't match!");
+			errorLabel.setVisible(true);
+			return false;
+		}
+		else {
+			errorLabel.setText("Email fields empty");
+			errorLabel.setVisible(true);
+			return false;
+		}
 	}
 }

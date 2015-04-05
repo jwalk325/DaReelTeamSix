@@ -8,6 +8,7 @@ public class LostPasswordUI {
 	private JLabel lostPasswordLabel;
 	private JLabel enterInfoLabel;
 	private JLabel emailLabel;
+	private JLabel errorLabel;
 	private JTextField emailField;
 	private JButton continueButton;
 	private JButton backButton;
@@ -24,6 +25,10 @@ public class LostPasswordUI {
 		emailField = new JTextField(15);
 		continueButton = new JButton("Continue");
 		backButton = new JButton("Back to Log In");
+		
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);	
 		
 		JPanel emailLayout = new JPanel();
 		emailLayout.setBackground(Color.WHITE);
@@ -48,6 +53,9 @@ public class LostPasswordUI {
 		layout.add(continueButton);
 		layout.add(Box.createRigidArea(new Dimension (0,5)));
 		layout.add(backButton);
+		layout.add(Box.createRigidArea(new Dimension (0,10))); 
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		lostPasswordLabel.setAlignmentX(lostPasswordLabel.CENTER_ALIGNMENT);
 		enterInfoLabel.setAlignmentX(enterInfoLabel.CENTER_ALIGNMENT);
@@ -58,6 +66,7 @@ public class LostPasswordUI {
 	}
 	
 	public JPanel getLostPasswordPanel(){
+		errorLabel.setVisible(false);
 		return lostPasswordPanel;
 	}
 	

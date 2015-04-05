@@ -14,7 +14,7 @@ public class DoctorSelectionUI {
 	private JLabel regionLabel;
 	private JLabel hospitalLabel;
 	private JLabel doctorLabel;
-	private JLabel filler; //to fill space to center grids
+	private JLabel errorLabel; //to fill space to center grids
 	private JTextField streetField;
 	private JTextField cityField;
 	private JTextField stateField;
@@ -41,8 +41,11 @@ public class DoctorSelectionUI {
 		regionLabel = new JLabel("Region:", SwingConstants.RIGHT);
 		hospitalLabel = new JLabel("Hospital:", SwingConstants.RIGHT);
 		doctorLabel = new JLabel("Doctor:", SwingConstants.RIGHT);
-		filler = new JLabel(""); //filler is a blank JLabel
-		filler.setPreferredSize(new Dimension(10,0)); //set dimensions as needed to center grid objects
+		
+		//Error Label
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);		
 		
 		streetField = new JTextField(16);
 		cityField = new JTextField(10);
@@ -86,7 +89,6 @@ public class DoctorSelectionUI {
 		c.gridx++;
 		inputLayout.add(zipField,c);
 		c.gridx++;
-		inputLayout.add(filler,c);
 		
 		c.gridy = 3;
 		c.gridx = 1;
@@ -126,7 +128,7 @@ public class DoctorSelectionUI {
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
 		buttonLayout.add(backButton);
-		buttonLayout.add(Box.createRigidArea(new Dimension (122,0)));
+		buttonLayout.add(Box.createRigidArea(new Dimension (120,0)));
 		buttonLayout.add(finishButton);
 		
 		JPanel layout = new JPanel();
@@ -140,7 +142,9 @@ public class DoctorSelectionUI {
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
-		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
+		layout.add(Box.createRigidArea(new Dimension (0,10))); 
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		doctorSelectionPanel.add(layout);
 	}
@@ -154,6 +158,7 @@ public class DoctorSelectionUI {
 	}
 	
 	public JPanel getDoctorSelctionPanel(){
+		errorLabel.setVisible(false);
 		return doctorSelectionPanel;
 	}
 

@@ -15,7 +15,7 @@ public class NewDoctorUI {
 	private JLabel passwordLabel;
 	private JLabel confirmPasswordLabel;
 	private JLabel answerLabel;
-	private JLabel filler; //to fill space to center grids
+	private JLabel errorLabel;
 	private JTextField nameField;
 	private JComboBox<String> hospitalCombo;
 	private JTextField emailField;
@@ -48,8 +48,10 @@ public class NewDoctorUI {
 		passwordLabel = new JLabel("Password:", SwingConstants.RIGHT);
 		confirmPasswordLabel = new JLabel("Confirm Password:", SwingConstants.RIGHT);
 		answerLabel = new JLabel("Answer:", SwingConstants.RIGHT);
-		filler = new JLabel(""); //filler is a blank JLabel
-		filler.setPreferredSize(new Dimension(0,0)); //set dimensions as needed to center grid objects
+		
+		errorLabel = new JLabel();
+		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
+		errorLabel.setForeground(Color.RED);
 		
 		//Create JTextFields with dimensions
 		nameField = new JTextField(15);
@@ -83,8 +85,6 @@ public class NewDoctorUI {
 		inputLayout.add(nameLabel, c); //must add components with constraint variable c
 		c.gridx++; //moving to next column
 		inputLayout.add(nameField, c);
-		c.gridx++;
-		inputLayout.add(filler, c); //filler used to center grid
 		
 		c.gridy = 1; //move to next row
 		c.gridx = 0; //reset column
@@ -165,12 +165,15 @@ public class NewDoctorUI {
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,27))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
-		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
+		layout.add(Box.createRigidArea(new Dimension (0,10))); //add space to the bottom
+		layout.add(errorLabel);
+		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
 		
 		newDoctorPanel.add(layout); //add layout to main panel			
 	}
 	
 	public JPanel getNewDoctorPanel(){
+		errorLabel.setVisible(false);
 		return newDoctorPanel;
 	}
 	
