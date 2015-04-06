@@ -157,14 +157,14 @@ public class NewPatientUI{
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space to top so label isn't smashed at the top
 		layout.add(createProfileLabel); //insert title label
-		createProfileLabel.setAlignmentX(createProfileLabel.CENTER_ALIGNMENT); //center the label
+		createProfileLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT); //center the label
 		layout.add(Box.createRigidArea(new Dimension (0,20))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); //add space to the bottom
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		newPatientPanel.add(layout); //add layout to main panel
 	}

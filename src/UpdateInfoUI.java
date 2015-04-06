@@ -134,14 +134,14 @@ public class UpdateInfoUI {
 		
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(updateInformationLabel);
-		updateInformationLabel.setAlignmentX(updateInformationLabel.CENTER_ALIGNMENT);
+		updateInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		updateInfoPanel.add(layout);
 	}

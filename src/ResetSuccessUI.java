@@ -31,9 +31,9 @@ public class ResetSuccessUI {
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(continueButton);
 		
-		resetSuccessLabel.setAlignmentX(resetSuccessLabel.CENTER_ALIGNMENT);
-		clickLoginLabel.setAlignmentX(clickLoginLabel.CENTER_ALIGNMENT);
-		continueButton.setAlignmentX(continueButton.CENTER_ALIGNMENT);
+		resetSuccessLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		clickLoginLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
 		resetSuccessPanel.add(layout);
 	}

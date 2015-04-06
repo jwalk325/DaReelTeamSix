@@ -31,9 +31,9 @@ public class RegisterSuccessUI {
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(continueButton);
 		
-		thankYouLabel.setAlignmentX(thankYouLabel.CENTER_ALIGNMENT);
-		clickContinueLabel.setAlignmentX(clickContinueLabel.CENTER_ALIGNMENT);
-		continueButton.setAlignmentX(continueButton.CENTER_ALIGNMENT);
+		thankYouLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		clickContinueLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
 		registerSuccessPanel.add(layout);
 	}

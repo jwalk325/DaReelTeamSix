@@ -137,7 +137,7 @@ public class Symptoms1UI {
 		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
 		layout.add(Box.createRigidArea(new Dimension (0,15)));//add space to top so label isn't smashed at the top
 		layout.add(feelingLabel);
-		feelingLabel.setAlignmentX(feelingLabel.CENTER_ALIGNMENT);
+		feelingLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,15))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
 		layout.add(Box.createRigidArea(new Dimension (0,25))); //add space between it and the button panel

@@ -70,12 +70,12 @@ public class ResetPasswordUI {
 		layout.add(backButton);
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		resetPasswordLabel.setAlignmentX(resetPasswordLabel.CENTER_ALIGNMENT);
-		enterInfoLabel.setAlignmentX(enterInfoLabel.CENTER_ALIGNMENT);
-		resetPasswordButton.setAlignmentX(resetPasswordButton.CENTER_ALIGNMENT);
-		backButton.setAlignmentX(backButton.CENTER_ALIGNMENT);
+		resetPasswordLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		enterInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		resetPasswordButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		resetPasswordPanel.add(layout);
 	}

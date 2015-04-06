@@ -26,8 +26,8 @@ public class LogoutUI {
 			layout.add(Box.createRigidArea(new Dimension (0,75)));
 			layout.add(logoutButton);
 			
-			logoutLabel.setAlignmentX(logoutLabel.CENTER_ALIGNMENT);
-			logoutButton.setAlignmentX(logoutButton.CENTER_ALIGNMENT);
+			logoutLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+			logoutButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 			
 			logoutPanel.add(layout);		
 		}

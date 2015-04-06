@@ -50,12 +50,12 @@ public class WelcomeUI{
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 						
 		//Align all components in the center
-		welcomeLabel.setAlignmentX(welcomeLabel.CENTER_ALIGNMENT);
-		patientLabel.setAlignmentX(patientLabel.CENTER_ALIGNMENT);
-		newPatientButton.setAlignmentX(newPatientButton.CENTER_ALIGNMENT);
-		existingPatientButton.setAlignmentX(existingPatientButton.CENTER_ALIGNMENT);
-		doctorLabel.setAlignmentX(doctorLabel.CENTER_ALIGNMENT);
-		doctorLoginButton.setAlignmentX(doctorLoginButton.CENTER_ALIGNMENT);
+		welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		patientLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		newPatientButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		existingPatientButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		doctorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		doctorLoginButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		welcomePanel.add(layout);//add layout to main welcome Panel
 	}

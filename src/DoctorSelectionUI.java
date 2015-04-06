@@ -137,14 +137,14 @@ public class DoctorSelectionUI {
 		
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(enterInformationLabel);
-		enterInformationLabel.setAlignmentX(enterInformationLabel.CENTER_ALIGNMENT);
+		enterInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,54)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		doctorSelectionPanel.add(layout);
 	}

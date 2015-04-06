@@ -37,7 +37,7 @@ public class UpdateInfoCheckUI {
 		layout.add(Box.createRigidArea(new Dimension (0,75)));
 		layout.add(buttonLayout);
 		
-		infoChangedLabel.setAlignmentX(infoChangedLabel.CENTER_ALIGNMENT);
+		infoChangedLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		updateInfoCheckPanel.add(layout);		
 	}

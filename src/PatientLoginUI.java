@@ -92,10 +92,10 @@ public class PatientLoginUI{
 		
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(patientLoginLabel);
-		patientLoginLabel.setAlignmentX(patientLoginLabel.CENTER_ALIGNMENT);
+		patientLoginLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,65)));
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,100)));

@@ -60,13 +60,13 @@ public class SecurityQuestionUI {
 		layout.add(backButton);
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
-		errorLabel.setAlignmentX(errorLabel.CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		answerBelowLabel.setAlignmentX(answerBelowLabel.CENTER_ALIGNMENT);
-		enterInfoLabel.setAlignmentX(enterInfoLabel.CENTER_ALIGNMENT);
-		securityQuestionLabel.setAlignmentX(securityQuestionLabel.CENTER_ALIGNMENT);
-		continueButton.setAlignmentX(continueButton.CENTER_ALIGNMENT);
-		backButton.setAlignmentX(backButton.CENTER_ALIGNMENT);
+		answerBelowLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		enterInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		securityQuestionLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		securityQuestionPanel.add(layout);
 	}
