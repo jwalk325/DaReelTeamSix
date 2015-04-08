@@ -25,6 +25,11 @@ public class Symptoms1UI {
 	private JButton nextButton;
 	private JButton logoutButton;
 	
+	private int pain;
+	private int tiredness;
+	private int nasuea;
+	private String comments;
+	
 	public Symptoms1UI(){
 		symptoms1Panel = new JPanel();
 		symptoms1Panel.setBackground(Color.WHITE);
@@ -159,5 +164,29 @@ public class Symptoms1UI {
 	
 	public void logoutListener (ActionListener ll){
 		logoutButton.addActionListener(ll);
+	}
+	
+	public int getPain(){
+		pain = painSlider.getValue();
+		return pain;
+	}
+	
+	public int getTiredness(){
+		tiredness = tirednessSlider.getValue();
+		return tiredness;
+	}
+	
+	public int getNasuea(){
+		nasuea = nasueaSlider.getValue();
+		return nasuea;
+	}
+	
+	public String getComments(){
+		if(commentsArea.getText().trim().length() != 0){
+			comments = commentsArea.getText();
+			return comments;
+		}
+		else
+			return "None.";
 	}
 }

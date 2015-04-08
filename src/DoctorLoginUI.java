@@ -7,16 +7,19 @@ public class DoctorLoginUI{
 	//Instance data
 	private JPanel doctorLoginPanel;
 	private JLabel doctorLoginLabel;
-	private JLabel usernameLabel;
+	private JLabel emailLabel;
 	private JLabel passwordLabel;
 	private JLabel filler; //filler to center grid.
 	private JLabel errorLabel;
-	private JTextField usernameField;
+	private JTextField emailField;
 	private JTextField passwordField;
 	private JButton forgotButton;
 	private JButton submitButton;
 	private JButton backButton;
 	private JButton registerButton;
+	
+	private String email;
+	private String password;
 	
 	//DoctorLoginUI constructor
 	public DoctorLoginUI(){
@@ -29,11 +32,11 @@ public class DoctorLoginUI{
 		doctorLoginLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		//Creation of other components
-		usernameLabel = new JLabel("E-mail:",SwingConstants.RIGHT);
+		emailLabel = new JLabel("E-mail:",SwingConstants.RIGHT);
 		passwordLabel = new JLabel("Password:",SwingConstants.RIGHT);
 		filler = new JLabel("");
 		filler.setPreferredSize(new Dimension(60,0));		
-		usernameField = new JTextField(15);
+		emailField = new JTextField(15);
 		passwordField = new JTextField(15);
 		forgotButton = new JButton("Forgot Password");
 		submitButton = new JButton("Submit");
@@ -56,9 +59,9 @@ public class DoctorLoginUI{
 		c.insets = new Insets(5,5,0,0);	
 		c.gridx = 0;
 		c.gridy = 0;
-		inputLayout.add(usernameLabel, c);
+		inputLayout.add(emailLabel, c);
 		c.gridx++;
-		inputLayout.add(usernameField, c);
+		inputLayout.add(emailField, c);
 		c.gridx++;
 		inputLayout.add(filler, c);
 		
@@ -127,5 +130,16 @@ public class DoctorLoginUI{
 	public JPanel getDoctorLoginPanel(){
 		errorLabel.setVisible(false);
 		return doctorLoginPanel;
+	}
+	
+	//get methods
+	public String getEmail(){
+		email = emailField.getText();
+		return email;
+	}
+	
+	public String getPassword(){
+		password = passwordField.getText();
+		return password;
 	}
 }

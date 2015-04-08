@@ -13,6 +13,8 @@ public class LostPasswordUI {
 	private JButton continueButton;
 	private JButton backButton;
 	
+	private String email;
+	
 	public LostPasswordUI(){
 		lostPasswordPanel = new JPanel();
 		lostPasswordPanel.setBackground(Color.WHITE);
@@ -76,5 +78,11 @@ public class LostPasswordUI {
 	
 	public void continueListener (ActionListener cl){
 		continueButton.addActionListener(cl);
+	}
+	
+	//get method
+	public String getEmail(){
+		email = emailField.getText();
+		return email;
 	}
 }

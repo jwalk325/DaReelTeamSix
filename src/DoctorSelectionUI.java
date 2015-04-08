@@ -7,23 +7,27 @@ public class DoctorSelectionUI {
 	private JPanel doctorSelectionPanel;
 	private JLabel enterInformationLabel;
 	private JLabel addressLabel;
-	private JLabel streetLabel;
 	private JLabel cityLabel;
 	private JLabel stateLabel;
 	private JLabel zipLabel;
-	private JLabel regionLabel;
 	private JLabel hospitalLabel;
 	private JLabel doctorLabel;
-	private JLabel errorLabel; //to fill space to center grids
-	private JTextField streetField;
+	private JLabel errorLabel; 
+	private JTextField addressField;
 	private JTextField cityField;
 	private JTextField stateField;
 	private JTextField zipField;
-	private JComboBox<String> regionCombo;
 	private JComboBox<String> hospitalCombo;
 	private JComboBox<String> doctorCombo;
 	private JButton backButton;
 	private JButton finishButton;
+	
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String hospital;
+	private String doctor;
 	
 	public DoctorSelectionUI(){
 		doctorSelectionPanel = new JPanel();
@@ -33,12 +37,9 @@ public class DoctorSelectionUI {
 		enterInformationLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		addressLabel = new JLabel("Address:", SwingConstants.RIGHT);
-		addressLabel.setFont(new Font("Helvetica",Font.PLAIN, 14));
-		streetLabel = new JLabel("Street:", SwingConstants.RIGHT);
 		cityLabel = new JLabel(" City");
 		stateLabel = new JLabel("State", SwingConstants.CENTER);
 		zipLabel = new JLabel("ZIP", SwingConstants.CENTER);
-		regionLabel = new JLabel("Region:", SwingConstants.RIGHT);
 		hospitalLabel = new JLabel("Hospital:", SwingConstants.RIGHT);
 		doctorLabel = new JLabel("Doctor:", SwingConstants.RIGHT);
 		
@@ -47,15 +48,13 @@ public class DoctorSelectionUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
-		streetField = new JTextField(16);
+		addressField = new JTextField(16);
 		cityField = new JTextField(10);
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
 		
-		String[] regions = {"Region1", "Region2", "Region3"};
 		String[] hospitals = {"Hospital1", "Hospital2", "Hospital3"};
 		String[] doctors = {"Doctor1", "Doctor2", "Doctor3"};
-		regionCombo = new JComboBox<String>(regions);
 		hospitalCombo = new JComboBox<String>(hospitals);
 		doctorCombo = new JComboBox<String>(doctors);
 		
@@ -73,14 +72,11 @@ public class DoctorSelectionUI {
 		c.gridx = 0;
 		c.gridy = 0;
 		inputLayout.add(addressLabel,c);
-		
-		c.gridy = 1;
-		inputLayout.add(streetLabel,c);
 		c.gridx++;
 		c.gridwidth = 3;
-		inputLayout.add(streetField,c);
+		inputLayout.add(addressField,c);
 		
-		c.gridy = 2;
+		c.gridy = 1;
 		c.gridx = 1;
 		c.gridwidth = 1;
 		inputLayout.add(cityField,c);
@@ -90,24 +86,16 @@ public class DoctorSelectionUI {
 		inputLayout.add(zipField,c);
 		c.gridx++;
 		
-		c.gridy = 3;
+		c.gridy = 2;
 		c.gridx = 1;
 		inputLayout.add(cityLabel,c);
 		c.gridx++;
 		inputLayout.add(stateLabel,c);
 		c.gridx++;
-		inputLayout.add(zipLabel,c);
+		inputLayout.add(zipLabel,c);		
 		
-		c.insets = new Insets(15,5,0,0);	
-		c.gridy = 4;
-		c.gridx = 0;
-		inputLayout.add(regionLabel,c);
-		c.gridx++;
-		c.gridwidth = 3;
-		inputLayout.add(regionCombo,c);
-		
-		c.insets = new Insets(5,5,0,0);	
-		c.gridy = 5;
+		c.insets = new Insets(45,5,0,0);	
+		c.gridy = 3;
 		c.gridx = 0;
 		c.gridwidth = 1;
 		inputLayout.add(hospitalLabel,c);
@@ -115,7 +103,8 @@ public class DoctorSelectionUI {
 		c.gridwidth = 3;
 		inputLayout.add(hospitalCombo,c);
 		
-		c.gridy = 6;
+		c.insets = new Insets(5,5,0,0);	
+		c.gridy = 4;
 		c.gridx = 0;
 		c.gridwidth = 1;
 		inputLayout.add(doctorLabel,c);
@@ -140,7 +129,7 @@ public class DoctorSelectionUI {
 		enterInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,54)));
 		layout.add(inputLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,75))); //add space between it and the button panel
+		layout.add(Box.createRigidArea(new Dimension (0,97))); 
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
@@ -160,6 +149,37 @@ public class DoctorSelectionUI {
 	public JPanel getDoctorSelctionPanel(){
 		errorLabel.setVisible(false);
 		return doctorSelectionPanel;
+	}
+	
+	//get methods
+	public String getAddress(){
+		address = addressField.getText();
+		return address;
+	}
+	
+	public String getCity(){
+		city = cityField.getText();
+		return city;
+	}
+	
+	public String getState(){
+		state = stateField.getText();
+		return state;
+	}
+	
+	public String getZIP(){
+		zip = zipField.getText();
+		return zip;
+	}
+	
+	public String getHospital(){
+		hospital = String.valueOf(hospitalCombo.getSelectedItem());
+		return hospital;
+	}
+	
+	public String getDoctor(){
+		doctor = String.valueOf(doctorCombo.getSelectedItem());
+		return doctor;
 	}
 
 }

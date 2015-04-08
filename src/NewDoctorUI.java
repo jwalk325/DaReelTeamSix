@@ -29,6 +29,15 @@ public class NewDoctorUI {
 	private JButton backButton;
 	private JButton submitButton;
 	
+	private String name;
+	private String hospital;
+	private String email;
+	private String phoneNumber;
+	private String extension;
+	private String password;
+	private String question;
+	private String answer;
+	
 	public NewDoctorUI(){
 		//create main panel
 		newDoctorPanel = new JPanel();
@@ -184,4 +193,46 @@ public class NewDoctorUI {
 	public void backListener (ActionListener nl){
 		backButton.addActionListener(nl);
 	}
+	
+	//get methods
+	public String getName(){
+		name = nameField.getText();
+		return name;
+	}
+	
+	public String getHospital(){
+		hospital = String.valueOf(hospitalCombo.getSelectedItem());
+		return hospital;
+	}
+	
+	public String getEmail(){
+		email = emailField.getText();
+		return email;
+	}
+	
+	public String getPhoneNumber(){
+		phoneNumber = phoneNumberField.getText();
+		return phoneNumber;
+	}
+	
+	public String getExtension(){
+		extension = extensionField.getText();
+		return extension;
+	}
+	
+	public String getPassword(){
+		password = passwordField.getText();
+		return password;
+	}
+	
+	public String getQuestion(){
+		question = questionField.getText();
+		return question;
+	}
+	
+	public String getAnswer(){
+		answer = answerField.getText();
+		return answer;
+	}
 }
+

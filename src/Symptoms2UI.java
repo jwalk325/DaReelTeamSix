@@ -25,6 +25,11 @@ public class Symptoms2UI {
 	private JButton backButton;
 	private JButton finishButton;
 	
+	private int depression;
+	private int anxiety;
+	private int drowsiness;
+	private String comments;
+	
 	public Symptoms2UI(){
 		symptoms2Panel = new JPanel();
 		symptoms2Panel.setBackground(Color.WHITE);
@@ -173,5 +178,30 @@ public class Symptoms2UI {
 	
 	public void finishListener (ActionListener fl){
 		finishButton.addActionListener(fl);
+	}
+	
+	//get methods
+	public int getDepression(){
+		depression = depressionSlider.getValue();
+		return depression;
+	}
+	
+	public int getAnxiety(){
+		anxiety = anxietySlider.getValue();
+		return anxiety;
+	}
+	
+	public int getDrowsiness(){
+		drowsiness = drowsinessSlider.getValue();
+		return drowsiness;
+	}
+	
+	public String getComments(){
+		if(commentsArea.getText().trim().length() != 0){
+			comments = commentsArea.getText();
+			return comments;
+		}
+		else
+			return "None.";
 	}
 }

@@ -29,6 +29,14 @@ public class NewPatientUI{
 	private JButton backButton;
 	private JButton nextButton;
 	
+	private String name;
+	private String dob;
+	private String email;
+	private String phoneNumber;
+	private String password;
+	private String question;
+	private String answer;
+	
 	//NewPatientUI constructor
 	public NewPatientUI(){	
 		//create main panel
@@ -203,4 +211,41 @@ public class NewPatientUI{
 			return false;
 		}
 	}
+	
+	//get methods
+	public String getName(){
+		name = nameField.getText();
+		return name;
+	}
+	
+	public String getDOB(){
+		dob = dobField.getText();
+		return dob;
+	}
+	
+	public String getEmail(){
+		email = emailField.getText();
+		return email;
+	}
+	
+	public String getPhoneNumber(){
+		phoneNumber = phoneNumberField.getText();
+		return phoneNumber;
+	}
+	
+	public String getPassword(){
+		password = passwordField.getText();
+		return password;
+	}
+	
+	public String getQuestion(){
+		question = questionField.getText();
+		return question;
+	}
+	
+	public String getAnswer(){
+		answer = answerField.getText();
+		return answer;
+	}
+	
 }

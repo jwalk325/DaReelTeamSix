@@ -14,6 +14,8 @@ public class SecurityQuestionUI {
 	private JButton continueButton;
 	private JButton backButton;
 	
+	private String answer;
+	
 	public SecurityQuestionUI(){
 		securityQuestionPanel = new JPanel();
 		securityQuestionPanel.setBackground(Color.WHITE);
@@ -84,4 +86,9 @@ public class SecurityQuestionUI {
 		continueButton.addActionListener(cl);
 	}
 	
+	//get method
+	public String getAnswer(){
+		answer = answerField.getText();
+		return answer;
+	}
 }

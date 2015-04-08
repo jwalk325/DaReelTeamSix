@@ -7,7 +7,6 @@ public class UpdateInfoUI {
 	private JPanel updateInfoPanel;
 	private JLabel updateInformationLabel;
 	private JLabel addressLabel;
-	private JLabel streetLabel;
 	private JLabel cityLabel;
 	private JLabel stateLabel;
 	private JLabel zipLabel;
@@ -16,7 +15,7 @@ public class UpdateInfoUI {
 	private JLabel phoneNumberLabel;
 	private JLabel filler; //to fill space to center grids
 	private JLabel errorLabel;
-	private JTextField streetField;
+	private JTextField addressField;
 	private JTextField cityField;
 	private JTextField stateField;
 	private JTextField zipField;
@@ -25,6 +24,12 @@ public class UpdateInfoUI {
 	private JTextField phoneNumberField;
 	private JButton submitButton;
 
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String email;
+	private String phoneNumber;
 	
 	public UpdateInfoUI(){
 		updateInfoPanel = new JPanel();
@@ -34,8 +39,6 @@ public class UpdateInfoUI {
 		updateInformationLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
 		addressLabel = new JLabel("Address:", SwingConstants.RIGHT);
-		addressLabel.setFont(new Font("Helvetica",Font.PLAIN, 14));
-		streetLabel = new JLabel("Street:", SwingConstants.RIGHT);
 		cityLabel = new JLabel(" City");
 		stateLabel = new JLabel("State", SwingConstants.CENTER);
 		zipLabel = new JLabel("ZIP", SwingConstants.CENTER);
@@ -50,7 +53,7 @@ public class UpdateInfoUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
-		streetField = new JTextField(16);
+		addressField = new JTextField(16);
 		cityField = new JTextField(10);
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
@@ -72,14 +75,11 @@ public class UpdateInfoUI {
 		c.gridx = 0;
 		c.gridy = 0;
 		inputLayout.add(addressLabel,c);
-		
-		c.gridy = 1;
-		inputLayout.add(streetLabel,c);
 		c.gridx++;
 		c.gridwidth = 3;
-		inputLayout.add(streetField,c);
+		inputLayout.add(addressField,c);
 		
-		c.gridy = 2;
+		c.gridy = 1;
 		c.gridx = 1;
 		c.gridwidth = 1;
 		inputLayout.add(cityField,c);
@@ -90,7 +90,7 @@ public class UpdateInfoUI {
 		c.gridx++;
 		inputLayout.add(filler,c);
 		
-		c.gridy = 3;
+		c.gridy = 2;
 		c.gridx = 1;
 		inputLayout.add(cityLabel,c);
 		c.gridx++;
@@ -99,7 +99,7 @@ public class UpdateInfoUI {
 		inputLayout.add(zipLabel,c);
 		
 		c.insets = new Insets(15,5,0,0);	
-		c.gridy = 4;
+		c.gridy = 3;
 		c.gridx = 0;
 		inputLayout.add(emailLabel,c);
 		c.gridx++;
@@ -107,7 +107,7 @@ public class UpdateInfoUI {
 		inputLayout.add(emailField,c);
 		
 		c.insets = new Insets(5,5,0,0);	
-		c.gridy = 5;
+		c.gridy = 4;
 		c.gridx = 0;
 		c.gridwidth = 1;
 		inputLayout.add(confirmEmailLabel,c);
@@ -115,7 +115,7 @@ public class UpdateInfoUI {
 		c.gridwidth = 2;
 		inputLayout.add(confirmEmailField,c);
 		
-		c.gridy = 6;
+		c.gridy = 5;
 		c.gridx = 0;
 		c.gridwidth = 1;
 		inputLayout.add(phoneNumberLabel,c);
@@ -153,5 +153,36 @@ public class UpdateInfoUI {
 	
 	public void submitListener (ActionListener sl){
 		submitButton.addActionListener(sl);
+	}
+	
+	//get methods
+	public String getAddress(){
+		address = addressField.getText();
+		return address;
+	}
+	
+	public String getCity(){
+		city = cityField.getText();
+		return city;
+	}
+	
+	public String getState(){
+		state = stateField.getText();
+		return state;
+	}
+	
+	public String getZIP(){
+		zip = zipField.getText();
+		return zip;
+	}
+	
+	public String getEmail(){
+		email = emailField.getText();
+		return email;
+	}
+	
+	public String getPhoneNumber(){
+		phoneNumber = phoneNumberField.getText();
+		return phoneNumber;
 	}
 }

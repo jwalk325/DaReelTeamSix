@@ -15,6 +15,8 @@ public class ResetPasswordUI {
 	private JButton resetPasswordButton;
 	private JButton backButton;
 	
+	private String newPassword;
+	
 	public ResetPasswordUI(){
 		resetPasswordPanel = new JPanel();
 		resetPasswordPanel.setBackground(Color.WHITE);
@@ -91,5 +93,11 @@ public class ResetPasswordUI {
 	
 	public void resetPasswordListener (ActionListener rpl){
 		resetPasswordButton.addActionListener(rpl);
+	}
+	
+	//get method
+	public String getNewPassword(){
+		newPassword = newPasswordField.getText();
+		return newPassword;
 	}
 }
