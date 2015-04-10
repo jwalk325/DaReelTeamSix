@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class NewPatientUI{
@@ -42,7 +41,7 @@ public class NewPatientUI{
 	final String INITIAL_DOB = "MM/DD/YYYY";
 	final String INITIAL_EMAIL = "example@domain.com";
 	final String INITIAL_PHONE = "XXX-XXX-XXXX";
-	final String INITIAL_QUESTION = "Mother's maiden name?";
+	final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
 	
 	//NewPatientUI constructor
 	public NewPatientUI(){	
@@ -93,9 +92,7 @@ public class NewPatientUI{
 	                dobField.setText("");
 	                dobField.setForeground(Color.BLACK);
 	            }
-
 	        }
-
 	        public void focusLost(FocusEvent e) {
 	        	if (dobField.getText().isEmpty())
 	            {
@@ -282,8 +279,8 @@ public class NewPatientUI{
 		String email = emailField.getText();
 		String confirmEmail = confirmEmailField.getText();
 		char[] pass = passwordField.getPassword();
-		String password = new String(pass);
 		char [] confirmPass = confirmPasswordField.getPassword();
+		String password = new String(pass);		
 		String confirmPassword = new String(confirmPass);
 		
 		if(nameField.getText().isEmpty()){
@@ -301,7 +298,7 @@ public class NewPatientUI{
 			errorLabel.setVisible(true);
 			return false;
 		}
-		else if(dobField.getText().indexOf('/') == -1 || dobField.getText().indexOf('/') == dobField.getText().lastIndexOf('/')){
+		else if(dobField.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})") == false){
 			errorLabel.setText("Date of Birth format is not valid!");
 			errorLabel.setVisible(true);
 			return false;
@@ -311,7 +308,8 @@ public class NewPatientUI{
 			errorLabel.setVisible(true);
 			return false;
 		}
-		else if (email.indexOf('@') == -1 || email.indexOf('.') == -1){
+		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
 			errorLabel.setText("E-mail format is not valid!");
 			errorLabel.setVisible(true);
 			return false;
@@ -331,7 +329,7 @@ public class NewPatientUI{
 			errorLabel.setVisible(true);
 			return false;
 		}
-		else if(phoneNumberField.getText().indexOf('-') == -1 || phoneNumberField.getText().indexOf('-') == phoneNumberField.getText().lastIndexOf('-')){
+		else if(phoneNumberField.getText().matches("([0-9]{3})-([0-9]{3})-([0-9]{4})") == false){
 			errorLabel.setText("Phone Number format is not valid!");
 			errorLabel.setVisible(true);
 			return false;
@@ -419,6 +417,5 @@ public class NewPatientUI{
 	public String getAnswer(){
 		answer = answerField.getText();
 		return answer;
-	}
-	
+	}	
 }
