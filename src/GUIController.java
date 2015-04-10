@@ -119,6 +119,7 @@ public class GUIController{
 		//Action performed when finish button is pushed in Doctor Selection UI
 		doctorSelectionUI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 newPatientUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
