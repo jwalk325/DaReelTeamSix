@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class GUIController{
@@ -25,7 +26,7 @@ public class GUIController{
 	private String doctor = "Doctor";
 	private String patient = "Patient";
 	private String user;
-	
+		
 	public GUIController(){
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
@@ -83,11 +84,7 @@ public class GUIController{
 		//Action performed when back button is pushed in New Patient UI
 		newPatientUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(welcomeUI.getWelcomePanel());
+				warningPrompt();
 		    }
 		});		
 				
@@ -409,5 +406,64 @@ public class GUIController{
 		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
 		    }
 		});
-	}			
+	}
+	
+	public void warningPrompt(){
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBackground(Color.WHITE);
+		
+		JLabel questionLabel = new JLabel("Are you sure you want to return to the Welcome screen?");
+		JLabel warningLabel = new JLabel("All progress will be lost.");
+		
+		JPanel buttonLayout = new JPanel();
+		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS));
+		buttonLayout.setBackground(Color.WHITE);
+		JButton yesButton = new JButton("Yes");
+		JButton noButton = new JButton("No");
+		buttonLayout.add(yesButton);
+		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
+		buttonLayout.add(noButton);
+		
+		panel.add(Box.createRigidArea(new Dimension (0,85)));
+		panel.add(questionLabel);
+		panel.add(warningLabel);
+		panel.add(Box.createRigidArea(new Dimension (0,50)));
+		panel.add(buttonLayout);
+		questionLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		warningLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		
+		JFrame frame = new JFrame();
+		
+		frame.setSize(400, 300); //window size
+		frame.setTitle("Warning!");
+		frame.setResizable(false); //do not allow window to be resized
+		frame.getContentPane().setBackground(Color.WHITE); //color
+		frame.setLocationRelativeTo(null); //center JFrame to user's desktop
+		frame.getContentPane().add(panel); //add main Panel to frame
+		frame.setVisible(true); //frame is visible	
+		
+		yesButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				newPatientUI.clear();
+				doctorSelectionUI.clear();
+				mainPanel.removeAll();
+		    	mainPanel.revalidate();
+		    	mainPanel.repaint();
+		    	 
+		    	mainPanel.add(welcomeUI.getWelcomePanel());
+				frame.dispose();
+			}
+		});
+		
+		noButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
+	}
 }
