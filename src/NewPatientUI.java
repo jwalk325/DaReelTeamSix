@@ -270,7 +270,7 @@ public class NewPatientUI{
 	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getNewPatientPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return newPatientPanel;
 	}
 	
@@ -285,84 +285,68 @@ public class NewPatientUI{
 		
 		if(nameField.getText().isEmpty()){
 			errorLabel.setText("Name field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(nameField.getText().indexOf(' ') == -1){
 			errorLabel.setText("First and last name required!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(dobField.getText().equals(INITIAL_DOB) || dobField.getText().isEmpty()){
 			errorLabel.setText("Date of Birth field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(dobField.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})") == false){
 			errorLabel.setText("Date of Birth format is not valid!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(email.equals(INITIAL_EMAIL) || email.isEmpty()){
 			errorLabel.setText("E-Mail field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
 			errorLabel.setText("E-mail format is not valid!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if (confirmEmail.isEmpty()){
 			errorLabel.setText("Confirm E-mail field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(email.equals(confirmEmail) == false){
 			errorLabel.setText("E-Mail and Confirm E-mail do not match!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(phoneNumberField.getText().equals(INITIAL_PHONE) || phoneNumberField.getText().isEmpty()){
 			errorLabel.setText("Phone Number field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(phoneNumberField.getText().matches("([0-9]{3})-([0-9]{3})-([0-9]{4})") == false){
 			errorLabel.setText("Phone Number format is not valid!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(password.isEmpty()){
 			errorLabel.setText("Password field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(confirmPassword.isEmpty()){
 			errorLabel.setText("Confirm Password field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(password.equals(confirmPassword) == false){
 			errorLabel.setText("Password and Confirm Password do not match!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(questionField.getText().equals(INITIAL_QUESTION) || questionField.getText().isEmpty()){
 			errorLabel.setText("Security Question field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(answerField.getText().isEmpty()){
 			errorLabel.setText("Answer field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else {
 			return true;
-		}
-		
+		}		
 	}
 	
 	//clear method to clear user input upon submission

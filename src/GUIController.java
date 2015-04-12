@@ -147,6 +147,7 @@ public class GUIController{
 		//Action performed when back button is pushed in Patient Login UI
 		patientLoginUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 patientLoginUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -158,17 +159,21 @@ public class GUIController{
 		//Action performed when submit button is pushed in Patient Login UI
 		patientLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(symptoms1UI.getSymptoms1Panel());
+				if(patientLoginUI.check()){
+					patientLoginUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(symptoms1UI.getSymptoms1Panel());
+				}
 		    }
 		});
 		
 		//Action performed when forgot password button is pushed in Patient Login UI
 		patientLoginUI.forgotListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 patientLoginUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -180,6 +185,9 @@ public class GUIController{
 		//Action performed when back to log in button is pushed in Forgot Password UI
 		lostPasswordUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 lostPasswordUI.clear();
+				 securityQuestionUI.clear();
+				 resetPasswordUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -196,11 +204,13 @@ public class GUIController{
 		//Action performed when continue button is pushed in Forgot Password UI
 		lostPasswordUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
+				if (lostPasswordUI.check()){
+					 mainPanel.removeAll();
+			    	 mainPanel.revalidate();
+			    	 mainPanel.repaint();
+			    	 
+			    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
+				}	    	
 		    }
 		});
 		
@@ -218,11 +228,13 @@ public class GUIController{
 		//Action performed when continue button is pushed in Security Question UI
 		securityQuestionUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
+				if(securityQuestionUI.check()){
+					mainPanel.removeAll();
+			    	 mainPanel.revalidate();
+			    	 mainPanel.repaint();
+			    	 
+			    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
+				}	    	 
 		    }
 		});
 		
@@ -240,11 +252,16 @@ public class GUIController{
 		//Action performed when reset password button is pushed in Reset Password UI
 		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
-		    	 
-		    	 mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+				if(resetPasswordUI.check()){
+					 lostPasswordUI.clear();
+					 securityQuestionUI.clear();
+					 resetPasswordUI.clear();
+					 mainPanel.removeAll();
+			    	 mainPanel.revalidate();
+			    	 mainPanel.repaint();
+			    	 
+			    	 mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+				}
 		    }
 		});
 		
@@ -267,11 +284,7 @@ public class GUIController{
 		//Action performed when logout button is pushed in the first page of symptoms UI
 		symptoms1UI.logoutListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				mainPanel.removeAll();
-			    mainPanel.revalidate();
-			    mainPanel.repaint();
-			    	 
-			    mainPanel.add(welcomeUI.getWelcomePanel());
+				warningPrompt();
 		    }
 		});
 		
@@ -300,6 +313,8 @@ public class GUIController{
 		//Action performed when the finish button is pushed in the second page of symptoms UI
 		symptoms2UI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 symptoms1UI.clear();
+				 symptoms2UI.clear();
 				 mainPanel.removeAll();
 				 mainPanel.revalidate();
 				 mainPanel.repaint();
@@ -330,14 +345,29 @@ public class GUIController{
 			}
 		});
 		
-		//Action performed when submit button is pushed in Update Info UI
-		updateInfoUI.submitListener(new ActionListener() {	       
+		//Action performed when cancel button is pushed in Update Info UI
+		updateInfoUI.cancelListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				updateInfoUI.clear();
 				mainPanel.removeAll();
 				mainPanel.revalidate();
 				mainPanel.repaint();
 				    	 
 				mainPanel.add(logoutUI.getLogoutPanel());
+			}
+		});		
+		
+		//Action performed when submit button is pushed in Update Info UI
+		updateInfoUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(updateInfoUI.check()){
+					updateInfoUI.clear();
+					mainPanel.removeAll();
+					mainPanel.revalidate();
+					mainPanel.repaint();
+					    	 
+					mainPanel.add(logoutUI.getLogoutPanel());
+				}			
 			}
 		});
 		
@@ -447,6 +477,8 @@ public class GUIController{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				symptoms1UI.clear();
+				symptoms2UI.clear();
 				newPatientUI.clear();
 				doctorSelectionUI.clear();
 				mainPanel.removeAll();

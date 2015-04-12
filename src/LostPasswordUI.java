@@ -14,6 +14,7 @@ public class LostPasswordUI {
 	private JButton backButton;
 	
 	private String email;
+	final String INITIAL_EMAIL = "example@domain.com";
 	
 	public LostPasswordUI(){
 		lostPasswordPanel = new JPanel();
@@ -24,9 +25,28 @@ public class LostPasswordUI {
 		enterInfoLabel = new JLabel("Enter Information Below");
 		enterInfoLabel.setFont(new Font("Helvetica",Font.PLAIN, 14));
 		emailLabel = new JLabel("E-mail:");
-		emailField = new JTextField(15);
+		emailField = new JTextField(INITIAL_EMAIL,15);
+		emailField.setForeground(Color.LIGHT_GRAY);
 		continueButton = new JButton("Continue");
 		backButton = new JButton("Back to Log In");
+		
+		emailField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (emailField.getText().equals(INITIAL_EMAIL)) {
+	                emailField.setText("");
+	                emailField.setForeground(Color.BLACK);
+	            }
+
+	        }
+
+	        public void focusLost(FocusEvent e) {
+	        	if (emailField.getText().isEmpty())
+	            {
+	                emailField.setForeground(Color.LIGHT_GRAY);
+	                emailField.setText(INITIAL_EMAIL);
+	            }
+	        }
+	    });
 		
 		errorLabel = new JLabel();
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
@@ -68,7 +88,7 @@ public class LostPasswordUI {
 	}
 	
 	public JPanel getLostPasswordPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return lostPasswordPanel;
 	}
 	
@@ -78,6 +98,27 @@ public class LostPasswordUI {
 	
 	public void continueListener (ActionListener cl){
 		continueButton.addActionListener(cl);
+	}
+	
+	public boolean check(){
+		String email = emailField.getText();
+		if(email.equals(INITIAL_EMAIL) || email.isEmpty()){
+			errorLabel.setText("E-Mail field is empty!");
+			return false;
+		}
+		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
+			errorLabel.setText("E-mail format is not valid!");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public void clear(){
+		emailField.setForeground(Color.LIGHT_GRAY);
+		emailField.setText(INITIAL_EMAIL);
 	}
 	
 	//get method

@@ -23,6 +23,7 @@ public class UpdateInfoUI {
 	private JTextField confirmEmailField;
 	private JTextField phoneNumberField;
 	private JButton submitButton;
+	private JButton cancelButton;
 
 	private String address;
 	private String city;
@@ -63,6 +64,7 @@ public class UpdateInfoUI {
 		phoneNumberField = new JTextField(10);
 		
 		submitButton = new JButton("Submit");
+		cancelButton = new JButton("Cancel");
 		
 		JPanel inputLayout = new JPanel();
 		inputLayout.setLayout(new GridBagLayout());
@@ -126,6 +128,8 @@ public class UpdateInfoUI {
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
+		buttonLayout.add(cancelButton);
+		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
 		buttonLayout.add(submitButton);
 		
 		JPanel layout = new JPanel();
@@ -147,12 +151,84 @@ public class UpdateInfoUI {
 	}
 	
 	public JPanel getUpdateInfoPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return updateInfoPanel;
 	}
 	
 	public void submitListener (ActionListener sl){
 		submitButton.addActionListener(sl);
+	}
+	
+	public void cancelListener (ActionListener cl){
+		cancelButton.addActionListener(cl);
+	}
+	
+	public boolean check(){
+		String email = emailField.getText();
+		String confirmEmail = confirmEmailField.getText();
+		
+		if(addressField.getText().isEmpty()){
+			errorLabel.setText("Address field blank!");
+			return false;
+		}
+		else if(cityField.getText().isEmpty()){
+			errorLabel.setText("City Field is empty!");
+			return false;
+		}
+		else if(stateField.getText().isEmpty()){
+			errorLabel.setText("State Field is empty!");
+			return false;
+		}
+		else if(stateField.getText().matches("[A-Za-z]{2}") == false){
+			errorLabel.setText("State format is not valid!");
+			return false;
+		}
+		else if(zipField.getText().isEmpty()){
+			errorLabel.setText("ZIP field is empty!");
+			return false;
+		}
+		else if(zipField.getText().matches("[0-9]{5}") == false){
+			errorLabel.setText("ZIP format is not valid!");
+			return false;
+		}
+		else if(email.isEmpty()){
+			errorLabel.setText("E-Mail field is empty!");
+			return false;
+		}
+		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
+			errorLabel.setText("E-mail format is not valid!");
+			return false;
+		}
+		else if (confirmEmail.isEmpty()){
+			errorLabel.setText("Confirm E-mail field is empty!");
+			return false;
+		}
+		else if(email.equals(confirmEmail) == false){
+			errorLabel.setText("E-Mail and Confirm E-mail do not match!");
+			return false;
+		}
+		else if(phoneNumberField.getText().isEmpty()){
+			errorLabel.setText("Phone Number field is empty!");
+			return false;
+		}
+		else if(phoneNumberField.getText().matches("([0-9]{3})-([0-9]{3})-([0-9]{4})") == false){
+			errorLabel.setText("Phone Number format is not valid!");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public void clear(){
+		addressField.setText("");
+		cityField.setText("");
+		stateField.setText("");
+		zipField.setText("");
+		emailField.setText("");
+		confirmEmailField.setText("");
+		phoneNumberField.setText("");
 	}
 	
 	//get methods
@@ -184,5 +260,30 @@ public class UpdateInfoUI {
 	public String getPhoneNumber(){
 		phoneNumber = phoneNumberField.getText();
 		return phoneNumber;
+	}
+	
+	//set methods
+	public void setAddressField(String address){
+		addressField.setText(address);
+	}
+	
+	public void setCityField(String city){
+		cityField.setText(city);
+	}
+	
+	public void setStateField(String state){
+		stateField.setText(state);
+	}
+	
+	public void setZIPField(String zip){
+		zipField.setText(zip);
+	}
+	
+	public void setEmailField(String email){
+		emailField.setText(email);
+	}
+	
+	public void setPhoneNumberField(String phoneNumber){
+		phoneNumberField.setText(phoneNumber);
 	}
 }

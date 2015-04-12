@@ -74,7 +74,7 @@ public class SecurityQuestionUI {
 	}
 	
 	public JPanel getSecurityQuestionPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return securityQuestionPanel;
 	}
 	
@@ -84,6 +84,20 @@ public class SecurityQuestionUI {
 	
 	public void continueListener (ActionListener cl){
 		continueButton.addActionListener(cl);
+	}
+	
+	public boolean check(){
+		if(answerField.getText().isEmpty()){
+			errorLabel.setText("Answer Field is empty!");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public void clear(){
+		answerField.setText("");
 	}
 	
 	//get method

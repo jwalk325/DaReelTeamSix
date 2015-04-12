@@ -147,44 +147,37 @@ public class DoctorSelectionUI {
 	}
 	
 	public JPanel getDoctorSelctionPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return doctorSelectionPanel;
 	}
 	
 	public boolean check(){
 		if(addressField.getText().isEmpty()){
 			errorLabel.setText("Address field blank!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(cityField.getText().isEmpty()){
 			errorLabel.setText("City Field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(stateField.getText().isEmpty()){
 			errorLabel.setText("State Field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
-		else if(stateField.getText().matches("[A-Z][A-Z]") == false){
+		else if(stateField.getText().matches("[A-Za-z]{2}") == false){
 			errorLabel.setText("State format is not valid!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(zipField.getText().isEmpty()){
 			errorLabel.setText("ZIP field is empty!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(zipField.getText().matches("[0-9]{5}") == false){
 			errorLabel.setText("ZIP format is not valid!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else if(String.valueOf(hospitalCombo.getSelectedItem()).isEmpty() || String.valueOf(doctorCombo.getSelectedItem()).isEmpty()){
 			errorLabel.setText("Please select a hospital and doctor!");
-			errorLabel.setVisible(true);
 			return false;
 		}
 		else{

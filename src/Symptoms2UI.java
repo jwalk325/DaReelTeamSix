@@ -34,7 +34,7 @@ public class Symptoms2UI {
 		symptoms2Panel = new JPanel();
 		symptoms2Panel.setBackground(Color.WHITE);
 		
-		feelingLabel = new JLabel("How Are You Feeling?");
+		feelingLabel = new JLabel("How Are You Feeling? (2/2)");
 		feelingLabel.setFont(new Font("Helvetica",Font.BOLD, 22));
 		
 		noneLabel1 = new JLabel("None", SwingConstants.CENTER);
@@ -56,6 +56,7 @@ public class Symptoms2UI {
 		commentsArea = new JTextArea(4,0);
 		commentsArea.setLineWrap(true);
 		commentsPane = new JScrollPane(commentsArea);
+		commentsPane.setBackground(Color.LIGHT_GRAY);
 		commentsPane.setMaximumSize(new Dimension(300,300));
 		
 		depressionSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
@@ -178,6 +179,13 @@ public class Symptoms2UI {
 	
 	public void finishListener (ActionListener fl){
 		finishButton.addActionListener(fl);
+	}
+	
+	public void clear(){
+		depressionSlider.setValue(0);
+		anxietySlider.setValue(0);
+		drowsinessSlider.setValue(0);
+		commentsArea.setText("");
 	}
 	
 	//get methods

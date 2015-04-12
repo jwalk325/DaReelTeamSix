@@ -12,7 +12,7 @@ public class PatientLoginUI{
 	private JLabel filler; //filler to center grid
 	private JLabel errorLabel;
 	private JTextField emailField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	private JButton forgotButton;
 	private JButton submitButton;
 	private JButton backButton;
@@ -36,7 +36,8 @@ public class PatientLoginUI{
 		filler = new JLabel("");
 		filler.setPreferredSize(new Dimension(60,0));	
 		emailField = new JTextField(15);
-		passwordField = new JTextField(15);		
+		passwordField = new JPasswordField(15);	
+		passwordField.setEchoChar('*');
 		forgotButton = new JButton("Forgot Password");
 		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
@@ -99,7 +100,6 @@ public class PatientLoginUI{
 		layout.add(Box.createRigidArea(new Dimension (0,65)));
 		layout.add(errorLabel);
 		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(inputLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,100)));
 		layout.add(buttonLayout);
@@ -123,8 +123,26 @@ public class PatientLoginUI{
 	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getPatientLoginPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return patientLoginPanel;
+	}
+	
+	public boolean check(){
+		char[] pass = passwordField.getPassword();
+		String password = new String(pass);
+		
+		if(emailField.getText().isEmpty() || password.isEmpty()){
+			errorLabel.setText("Please enter e-mail and password.");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public void clear(){
+		emailField.setText("");
+		passwordField.setText("");
 	}
 	
 	//get methods
@@ -134,7 +152,8 @@ public class PatientLoginUI{
 	}
 	
 	public String getPassword(){
-		password = passwordField.getText();
+		char[] pass = passwordField.getPassword();
+		password = new String(pass);
 		return password;
 	}
 }

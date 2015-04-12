@@ -10,8 +10,8 @@ public class ResetPasswordUI {
 	private JLabel newPasswordLabel;
 	private JLabel confirmPasswordLabel;
 	private JLabel errorLabel;
-	private JTextField newPasswordField;
-	private JTextField confirmPasswordField;
+	private JPasswordField newPasswordField;
+	private JPasswordField confirmPasswordField;
 	private JButton resetPasswordButton;
 	private JButton backButton;
 	
@@ -27,8 +27,10 @@ public class ResetPasswordUI {
 		enterInfoLabel.setFont(new Font("Helvetica",Font.PLAIN, 14));
 		newPasswordLabel = new JLabel("New Password:", SwingConstants.RIGHT);
 		confirmPasswordLabel = new JLabel("Confirm Password:");
-		newPasswordField = new JTextField(15);
-		confirmPasswordField = new JTextField(15);
+		newPasswordField = new JPasswordField(15);
+		confirmPasswordField = new JPasswordField(15);
+		newPasswordField.setEchoChar('*');
+		confirmPasswordField.setEchoChar('*');
 		resetPasswordButton = new JButton("Reset Password");
 		backButton = new JButton("Back");
 		
@@ -83,7 +85,7 @@ public class ResetPasswordUI {
 	}
 	
 	public JPanel getResetPasswordPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return resetPasswordPanel;
 	}
 	
@@ -95,9 +97,38 @@ public class ResetPasswordUI {
 		resetPasswordButton.addActionListener(rpl);
 	}
 	
+	public boolean check(){
+		char[] pass = newPasswordField.getPassword();
+		char [] confirmPass = confirmPasswordField.getPassword();
+		String password = new String(pass);		
+		String confirmPassword = new String(confirmPass);
+		
+		if(password.isEmpty()){
+			errorLabel.setText("New Password field is empty!");
+			return false;
+		}
+		else if(confirmPassword.isEmpty()){
+			errorLabel.setText("Confirm Password field is empty!");
+			return false;
+		}
+		else if(password.equals(confirmPassword) == false){
+			errorLabel.setText("New Password and Confirm Password do not match!");
+			return false;
+		}
+		else{
+			return true;
+		}	
+	}
+	
+	public void clear(){
+		newPasswordField.setText("");
+		confirmPasswordField.setText("");
+	}
+	
 	//get method
 	public String getNewPassword(){
-		newPassword = newPasswordField.getText();
+		char[] pass = newPasswordField.getPassword();
+		newPassword = new String(pass);
 		return newPassword;
 	}
 }
