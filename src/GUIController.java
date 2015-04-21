@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 import javax.swing.*;
 
@@ -23,6 +24,9 @@ public class GUIController{
 	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
 	private NewDoctorUI newDoctorUI = new NewDoctorUI();
 	
+	//CREATE NEW PATIENTLINKEDLIST
+	PatientLinkedList patientList = new PatientLinkedList();
+	
 	private String doctor = "Doctor";
 	private String patient = "Patient";
 	private String user;
@@ -42,6 +46,70 @@ public class GUIController{
 		frame.setLocationRelativeTo(null); //center JFrame to user's desktop
 		frame.getContentPane().add(mainPanel); //add main Panel to frame
 		frame.setVisible(true); //frame is visible	
+	}
+	
+	//SAVEFILE
+	public void saveFile()
+	{
+		FileOutputStream file = null;
+		try 
+		{
+			file = new FileOutputStream("patient_info.ser");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("FileNotFoundException");
+			e.printStackTrace();
+		}
+	   
+		ObjectOutputStream out = null;
+		try 
+		{
+			out = new ObjectOutputStream(file);
+			out.writeObject(patientList);
+			out.close();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+	}
+	
+	//LOADFILE
+	public void loadFile()
+	{
+		InputStream file = null;
+		try 
+		{
+			file = new FileInputStream("patient_info.ser");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("FileNotFoundException");
+			e.printStackTrace();
+		}
+		InputStream buffer = new BufferedInputStream(file);
+		ObjectInput input;
+		try 
+		{
+			input = new ObjectInputStream (buffer);
+			try 
+			{
+				patientList = (PatientLinkedList)input.readObject();
+			} 
+			catch (ClassNotFoundException e) 
+			{
+				System.out.println("ClassNotFoundException");
+				e.printStackTrace();
+			}
+			input.close();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
 	}
 	
 	public void enableGUI(){
@@ -114,9 +182,32 @@ public class GUIController{
 		});
 		
 		//Action performed when finish button is pushed in Doctor Selection UI
+		//(justin) patient object is now created here
 		doctorSelectionUI.finishListener(new ActionListener() {	       
-			public void actionPerformed(ActionEvent arg0) {
-				if(doctorSelectionUI.check()){
+			public void actionPerformed(ActionEvent arg0) {	
+				if(doctorSelectionUI.check()){	
+					
+					//(justin) create patient before information is cleared
+					//(justin) constructor = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
+					//Patient p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital());
+					
+					//TEST PRINT INFO FOR PATIENT
+					//p.printInfo();//success
+					
+					//ADD NEW PATIENT NODE TO PATIENT LINKEDLIST
+					//patientList.insert(p);
+					
+					//TEST PRINT PATIENTLINKEDLIST
+					//patientList.printList();//success
+					
+					//TEST SAVEFILE
+					//saveFile();//success
+					
+					//TEST LOADFILE
+					//loadFile();//success
+					
+					//patientList.printList();//success
+
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
 			    	mainPanel.removeAll();
@@ -463,7 +554,7 @@ public class GUIController{
 		questionLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		warningLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		JFrame frame = new JFrame();
+		final JFrame frame = new JFrame();
 		
 		frame.setSize(400, 300); //window size
 		frame.setTitle("Warning!");

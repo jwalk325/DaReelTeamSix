@@ -195,6 +195,7 @@ public class DoctorSelectionUI {
 	}
 	
 	//get methods
+	//(justin) new patient is selecting their doctor
 	public String getAddress(){
 		address = addressField.getText();
 		return address;
