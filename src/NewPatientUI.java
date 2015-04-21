@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class NewPatientUI{
@@ -275,13 +276,16 @@ public class NewPatientUI{
 	}
 	
 	//check method to check for input errors
-	public boolean check(){
+	public boolean check(PatientLinkedList patientList){
 		String email = emailField.getText();
 		String confirmEmail = confirmEmailField.getText();
 		char[] pass = passwordField.getPassword();
 		char [] confirmPass = confirmPasswordField.getPassword();
 		String password = new String(pass);		
 		String confirmPassword = new String(confirmPass);
+		
+		//create temporary patient by looking up email
+		Patient p = patientList.searchByEmail(getEmail());
 		
 		if(nameField.getText().isEmpty()){
 			errorLabel.setText("Name field is empty!");
@@ -342,6 +346,12 @@ public class NewPatientUI{
 		}
 		else if(answerField.getText().isEmpty()){
 			errorLabel.setText("Answer field is empty!");
+			return false;
+		}
+		//check if email exists
+		else if(p != null)
+		{
+			errorLabel.setText("Email already exists!");
 			return false;
 		}
 		else {

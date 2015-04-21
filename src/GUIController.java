@@ -160,7 +160,7 @@ public class GUIController{
 		newPatientUI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				//Example of next button calling check in New Patietn UI
-				if(newPatientUI.check()){
+				if(newPatientUI.check(patientList)){
 					mainPanel.removeAll();
 				    mainPanel.revalidate();
 				    mainPanel.repaint();
@@ -182,30 +182,22 @@ public class GUIController{
 		});
 		
 		//Action performed when finish button is pushed in Doctor Selection UI
-		//(justin) patient object is now created here
 		doctorSelectionUI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {	
 				if(doctorSelectionUI.check()){	
-					
-					//(justin) create patient before information is cleared
-					//(justin) constructor = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
-					//Patient p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital());
+					//CREATE PATIENT BEFORE INFORMATION IS CLEARD
+					//CONSTRUCTOR = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
+					Patient p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital());
 					
 					//TEST PRINT INFO FOR PATIENT
 					//p.printInfo();//success
 					
 					//ADD NEW PATIENT NODE TO PATIENT LINKEDLIST
-					//patientList.insert(p);
+					patientList.insert(p);
+					
+					saveFile();//success
 					
 					//TEST PRINT PATIENTLINKEDLIST
-					//patientList.printList();//success
-					
-					//TEST SAVEFILE
-					//saveFile();//success
-					
-					//TEST LOADFILE
-					//loadFile();//success
-					
 					//patientList.printList();//success
 
 					newPatientUI.clear();
@@ -250,7 +242,7 @@ public class GUIController{
 		//Action performed when submit button is pushed in Patient Login UI
 		patientLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(patientLoginUI.check()){
+				if(patientLoginUI.check(patientList)){			
 					patientLoginUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();

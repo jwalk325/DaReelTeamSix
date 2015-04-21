@@ -34,15 +34,15 @@ public class PatientLinkedList implements Serializable
 		}
 	}
 	
-	//NOT FINISHED//EXAMPLE
-	public Patient search(String name)
+	//SEARCH FOR PATIENT BY EMAIL
+	public Patient searchByEmail(String email)
 	{
 		PatientNode temp = head;
 		
 		while(temp != null)
 		{
-			//if name = temp.patient.name
-				//return temp.patient;
+			if (email.compareTo(temp.patient.getEmail())==0)//patient found
+				return temp.patient;
 			temp = temp.next;
 		}
 		
