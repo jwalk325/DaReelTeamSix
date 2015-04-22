@@ -138,6 +138,9 @@ public class DoctorLoginUI{
 	
 	public boolean check()
 	{
+		char[] pass = passwordField.getPassword();
+		String password = new String(pass);
+		
 		if(emailField.getText().isEmpty() || password.isEmpty()){
 			errorLabel.setText("Please enter e-mail and password.");
 			return false;
