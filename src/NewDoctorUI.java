@@ -43,6 +43,7 @@ public class NewDoctorUI {
 	final String INITIAL_EMAIL = "example@domain.com";
 	final String INITIAL_PHONE = "XXX-XXX-XXXX";
 	final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
+	final String INITIAL_EXTENSION = "Ext.";
 	
 	public NewDoctorUI(){
 		//create main panel
@@ -73,7 +74,7 @@ public class NewDoctorUI {
 		emailField = new JTextField(INITIAL_EMAIL,15);
 		confirmEmailField = new JTextField(15);
 		phoneNumberField = new JTextField(INITIAL_PHONE,15);
-		extensionField = new JTextField(5);
+		extensionField = new JTextField(INITIAL_EXTENSION,5);
 		questionField = new JTextField(INITIAL_QUESTION,15);
 		passwordField = new JPasswordField(15);
 		confirmPasswordField = new JPasswordField(15);
@@ -83,6 +84,7 @@ public class NewDoctorUI {
 		emailField.setForeground(Color.LIGHT_GRAY);
 		phoneNumberField.setForeground(Color.LIGHT_GRAY);
 		questionField.setForeground(Color.LIGHT_GRAY);
+		extensionField.setForeground(Color.LIGHT_GRAY);
 		
 		String[] hospitals = {"Hospital1", "Hospital2", "Hospital3"};
 		hospitalCombo = new JComboBox<String>(hospitals);
