@@ -480,10 +480,7 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(doctorLoginUI.check())
 				{
-				 doctorLoginUI.clear();
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
+				 System.out.println("Success");
 				}
 		    }
 		});
