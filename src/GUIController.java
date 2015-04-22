@@ -501,9 +501,14 @@ public class GUIController{
 		//Action performed when submit button is pushed in New Doctor UI
 		newDoctorUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-		    	 mainPanel.removeAll();
-		    	 mainPanel.revalidate();
-		    	 mainPanel.repaint();
+				 if(newDoctorUI.check() == true)
+				 {
+					 newDoctorUI.clear();
+					 mainPanel.removeAll();
+					 mainPanel.revalidate();
+					 mainPanel.repaint();
+				 }
+				
 		    	 
 		    	 mainPanel.add(registerSuccessUI.getRegisterSuccessPanel());
 		    }
@@ -512,6 +517,7 @@ public class GUIController{
 		//Action performed when back button is pushed in New Doctor UI
 		newDoctorUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 newDoctorUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();

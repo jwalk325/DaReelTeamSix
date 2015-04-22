@@ -23,8 +23,8 @@ public class NewDoctorUI {
 	private JTextField phoneNumberField;
 	private JTextField extensionField;
 	private JTextField questionField;
-	private JTextField passwordField;
-	private JTextField confirmPasswordField;
+	private JPasswordField passwordField;
+	private JPasswordField confirmPasswordField;
 	private JTextField answerField;
 	private JButton backButton;
 	private JButton submitButton;
@@ -37,6 +37,12 @@ public class NewDoctorUI {
 	private String password;
 	private String question;
 	private String answer;
+	
+	//final variables
+	
+	final String INITIAL_EMAIL = "example@domain.com";
+	final String INITIAL_PHONE = "XXX-XXX-XXXX";
+	final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
 	
 	public NewDoctorUI(){
 		//create main panel
@@ -64,17 +70,79 @@ public class NewDoctorUI {
 		
 		//Create JTextFields with dimensions
 		nameField = new JTextField(15);
-		emailField = new JTextField(15);
+		emailField = new JTextField(INITIAL_EMAIL,15);
 		confirmEmailField = new JTextField(15);
-		phoneNumberField = new JTextField(15);
+		phoneNumberField = new JTextField(INITIAL_PHONE,15);
 		extensionField = new JTextField(5);
-		questionField = new JTextField(15);
-		passwordField = new JTextField(15);
-		confirmPasswordField = new JTextField(15);
+		questionField = new JTextField(INITIAL_QUESTION,15);
+		passwordField = new JPasswordField(15);
+		confirmPasswordField = new JPasswordField(15);
 		answerField = new JTextField(15);
+		
+		//JTextField modifiers
+		emailField.setForeground(Color.LIGHT_GRAY);
+		phoneNumberField.setForeground(Color.LIGHT_GRAY);
+		questionField.setForeground(Color.LIGHT_GRAY);
 		
 		String[] hospitals = {"Hospital1", "Hospital2", "Hospital3"};
 		hospitalCombo = new JComboBox<String>(hospitals);
+		
+		
+		//Focus listeners
+		emailField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (emailField.getText().equals(INITIAL_EMAIL)) {
+	                emailField.setText("");
+	                emailField.setForeground(Color.BLACK);
+	            }
+
+	        }
+
+	        public void focusLost(FocusEvent e) {
+	        	if (emailField.getText().isEmpty())
+	            {
+	                emailField.setForeground(Color.LIGHT_GRAY);
+	                emailField.setText(INITIAL_EMAIL);
+	            }
+	        }
+	    });
+		phoneNumberField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (phoneNumberField.getText().equals(INITIAL_PHONE)) {
+					phoneNumberField.setText("");
+					phoneNumberField.setForeground(Color.BLACK);
+	            }
+
+	        }
+
+	        public void focusLost(FocusEvent e) {
+	        	if (phoneNumberField.getText().isEmpty())
+	            {
+	        		phoneNumberField.setForeground(Color.LIGHT_GRAY);
+	        		phoneNumberField.setText(INITIAL_PHONE);
+	            }
+	        }
+	    });
+		questionField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (questionField.getText().equals(INITIAL_QUESTION)) {
+					questionField.setText("");
+					questionField.setForeground(Color.BLACK);
+	            }
+
+	        }
+
+	        public void focusLost(FocusEvent e) {
+	        	if (questionField.getText().isEmpty())
+	            {
+	        		questionField.setForeground(Color.LIGHT_GRAY);
+	        		questionField.setText(INITIAL_QUESTION);
+	            }
+	        }
+	    });
+		//Asterisk password fields
+		passwordField.setEchoChar('*');
+		confirmPasswordField.setEchoChar('*');
 
 		//Create JButtons
 		backButton = new JButton("Back");
@@ -182,7 +250,7 @@ public class NewDoctorUI {
 	}
 	
 	public JPanel getNewDoctorPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText(" ");
 		return newDoctorPanel;
 	}
 	
@@ -192,6 +260,88 @@ public class NewDoctorUI {
 	
 	public void backListener (ActionListener nl){
 		backButton.addActionListener(nl);
+	}
+	
+	public boolean check(){
+		String email = emailField.getText();
+		String confirmEmail = confirmEmailField.getText();
+		char[] pass = passwordField.getPassword();
+		char [] confirmPass = confirmPasswordField.getPassword();
+		String password = new String(pass);		
+		String confirmPassword = new String(confirmPass);
+		
+		
+		if(nameField.getText().isEmpty()){
+			errorLabel.setText("Name field is empty!");
+			return false;
+		}
+		else if(nameField.getText().indexOf(' ') == -1){
+			errorLabel.setText("First and last name required!");
+			return false;
+		}
+		else if(email.equals(INITIAL_EMAIL) || email.isEmpty()){
+			errorLabel.setText("E-Mail field is empty!");
+			return false;
+		}
+		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
+			errorLabel.setText("E-mail format is not valid!");
+			return false;
+		}
+		else if (confirmEmail.isEmpty()){
+			errorLabel.setText("Confirm E-mail field is empty!");
+			return false;
+		}
+		else if(email.equals(confirmEmail) == false){
+			errorLabel.setText("E-Mail and Confirm E-mail do not match!");
+			return false;
+		}
+		else if(phoneNumberField.getText().equals(INITIAL_PHONE) || phoneNumberField.getText().isEmpty()){
+			errorLabel.setText("Phone Number field is empty!");
+			return false;
+		}
+		else if(phoneNumberField.getText().matches("([0-9]{3})-([0-9]{3})-([0-9]{4})") == false){
+			errorLabel.setText("Phone Number format is not valid!");
+			return false;
+		}
+		else if(password.isEmpty()){
+			errorLabel.setText("Password field is empty!");
+			return false;
+		}
+		else if(confirmPassword.isEmpty()){
+			errorLabel.setText("Confirm Password field is empty!");
+			return false;
+		}
+		else if(password.equals(confirmPassword) == false){
+			errorLabel.setText("Password and Confirm Password do not match!");
+			return false;
+		}
+		else if(questionField.getText().equals(INITIAL_QUESTION) || questionField.getText().isEmpty()){
+			errorLabel.setText("Security Question field is empty!");
+			return false;
+		}
+		else if(answerField.getText().isEmpty()){
+			errorLabel.setText("Answer field is empty!");
+			return false;
+		}
+		//check if email exists
+		else {
+			return true;
+		}		
+	}
+	
+	public void clear(){
+		nameField.setText("");
+		emailField.setForeground(Color.LIGHT_GRAY);
+		emailField.setText(INITIAL_EMAIL);
+		confirmEmailField.setText("");
+		phoneNumberField.setForeground(Color.LIGHT_GRAY);
+		phoneNumberField.setText(INITIAL_PHONE);
+		passwordField.setText("");
+		confirmPasswordField.setText("");
+		questionField.setForeground(Color.LIGHT_GRAY);
+		questionField.setText(INITIAL_QUESTION);
+		answerField.setText("");
 	}
 	
 	//get methods
@@ -221,7 +371,8 @@ public class NewDoctorUI {
 	}
 	
 	public String getPassword(){
-		password = passwordField.getText();
+		char[] pass = passwordField.getPassword();
+		password = new String(pass);
 		return password;
 	}
 	
