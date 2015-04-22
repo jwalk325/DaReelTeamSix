@@ -128,7 +128,7 @@ public class DoctorLoginUI{
 	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getDoctorLoginPanel(){
-		errorLabel.setVisible(false);
+		errorLabel.setText("");
 		return doctorLoginPanel;
 	}
 	
