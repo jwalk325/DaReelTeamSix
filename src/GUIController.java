@@ -26,6 +26,9 @@ public class GUIController{
 	
 	//CREATE NEW PATIENTLINKEDLIST
 	PatientLinkedList patientList = new PatientLinkedList();
+	//CREATE NEW PATIENTLINKEDLIST
+	DoctorLinkedList doctorList = new DoctorLinkedList();
+	//CREATE NEW PATIENT 
 	Patient p;
 	
 	private String doctor = "Doctor";
@@ -49,8 +52,8 @@ public class GUIController{
 		frame.setVisible(true); //frame is visible	
 	}
 	
-	//SAVEFILE
-	public void saveFile()
+	//SAVE SERIALIZABLE PATIENT FILE
+	public void savePatientFile()
 	{
 		FileOutputStream file = null;
 		try 
@@ -77,8 +80,8 @@ public class GUIController{
 		}
 	}
 	
-	//LOADFILE
-	public void loadFile()
+	//LOAD SERIALIZABLE PATIENT FILE
+	public void loadPatientFile()
 	{
 		InputStream file = null;
 		try 
@@ -98,6 +101,70 @@ public class GUIController{
 			try 
 			{
 				patientList = (PatientLinkedList)input.readObject();
+			} 
+			catch (ClassNotFoundException e) 
+			{
+				System.out.println("ClassNotFoundException");
+				e.printStackTrace();
+			}
+			input.close();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+	}
+	
+	//SAVE SERIALIZABLE DOCTOR FILE
+	public void saveDoctorFile()
+	{
+		FileOutputStream file = null;
+		try 
+		{
+			file = new FileOutputStream("doctor_info.ser");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("FileNotFoundException");
+			e.printStackTrace();
+		}
+	   
+		ObjectOutputStream out = null;
+		try 
+		{
+			out = new ObjectOutputStream(file);
+			out.writeObject(doctorList);
+			out.close();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+	}
+	
+	//LOAD SERIALIZABLE DOCTOR FILE
+	public void loadDoctorFile()
+	{
+		InputStream file = null;
+		try 
+		{
+			file = new FileInputStream("doctor_info.ser");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("FileNotFoundException");
+			e.printStackTrace();
+		}
+		InputStream buffer = new BufferedInputStream(file);
+		ObjectInput input;
+		try 
+		{
+			input = new ObjectInputStream (buffer);
+			try 
+			{
+				doctorList = (DoctorLinkedList)input.readObject();
 			} 
 			catch (ClassNotFoundException e) 
 			{
@@ -196,7 +263,7 @@ public class GUIController{
 					//ADD NEW PATIENT NODE TO PATIENT LINKEDLIST
 					patientList.insert(p);
 					
-					saveFile();//success
+					savePatientFile();//success
 					
 					//TEST PRINT PATIENTLINKEDLIST
 					//patientList.printList();//success
