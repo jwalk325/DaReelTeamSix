@@ -338,7 +338,7 @@ public class GUIController{
 		//Action performed when reset password button is pushed in Reset Password UI
 		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(resetPasswordUI.check()){
+				if(resetPasswordUI.check(p)){
 					 lostPasswordUI.clear();
 					 securityQuestionUI.clear();
 					 resetPasswordUI.clear();

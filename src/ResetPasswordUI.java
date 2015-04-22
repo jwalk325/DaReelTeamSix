@@ -97,7 +97,7 @@ public class ResetPasswordUI {
 		resetPasswordButton.addActionListener(rpl);
 	}
 	
-	public boolean check(){
+	public boolean check(Patient p){
 		char[] pass = newPasswordField.getPassword();
 		char [] confirmPass = confirmPasswordField.getPassword();
 		String password = new String(pass);		
@@ -116,6 +116,7 @@ public class ResetPasswordUI {
 			return false;
 		}
 		else{
+			p.setPassword(password);
 			return true;
 		}	
 	}
