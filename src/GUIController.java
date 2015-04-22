@@ -26,6 +26,7 @@ public class GUIController{
 	
 	//CREATE NEW PATIENTLINKEDLIST
 	PatientLinkedList patientList = new PatientLinkedList();
+	Patient p;
 	
 	private String doctor = "Doctor";
 	private String patient = "Patient";
@@ -159,7 +160,7 @@ public class GUIController{
 		//Action performed when next button is pushed in New Patient UI
 		newPatientUI.nextListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				//Example of next button calling check in New Patietn UI
+				//Example of next button calling check in New Patient UI
 				if(newPatientUI.check(patientList)){
 					mainPanel.removeAll();
 				    mainPanel.revalidate();
@@ -187,7 +188,7 @@ public class GUIController{
 				if(doctorSelectionUI.check()){	
 					//CREATE PATIENT BEFORE INFORMATION IS CLEARD
 					//CONSTRUCTOR = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
-					Patient p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital());
+					Patient p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
 					
 					//TEST PRINT INFO FOR PATIENT
 					//p.printInfo();//success
@@ -287,7 +288,9 @@ public class GUIController{
 		//Action performed when continue button is pushed in Forgot Password UI
 		lostPasswordUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if (lostPasswordUI.check()){
+				if (lostPasswordUI.check(patientList) != null){
+					 p = lostPasswordUI.check(patientList);//temp patient used in securityQuestionUI
+					 securityQuestionUI.setQuestion(p);
 					 mainPanel.removeAll();
 			    	 mainPanel.revalidate();
 			    	 mainPanel.repaint();
@@ -311,7 +314,7 @@ public class GUIController{
 		//Action performed when continue button is pushed in Security Question UI
 		securityQuestionUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(securityQuestionUI.check()){
+				if(securityQuestionUI.check(p)){
 					mainPanel.removeAll();
 			    	 mainPanel.revalidate();
 			    	 mainPanel.repaint();

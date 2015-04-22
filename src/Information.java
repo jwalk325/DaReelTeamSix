@@ -9,15 +9,19 @@ public class Information implements Serializable {
 	String phone;
 	String password;
 	String hospital;
+	String question;
+	String answer;
 	
 	//constructor
-	public Information(String n, String e, String ph, String p, String h) 
+	public Information(String n, String e, String ph, String p, String h, String q, String a) 
 	{
 		this.name = n;
 		this.email = e;
 		this.phone = ph;
 		this.password = p;
 		this.hospital = h;
+		this.question = q;
+		this.answer = a;
     }
 	
 	//getters
@@ -46,6 +50,16 @@ public class Information implements Serializable {
 		return hospital;
 	}
 	
+	public String getQuestion()
+	{
+		return question;
+	}
+	
+	public String getAnswer()
+	{
+		return answer;
+	}
+	
 	//setters
 	public void setName(String n)
 	{
@@ -70,6 +84,16 @@ public class Information implements Serializable {
 	public void setHospital(String h)
 	{
 		this.hospital = h;
+	}
+	
+	public void setQuestion(String q)
+	{
+		this.question = q;
+	}
+	
+	public void setAnswer(String a)
+	{
+		this.answer = a;
 	}
 	
 	

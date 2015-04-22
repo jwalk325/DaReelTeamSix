@@ -5,9 +5,9 @@ public class Doctor extends Information {
 	PatientLinkedList patientList;
 	
 	//constructor
-	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h) 
+	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a) 
 	 {
-		 super(n, e, ph, p, h);
+		 super(n, e, ph, p, h, q, a);
 		 this.patientList = pl;
 	 } 
 	

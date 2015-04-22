@@ -25,7 +25,7 @@ public class SecurityQuestionUI {
 		enterInfoLabel = new JLabel("Answer Question Below");
 		enterInfoLabel.setFont(new Font("Helvetica",Font.PLAIN, 14));
 		securityQuestionLabel = new JLabel();
-		securityQuestionLabel.setText("Example security question from user profile?");
+		securityQuestionLabel.setText("Example security question.");
 		securityQuestionLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
 		answerLabel = new JLabel("Answer:");
 		answerField = new JTextField(15);
@@ -78,6 +78,10 @@ public class SecurityQuestionUI {
 		return securityQuestionPanel;
 	}
 	
+	public void setQuestion(Patient p){
+		securityQuestionLabel.setText(p.getQuestion());
+	}
+	
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -86,9 +90,14 @@ public class SecurityQuestionUI {
 		continueButton.addActionListener(cl);
 	}
 	
-	public boolean check(){
+	public boolean check(Patient p){
 		if(answerField.getText().isEmpty()){
 			errorLabel.setText("Answer Field is empty!");
+			return false;
+		}
+		else if (answerField.getText().compareTo(p.getAnswer()) != 0)
+		{
+			errorLabel.setText("Incorrect Answer!");
 			return false;
 		}
 		else{

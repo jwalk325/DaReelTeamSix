@@ -9,11 +9,11 @@ public class Patient extends Information implements Serializable{
 	String preferredDoctor;
 	
 	//constructor
-	public Patient(String d, String a, String pd, String n, String e, String ph, String p, String h) 
+	public Patient(String d, String ad, String pd, String n, String e, String ph, String p, String h, String q, String a) 
 	 {
-		 super(n, e, ph, p, h);
+		 super(n, e, ph, p, h, q, a);
 		 this.DOB = d;
-		 this.address = a;
+		 this.address = ad;
 		 this.preferredDoctor = pd;
 	 } 
 	
