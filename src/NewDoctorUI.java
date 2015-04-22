@@ -108,6 +108,23 @@ public class NewDoctorUI {
 	            }
 	        }
 	    });
+		extensionField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (extensionField.getText().equals(INITIAL_EXTENSION)) {
+	                extensionField.setText("");
+	                extensionField.setForeground(Color.BLACK);
+	            }
+
+	        }
+
+	        public void focusLost(FocusEvent e) {
+	        	if (extensionField.getText().isEmpty())
+	            {
+	                extensionField.setForeground(Color.LIGHT_GRAY);
+	                extensionField.setText(INITIAL_EXTENSION);
+	            }
+	        }
+	    });
 		phoneNumberField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (phoneNumberField.getText().equals(INITIAL_PHONE)) {
