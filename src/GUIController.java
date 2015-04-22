@@ -406,6 +406,7 @@ public class GUIController{
 		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(resetPasswordUI.check(p)){
+					 savePatientFile();//UPDATE SAVED PATIENT PASSWORD
 					 lostPasswordUI.clear();
 					 securityQuestionUI.clear();
 					 resetPasswordUI.clear();

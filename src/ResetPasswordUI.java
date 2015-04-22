@@ -116,7 +116,7 @@ public class ResetPasswordUI {
 			return false;
 		}
 		else{
-			p.setPassword(password);
+			p.setPassword(password);//CHANGE PASSWORD
 			return true;
 		}	
 	}
