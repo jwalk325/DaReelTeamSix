@@ -475,6 +475,18 @@ public class GUIController{
 		    	 mainPanel.add(newDoctorUI.getNewDoctorPanel());
 		    }
 		});
+		
+		doctorLoginUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(doctorLoginUI.check())
+				{
+				 doctorLoginUI.clear();
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+				}
+		    }
+		});
 			
 		//Action performed when back button is pushed in Doctor Login UI
 		doctorLoginUI.backListener(new ActionListener() {	       

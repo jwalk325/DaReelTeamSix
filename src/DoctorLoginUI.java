@@ -126,36 +126,26 @@ public class DoctorLoginUI{
 		registerButton.addActionListener(rl);
 	}
 	
+	public void submitListener (ActionListener sl){
+		submitButton.addActionListener(sl);
+	}
+	
 	//method to retrieve panel in GUI Controller class
 	public JPanel getDoctorLoginPanel(){
 		errorLabel.setText("");
 		return doctorLoginPanel;
 	}
 	
-	public boolean check(PatientLinkedList patientList){
-		char[] pass = passwordField.getPassword();
-		String password = new String(pass);
-		//create temporary patient by looking up email
-		Patient p = patientList.searchByEmail(getEmail());
-		
+	public boolean check()
+	{
 		if(emailField.getText().isEmpty() || password.isEmpty()){
 			errorLabel.setText("Please enter e-mail and password.");
-			return false;
-		}
-		//check if patient exists
-		else if(p == null){
-			errorLabel.setText("Email not found.");
-			return false;
-		}
-		//check it passwords match
-		else if(p.getPassword().compareTo(getPassword()) != 0)
-		{
-			errorLabel.setText("Incorrect Password.");
 			return false;
 		}
 		else{
 			return true;
 		}
+		
 	}
 	
 	public void clear()
