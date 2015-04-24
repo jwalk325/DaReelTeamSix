@@ -29,7 +29,7 @@ public class DoctorSelectionUI {
 	private String hospital;
 	private String doctor;
 	
-	public DoctorSelectionUI(){
+	public DoctorSelectionUI(DoctorLinkedList doctorList){
 		doctorSelectionPanel = new JPanel();
 		doctorSelectionPanel.setBackground(Color.WHITE);
 		
@@ -54,7 +54,7 @@ public class DoctorSelectionUI {
 		zipField = new JTextField (4);
 		
 		String[] hospitals = {"", "Tempe St. Luke's Hospital", "Phoenix Childrun's Hospital", "Arizona State Hospital"};
-		String[] doctors = {"", "Doctor1", "Doctor2", "Doctor3"};
+		String[] doctors = doctorList.fillDoctorNames();//get list of doctors
 		hospitalCombo = new JComboBox<String>(hospitals);
 		doctorCombo = new JComboBox<String>(doctors);
 		

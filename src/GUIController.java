@@ -9,7 +9,7 @@ public class GUIController{
 	private JPanel mainPanel = new JPanel();
 	private WelcomeUI welcomeUI  = new WelcomeUI();
 	private NewPatientUI newPatientUI = new NewPatientUI();
-	private DoctorSelectionUI doctorSelectionUI = new DoctorSelectionUI();
+	private DoctorSelectionUI doctorSelectionUI;
 	private RegisterSuccessUI registerSuccessUI = new RegisterSuccessUI();
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
@@ -40,6 +40,12 @@ public class GUIController{
 	private String user;
 		
 	public GUIController(){
+		
+		loadPatientFile();//loadPatientList
+		loadDoctorFile();//loadDoctorList
+		
+		doctorSelectionUI = new DoctorSelectionUI(doctorList);//fillDoctorList
+		
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
 		mainPanel.setBackground(Color.WHITE);
@@ -514,8 +520,9 @@ public class GUIController{
 				 pr.setDepression(symptoms2UI.getDepression());
 				 pr.setAnxiety(symptoms2UI.getAnxiety());
 				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
-				 p.setPatientRecordList(pr);//ADDS NEW RECORD
-				 savePatientFile();
+				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
+				 //p.setPatientRecordList(pr);//ADDS NEW RECORD
+				 //savePatientFile();
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();
 				 mainPanel.removeAll();
@@ -652,6 +659,8 @@ public class GUIController{
 					 doctorList.insert(d);
 					
 					 saveDoctorFile();//success
+					 
+					 doctorSelectionUI = new DoctorSelectionUI(doctorList);//fillDoctorList
 					
 					 newDoctorUI.clear();
 					 mainPanel.removeAll();

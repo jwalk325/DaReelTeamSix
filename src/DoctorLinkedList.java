@@ -24,29 +24,42 @@ public class DoctorLinkedList implements Serializable
     }
 	
 	//print doctor list
-	public void printList()
+	public String[] fillDoctorNames()
 	{
 		DoctorNode temp = head;
-		
-		while(temp != null)
+		String[] doctors = new String[count()];
+		for(int i = 0; temp != null; i++)
 		{
-			temp.doctor.printInfo();
+			doctors[i] = temp.doctor.getName();
 			temp = temp.next;
 		}
+		return doctors;
+	}
+	
+	public int count()
+	{
+		DoctorNode temp = head;
+		int count = 0;
+		while(temp != null)
+		{
+			count++;
+			temp = temp.next;
+		}
+		return count;
 	}
 	
 	//SEARCH FOR DOCTOR BY EMAIL
-		public Doctor searchByEmail(String email)
+	public Doctor searchByEmail(String email)
+	{
+		DoctorNode temp = head;
+			
+		while(temp != null)
 		{
-			DoctorNode temp = head;
-			
-			while(temp != null)
-			{
 				if (email.compareTo(temp.doctor.getEmail())==0)//doctor found
-					return temp.doctor;
-				temp = temp.next;
-			}
-			
-			return null;
+				return temp.doctor;
+			temp = temp.next;
 		}
+		
+		return null;
+	}
 }
