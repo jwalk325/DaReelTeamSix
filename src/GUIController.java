@@ -28,8 +28,6 @@ public class GUIController{
 	PatientLinkedList patientList = new PatientLinkedList();
 	//CREATE NEW PATIENTLINKEDLIST
 	DoctorLinkedList doctorList = new DoctorLinkedList();
-	//CREATE NEW PATIENTRECORDLINKEDLIST
-	PatientRecordLinkedList patientRecordList = new PatientRecordLinkedList();
 	//CREATE NEW PATIENT 
 	Patient p;
 	//CREATE NEW Doctor
@@ -183,70 +181,6 @@ public class GUIController{
 			e.printStackTrace();
 		}
 	}
-	
-	//SAVE SERIALIZABLE PATIENTRECORD FILE
-		public void savePatientRecordFile()
-		{
-			FileOutputStream file = null;
-			try 
-			{
-				file = new FileOutputStream("patient_records.ser");
-			} 
-			catch (FileNotFoundException e) 
-			{
-				System.out.println("FileNotFoundException");
-				e.printStackTrace();
-			}
-		   
-			ObjectOutputStream out = null;
-			try 
-			{
-				out = new ObjectOutputStream(file);
-				out.writeObject(patientRecordList);
-				out.close();
-			} 
-			catch (IOException e) 
-			{
-				System.out.println("IOException");
-				e.printStackTrace();
-			}
-		}
-		
-		//LOAD SERIALIZABLE PATIENTRECORD FILE
-		public void loadPatientRecordFile()
-		{
-			InputStream file = null;
-			try 
-			{
-				file = new FileInputStream("patient_records.ser");
-			} 
-			catch (FileNotFoundException e) 
-			{
-				System.out.println("FileNotFoundException");
-				e.printStackTrace();
-			}
-			InputStream buffer = new BufferedInputStream(file);
-			ObjectInput input;
-			try 
-			{
-				input = new ObjectInputStream (buffer);
-				try 
-				{
-					patientRecordList = (PatientRecordLinkedList)input.readObject();
-				} 
-				catch (ClassNotFoundException e) 
-				{
-					System.out.println("ClassNotFoundException");
-					e.printStackTrace();
-				}
-				input.close();
-			} 
-			catch (IOException e) 
-			{
-				System.out.println("IOException");
-				e.printStackTrace();
-			}
-		}
 	
 	public void enableGUI(){
 		//Action performed when New Patient button is pushed on welcome UI

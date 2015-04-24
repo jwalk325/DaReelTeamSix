@@ -7,6 +7,7 @@ public class Patient extends Information implements Serializable{
 	String DOB;
 	String address;
 	String preferredDoctor;
+	PatientRecord patientRecord;
 	
 	//constructor
 	public Patient(String d, String ad, String pd, String n, String e, String ph, String p, String h, String q, String a) 
@@ -32,6 +33,11 @@ public class Patient extends Information implements Serializable{
 	{
 		return preferredDoctor;
 	}
+	
+	public PatientRecord getPatientRecord()
+	{
+		return patientRecord;
+	}
 		
 	//setters
 	public void setDOB(String d)
@@ -47,6 +53,11 @@ public class Patient extends Information implements Serializable{
 	public void setPreferredDoctor(String p)
 	{
 		this.preferredDoctor = p;
+	}
+	
+	public void setPatientRecord(PatientRecord p)
+	{
+		this.patientRecord = p;
 	}
 	
 	//testable print method
