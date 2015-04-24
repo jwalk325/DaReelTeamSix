@@ -192,7 +192,7 @@ public class GUIController{
 				mainPanel.revalidate(); //revalidate the panel
 				mainPanel.repaint(); //repaint the panel
 				    	 
-				mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up the New Patient UI
+				mainPanel.add(newPatientUI.getNewPatientPanel()); //bring up New Patient UI
 				user = patient;
 			}
 		});
