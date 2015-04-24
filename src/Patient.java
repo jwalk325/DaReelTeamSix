@@ -10,7 +10,7 @@ public class Patient extends Information implements Serializable{
 	private String state;
 	private String zip;
 	private String preferredDoctor;
-	private PatientRecordLinkedList patientRecordList;
+	PatientRecordLinkedList patientRecordList;
 	
 	//constructor
 	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String h, String q, String a) 
