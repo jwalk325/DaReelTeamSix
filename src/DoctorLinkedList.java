@@ -27,8 +27,9 @@ public class DoctorLinkedList implements Serializable
 	public String[] fillDoctorNames()
 	{
 		DoctorNode temp = head;
-		String[] doctors = new String[count()];
-		for(int i = 0; temp != null; i++)
+		String[] doctors = new String[count()+1];
+		doctors[0] = "";
+		for(int i = 1; temp != null; i++)
 		{
 			doctors[i] = temp.doctor.getName();
 			temp = temp.next;
