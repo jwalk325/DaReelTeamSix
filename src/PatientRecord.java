@@ -11,6 +11,17 @@ public class PatientRecord implements Serializable{
 	int anxiety;
 	int drowsiness;
 	
+	//default constructor
+	public PatientRecord()
+	{
+		this.pain = 0;
+		this.tiredness = 0;
+		this.nasuea = 0;
+		this.depression = 0;
+		this.anxiety = 0;
+		this.drowsiness = 0;
+	}
+	
 	//constructor
 	public PatientRecord(int p, int t, int n, int d, int a, int dr) 
 	 {

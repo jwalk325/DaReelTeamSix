@@ -33,7 +33,7 @@ public class GUIController{
 	//CREATE NEW DOCTOR
 	Doctor d;
 	//CREATE NEW PATIENTRECORD
-	PatientRecord pr;
+	PatientRecord pr = new PatientRecord();
 	
 	private String doctor = "Doctor";
 	private String patient = "Patient";

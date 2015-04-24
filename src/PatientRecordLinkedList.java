@@ -16,6 +16,12 @@ public class PatientRecordLinkedList implements Serializable
 {
 	PatientRecordNode head;
 	
+	//constructor
+	PatientRecordLinkedList()
+	{
+		head = null;
+	}
+	
 	public void insert(PatientRecord p) 
 	{
 		PatientRecordNode temp = head;

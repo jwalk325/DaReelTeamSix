@@ -16,6 +16,7 @@ public class Patient extends Information implements Serializable{
 		 this.DOB = d;
 		 this.address = ad;
 		 this.preferredDoctor = pd;
+		 patientRecordList = new PatientRecordLinkedList();
 	 } 
 	
 	//getters
