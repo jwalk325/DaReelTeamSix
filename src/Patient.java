@@ -6,15 +6,21 @@ public class Patient extends Information implements Serializable{
 	//variables
 	String DOB;
 	String address;
+	String city;
+	String state;
+	String zip;
 	String preferredDoctor;
 	PatientRecordLinkedList patientRecordList;
 	
 	//constructor
-	public Patient(String d, String ad, String pd, String n, String e, String ph, String p, String h, String q, String a) 
+	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String h, String q, String a) 
 	 {
 		 super(n, e, ph, p, h, q, a);
 		 this.DOB = d;
 		 this.address = ad;
+		 this.city = c;
+		 this.state = s;
+		 this.zip = z;
 		 this.preferredDoctor = pd;
 		 patientRecordList = new PatientRecordLinkedList();
 	 } 
@@ -28,6 +34,21 @@ public class Patient extends Information implements Serializable{
 	public String getAddress()
 	{
 		return address;
+	}
+	
+	public String getCity()
+	{
+		return city;
+	}
+	
+	public String getState()
+	{
+		return state;
+	}
+	
+	public String getZip()
+	{
+		return zip;
 	}
 	
 	public String getPreferredDoctor()
@@ -49,6 +70,21 @@ public class Patient extends Information implements Serializable{
 	public void setAddress(String a)
 	{
 		this.address = a;
+	}
+	
+	public void setCity(String c)
+	{
+		this.city = c;
+	}
+	
+	public void setState(String s)
+	{
+		this.state = s;
+	}
+	
+	public void setZip(String z)
+	{
+		this.zip = z;
 	}
 	
 	public void setPreferredDoctor(String p)

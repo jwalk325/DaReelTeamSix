@@ -259,7 +259,7 @@ public class GUIController{
 				if(doctorSelectionUI.check()){	
 					//CREATE PATIENT BEFORE INFORMATION IS CLEARD
 					//CONSTRUCTOR = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
-					p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
+					p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getCity(), doctorSelectionUI.getState(), doctorSelectionUI.getZIP(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
 					
 					//TEST PRINT INFO FOR PATIENT
 					//p.printInfo();//success
@@ -529,6 +529,12 @@ public class GUIController{
 		//Action performed when yes button is pushed in Update Info Check UI
 		updateInfoCheckUI.yesListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				updateInfoUI.setAddressField(p.getAddress());
+				updateInfoUI.setCityField(p.getCity());
+				updateInfoUI.setStateField(p.getState());
+				updateInfoUI.setZIPField(p.getZip());
+				updateInfoUI.setEmailField(p.getEmail());
+				updateInfoUI.setPhoneNumberField(p.getPhone());
 				mainPanel.removeAll();
 				mainPanel.revalidate();
 				mainPanel.repaint();
