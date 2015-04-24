@@ -64,7 +64,7 @@ public class PatientRecord implements Serializable{
 		this.tiredness = t;
 	}
 	
-	public void setNasea(int n)
+	public void setNasuea(int n)
 	{
 		this.nasuea = n;
 	}

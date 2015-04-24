@@ -7,7 +7,7 @@ public class Patient extends Information implements Serializable{
 	String DOB;
 	String address;
 	String preferredDoctor;
-	PatientRecord patientRecord;
+	PatientRecordLinkedList patientRecordList;
 	
 	//constructor
 	public Patient(String d, String ad, String pd, String n, String e, String ph, String p, String h, String q, String a) 
@@ -34,9 +34,9 @@ public class Patient extends Information implements Serializable{
 		return preferredDoctor;
 	}
 	
-	public PatientRecord getPatientRecord()
+	public PatientRecordLinkedList getPatientRecordList()
 	{
-		return patientRecord;
+		return patientRecordList;
 	}
 		
 	//setters
@@ -55,9 +55,9 @@ public class Patient extends Information implements Serializable{
 		this.preferredDoctor = p;
 	}
 	
-	public void setPatientRecord(PatientRecord p)
+	public void setPatientRecordList(PatientRecordLinkedList p)
 	{
-		this.patientRecord = p;
+		this.patientRecordList = p;
 	}
 	
 	//testable print method
