@@ -13,9 +13,9 @@ public class Patient extends Information implements Serializable{
 	private PatientRecordLinkedList patientRecordList;
 	
 	//constructor
-	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String h, String q, String a) 
+	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String q, String a) 
 	 {
-		 super(n, e, ph, p, h, q, a);
+		 super(n, e, ph, p, q, a);
 		 this.DOB = d;
 		 this.address = ad;
 		 this.city = c;
@@ -104,7 +104,6 @@ public class Patient extends Information implements Serializable{
 				"\nAddress: " + this.address + 
 				"\nPreferred Doctor: " + this.preferredDoctor + 
 				"\nEmail: " + super.email + 
-				"\nHospital: " + super.hospital + 
 				"\nName: " + super.name + 
 				"\nPassword: " + super.password +
 				"\nPhone Number: " + super.phone + "\n");

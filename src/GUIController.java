@@ -265,7 +265,7 @@ public class GUIController{
 				if(doctorSelectionUI.check()){	
 					//CREATE PATIENT BEFORE INFORMATION IS CLEARD
 					//CONSTRUCTOR = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
-					p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getCity(), doctorSelectionUI.getState(), doctorSelectionUI.getZIP(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), doctorSelectionUI.getHospital(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
+					p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getCity(), doctorSelectionUI.getState(), doctorSelectionUI.getZIP(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
 					
 					//TEST PRINT INFO FOR PATIENT
 					//p.printInfo();//success
@@ -654,7 +654,7 @@ public class GUIController{
 				 if(newDoctorUI.check() == true)
 				 {
 					//CONSTRUCTOR = Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a)
-					 d = new Doctor(patientList, newDoctorUI.getName() , newDoctorUI.getEmail(), newDoctorUI.getPhoneNumber(), newDoctorUI.getPassword(), newDoctorUI.getHospital(), newDoctorUI.getQuestion(), newDoctorUI.getAnswer());
+					 d = new Doctor(patientList, newDoctorUI.getName() , newDoctorUI.getEmail(), newDoctorUI.getPhoneNumber(), newDoctorUI.getPassword(), newDoctorUI.getQuestion(), newDoctorUI.getAnswer());
 					 
 					 doctorList.insert(d);
 					

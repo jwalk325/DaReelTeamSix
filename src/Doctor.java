@@ -5,9 +5,9 @@ public class Doctor extends Information {
 	private PatientLinkedList patientList;
 	
 	//constructor
-	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a) 
+	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String q, String a) 
 	 {
-		 super(n, e, ph, p, h, q, a);
+		 super(n, e, ph, p, q, a);
 		 this.patientList = pl;
 	 } 
 	
@@ -26,7 +26,7 @@ public class Doctor extends Information {
 	//testable print method
 	public String printInfo()
 	{
-		return super.email + super.hospital + super.name + super.password + super.phone;
+		return super.email + super.name + super.password + super.phone;
 	}
 }
 

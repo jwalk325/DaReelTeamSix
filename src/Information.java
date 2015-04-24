@@ -8,18 +8,16 @@ public class Information implements Serializable {
 	protected String email;
 	protected String phone;
 	protected String password;
-	protected String hospital;
 	protected String question;
 	protected String answer;
 	
 	//constructor
-	public Information(String n, String e, String ph, String p, String h, String q, String a) 
+	public Information(String n, String e, String ph, String p, String q, String a) 
 	{
 		this.name = n;
 		this.email = e;
 		this.phone = ph;
 		this.password = p;
-		this.hospital = h;
 		this.question = q;
 		this.answer = a;
     }
@@ -44,12 +42,7 @@ public class Information implements Serializable {
 	{
 		return password;
 	}
-	
-	public String getHospital()
-	{
-		return hospital;
-	}
-	
+
 	public String getQuestion()
 	{
 		return question;
@@ -80,12 +73,7 @@ public class Information implements Serializable {
 	{
 		this.password = p;
 	}
-	
-	public void setHospital(String h)
-	{
-		this.hospital = h;
-	}
-	
+
 	public void setQuestion(String q)
 	{
 		this.question = q;
