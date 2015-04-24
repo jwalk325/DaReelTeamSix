@@ -514,7 +514,7 @@ public class GUIController{
 				 pr.setDepression(symptoms2UI.getDepression());
 				 pr.setAnxiety(symptoms2UI.getAnxiety());
 				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
-				 p.patientRecordList.insert(pr);//ADDS NEW RECORD
+				 p.setPatientRecordList(pr);//ADDS NEW RECORD
 				 savePatientFile();
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();

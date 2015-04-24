@@ -10,7 +10,7 @@ public class Patient extends Information implements Serializable{
 	private String state;
 	private String zip;
 	private String preferredDoctor;
-	PatientRecordLinkedList patientRecordList;
+	private PatientRecordLinkedList patientRecordList;
 	
 	//constructor
 	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String h, String q, String a) 
@@ -92,9 +92,9 @@ public class Patient extends Information implements Serializable{
 		this.preferredDoctor = p;
 	}
 	
-	public void setPatientRecordList(PatientRecordLinkedList p)
+	public void setPatientRecordList(PatientRecord pr)
 	{
-		this.patientRecordList = p;
+		patientRecordList.insert(pr);
 	}
 	
 	//testable print method
