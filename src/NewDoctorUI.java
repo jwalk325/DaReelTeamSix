@@ -7,7 +7,6 @@ public class NewDoctorUI {
 	private JPanel newDoctorPanel;
 	private JLabel createDoctorLabel;
 	private JLabel nameLabel;
-	private JLabel hospitalLabel;
 	private JLabel emailLabel;
 	private JLabel confirmEmailLabel;
 	private JLabel phoneNumberLabel;
@@ -17,7 +16,6 @@ public class NewDoctorUI {
 	private JLabel answerLabel;
 	private JLabel errorLabel;
 	private JTextField nameField;
-	private JComboBox<String> hospitalCombo;
 	private JTextField emailField;
 	private JTextField confirmEmailField;
 	private JTextField phoneNumberField;
@@ -30,7 +28,6 @@ public class NewDoctorUI {
 	private JButton submitButton;
 	
 	private String name;
-	private String hospital;
 	private String email;
 	private String phoneNumber;
 	private String extension;
@@ -56,7 +53,6 @@ public class NewDoctorUI {
 		
 		//Create JLabels
 		nameLabel = new JLabel("Name:", SwingConstants.RIGHT);
-		hospitalLabel = new JLabel("Hospital:", SwingConstants.RIGHT);
 		emailLabel = new JLabel("E-Mail:", SwingConstants.RIGHT);
 		confirmEmailLabel = new JLabel("Confirm E-Mail:", SwingConstants.RIGHT);
 		phoneNumberLabel = new JLabel("Phone Number:", SwingConstants.RIGHT);
@@ -85,10 +81,6 @@ public class NewDoctorUI {
 		phoneNumberField.setForeground(Color.LIGHT_GRAY);
 		questionField.setForeground(Color.LIGHT_GRAY);
 		extensionField.setForeground(Color.LIGHT_GRAY);
-		
-		String[] hospitals = {"Tempe St. Luke's Hospital", "Phoenix Childrun's Hospital", "Arizona State Hospital"};
-		hospitalCombo = new JComboBox<String>(hospitals);
-		
 		
 		//Focus listeners
 		emailField.addFocusListener(new FocusListener() {
@@ -182,17 +174,17 @@ public class NewDoctorUI {
 		c.gridx++; //moving to next column
 		inputLayout.add(nameField, c);
 		
-		c.gridy = 1; //move to next row
-		c.gridx = 0; //reset column
-		inputLayout.add(hospitalLabel,c);
-		c.gridx++;
-		inputLayout.add(hospitalCombo,c);
-		
-		c.gridy = 2;
+		c.gridy = 1;
 		c.gridx = 0;
 		inputLayout.add(emailLabel,c);
 		c.gridx++;
 		inputLayout.add(emailField,c);
+		
+		c.gridy = 2;
+		c.gridx = 0;
+		inputLayout.add(confirmEmailLabel,c);
+		c.gridx++;
+		inputLayout.add(confirmEmailField,c);
 		
 		c.gridy = 3;
 		c.gridx = 0;
@@ -202,37 +194,31 @@ public class NewDoctorUI {
 		
 		c.gridy = 4;
 		c.gridx = 0;
-		inputLayout.add(confirmEmailLabel,c);
-		c.gridx++;
-		inputLayout.add(confirmEmailField,c);
-		
-		c.gridy = 5;
-		c.gridx = 0;
 		inputLayout.add(phoneNumberLabel,c);
 		c.gridx++;
 		inputLayout.add(phoneNumberField,c);
 		c.gridx++;
 		inputLayout.add(extensionField,c);
 		
-		c.gridy = 6;
+		c.gridy = 5;
 		c.gridx = 0;
 		inputLayout.add(passwordLabel,c);
 		c.gridx++;
 		inputLayout.add(passwordField,c);
 		
-		c.gridy = 7;
+		c.gridy = 6;
 		c.gridx = 0;
 		inputLayout.add(confirmPasswordLabel,c);
 		c.gridx++;
 		inputLayout.add(confirmPasswordField,c);
 		
-		c.gridy = 8;
+		c.gridy = 7;
 		c.gridx = 0;
 		inputLayout.add(questionLabel,c);
 		c.gridx++;
 		inputLayout.add(questionField,c);
 		
-		c.gridy = 9;
+		c.gridy = 8;
 		c.gridx = 0;
 		inputLayout.add(answerLabel,c);
 		c.gridx++;
@@ -259,7 +245,7 @@ public class NewDoctorUI {
 		createDoctorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT); //center the label
 		layout.add(Box.createRigidArea(new Dimension (0,20))); //add space between label and middle panel
 		layout.add(inputLayout); //add the grid panel
-		layout.add(Box.createRigidArea(new Dimension (0,27))); //add space between it and the button panel
+		layout.add(Box.createRigidArea(new Dimension (0,52))); //add space between it and the button panel
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); //add space to the bottom
 		layout.add(errorLabel);
@@ -367,11 +353,6 @@ public class NewDoctorUI {
 	public String getName(){
 		name = nameField.getText();
 		return name;
-	}
-	
-	public String getHospital(){
-		hospital = String.valueOf(hospitalCombo.getSelectedItem());
-		return hospital;
 	}
 	
 	public String getEmail(){

@@ -10,14 +10,12 @@ public class DoctorSelectionUI {
 	private JLabel cityLabel;
 	private JLabel stateLabel;
 	private JLabel zipLabel;
-	private JLabel hospitalLabel;
 	private JLabel doctorLabel;
 	private JLabel errorLabel; 
 	private JTextField addressField;
 	private JTextField cityField;
 	private JTextField stateField;
 	private JTextField zipField;
-	private JComboBox<String> hospitalCombo;
 	private JComboBox<String> doctorCombo;
 	private JButton backButton;
 	private JButton finishButton;
@@ -26,7 +24,6 @@ public class DoctorSelectionUI {
 	private String city;
 	private String state;
 	private String zip;
-	private String hospital;
 	private String doctor;
 	
 	public DoctorSelectionUI(DoctorLinkedList doctorList){
@@ -40,7 +37,6 @@ public class DoctorSelectionUI {
 		cityLabel = new JLabel(" City");
 		stateLabel = new JLabel("State", SwingConstants.CENTER);
 		zipLabel = new JLabel("ZIP", SwingConstants.CENTER);
-		hospitalLabel = new JLabel("Hospital:", SwingConstants.RIGHT);
 		doctorLabel = new JLabel("Doctor:", SwingConstants.RIGHT);
 		
 		//Error Label
@@ -53,9 +49,7 @@ public class DoctorSelectionUI {
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
 		
-		String[] hospitals = {"", "Tempe St. Luke's Hospital", "Phoenix Childrun's Hospital", "Arizona State Hospital"};
 		String[] doctors = doctorList.fillDoctorNames();//get list of doctors
-		hospitalCombo = new JComboBox<String>(hospitals);
 		doctorCombo = new JComboBox<String>(doctors);
 		
 		backButton = new JButton("Back");
@@ -98,15 +92,6 @@ public class DoctorSelectionUI {
 		c.gridy = 3;
 		c.gridx = 0;
 		c.gridwidth = 1;
-		inputLayout.add(hospitalLabel,c);
-		c.gridx++;
-		c.gridwidth = 3;
-		inputLayout.add(hospitalCombo,c);
-		
-		c.insets = new Insets(5,5,0,0);	
-		c.gridy = 4;
-		c.gridx = 0;
-		c.gridwidth = 1;
 		inputLayout.add(doctorLabel,c);
 		c.gridx++;
 		c.gridwidth = 3;
@@ -129,7 +114,7 @@ public class DoctorSelectionUI {
 		enterInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,54)));
 		layout.add(inputLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,97))); 
+		layout.add(Box.createRigidArea(new Dimension (0,129))); 
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,10))); 
 		layout.add(errorLabel);
@@ -176,8 +161,8 @@ public class DoctorSelectionUI {
 			errorLabel.setText("ZIP format is not valid!");
 			return false;
 		}
-		else if(String.valueOf(hospitalCombo.getSelectedItem()).isEmpty() || String.valueOf(doctorCombo.getSelectedItem()).isEmpty()){
-			errorLabel.setText("Please select a hospital and doctor!");
+		else if(String.valueOf(doctorCombo.getSelectedItem()).isEmpty()){
+			errorLabel.setText("Please select a doctor!");
 			return false;
 		}
 		else{
@@ -190,7 +175,6 @@ public class DoctorSelectionUI {
 		cityField.setText("");
 		stateField.setText("");
 		zipField.setText("");
-		hospitalCombo.setSelectedIndex(0);
 		doctorCombo.setSelectedIndex(0);
 	}
 	
@@ -213,11 +197,6 @@ public class DoctorSelectionUI {
 	public String getZIP(){
 		zip = zipField.getText();
 		return zip;
-	}
-	
-	public String getHospital(){
-		hospital = String.valueOf(hospitalCombo.getSelectedItem());
-		return hospital;
 	}
 	
 	public String getDoctor(){

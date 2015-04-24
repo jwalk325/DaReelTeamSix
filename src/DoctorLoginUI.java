@@ -106,7 +106,7 @@ public class DoctorLoginUI{
 		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(inputLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,50)));
+		layout.add(Box.createRigidArea(new Dimension (0,30)));
 		layout.add(buttonLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		
