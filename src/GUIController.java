@@ -312,7 +312,8 @@ public class GUIController{
 		//Action performed when submit button is pushed in Patient Login UI
 		patientLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(patientLoginUI.check(patientList)){			
+				if(patientLoginUI.check(patientList) != null){
+					p = patientLoginUI.check(patientList); //temp patient is updated (logged in)
 					patientLoginUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -357,16 +358,27 @@ public class GUIController{
 		//Action performed when continue button is pushed in Forgot Password UI
 		lostPasswordUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if (lostPasswordUI.check(patientList) != null){
+				if(user.equals(patient)){
+					if (lostPasswordUI.check(patientList) != null){
 					 p = lostPasswordUI.check(patientList);//temp patient used in securityQuestionUI
 					 securityQuestionUI.setQuestion(p);
 					 mainPanel.removeAll();
 			    	 mainPanel.revalidate();
-			    	 mainPanel.repaint();
-			    	 
+			    	 mainPanel.repaint();    	 
 			    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
-				}	    	
-		    }
+					}
+				}
+				else {
+					if (lostPasswordUI.check(doctorList) != null){
+						 d = lostPasswordUI.check(doctorList);//temp patient used in securityQuestionUI
+						 securityQuestionUI.setQuestion(d);
+						 mainPanel.removeAll();
+				    	 mainPanel.revalidate();
+				    	 mainPanel.repaint();
+				    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
+					}
+				}
+			}
 		});
 		
 		//Action performed when back button is pushed in Security Question UI
@@ -383,13 +395,24 @@ public class GUIController{
 		//Action performed when continue button is pushed in Security Question UI
 		securityQuestionUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(securityQuestionUI.check(p)){
+				if(user.equals(patient)){
+					if(securityQuestionUI.check(p)){
 					mainPanel.removeAll();
 			    	 mainPanel.revalidate();
 			    	 mainPanel.repaint();
 			    	 
 			    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
-				}	    	 
+					}	    	
+				}
+				else {
+					if(securityQuestionUI.check(d)){
+					mainPanel.removeAll();
+			    	 mainPanel.revalidate();
+			    	 mainPanel.repaint();
+			    	 
+			    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
+					}	    	
+				}
 		    }
 		});
 		
@@ -407,16 +430,30 @@ public class GUIController{
 		//Action performed when reset password button is pushed in Reset Password UI
 		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(resetPasswordUI.check(p)){
-					 savePatientFile();//UPDATE SAVED PATIENT PASSWORD
-					 lostPasswordUI.clear();
-					 securityQuestionUI.clear();
-					 resetPasswordUI.clear();
-					 mainPanel.removeAll();
-			    	 mainPanel.revalidate();
-			    	 mainPanel.repaint();
-			    	 
-			    	 mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+				if(user.equals(patient)){
+					if(resetPasswordUI.check(p)){
+						savePatientFile();//UPDATE SAVED PATIENT PASSWORD
+						lostPasswordUI.clear();
+						securityQuestionUI.clear();
+						resetPasswordUI.clear();
+						mainPanel.removeAll();
+						mainPanel.revalidate();
+						mainPanel.repaint();
+						mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+					}
+				}
+				else{
+					if(resetPasswordUI.check(d)){
+						 saveDoctorFile();//UPDATE SAVED PATIENT PASSWORD
+						 lostPasswordUI.clear();
+						 securityQuestionUI.clear();
+						 resetPasswordUI.clear();
+						 mainPanel.removeAll();
+				    	 mainPanel.revalidate();
+				    	 mainPanel.repaint();
+				    	 
+				    	 mainPanel.add(resetSuccessUI.getResetSuccessPanel());
+					}
 				}
 		    }
 		});
@@ -517,6 +554,10 @@ public class GUIController{
 		updateInfoUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(updateInfoUI.check()){
+					p.setAddress(updateInfoUI.getAddress());
+					p.setEmail(updateInfoUI.getEmail());
+					p.setPhone(updateInfoUI.getPhoneNumber());
+					savePatientFile();
 					updateInfoUI.clear();
 					mainPanel.removeAll();
 					mainPanel.revalidate();
@@ -551,7 +592,7 @@ public class GUIController{
 		
 		doctorLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(doctorLoginUI.check())
+				if(doctorLoginUI.check(doctorList))
 				{
 				 System.out.println("Success");
 				}

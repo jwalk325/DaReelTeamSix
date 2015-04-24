@@ -82,6 +82,10 @@ public class SecurityQuestionUI {
 		securityQuestionLabel.setText(p.getQuestion());
 	}
 	
+	public void setQuestion(Doctor d){
+		securityQuestionLabel.setText(d.getQuestion());
+	}
+	
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -96,6 +100,21 @@ public class SecurityQuestionUI {
 			return false;
 		}
 		else if (answerField.getText().compareTo(p.getAnswer()) != 0)
+		{
+			errorLabel.setText("Incorrect Answer!");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public boolean check(Doctor d){
+		if(answerField.getText().isEmpty()){
+			errorLabel.setText("Answer Field is empty!");
+			return false;
+		}
+		else if (answerField.getText().compareTo(d.getAnswer()) != 0)
 		{
 			errorLabel.setText("Incorrect Answer!");
 			return false;

@@ -121,6 +121,30 @@ public class ResetPasswordUI {
 		}	
 	}
 	
+	public boolean check(Doctor d){
+		char[] pass = newPasswordField.getPassword();
+		char [] confirmPass = confirmPasswordField.getPassword();
+		String password = new String(pass);		
+		String confirmPassword = new String(confirmPass);
+		
+		if(password.isEmpty()){
+			errorLabel.setText("New Password field is empty!");
+			return false;
+		}
+		else if(confirmPassword.isEmpty()){
+			errorLabel.setText("Confirm Password field is empty!");
+			return false;
+		}
+		else if(password.equals(confirmPassword) == false){
+			errorLabel.setText("New Password and Confirm Password do not match!");
+			return false;
+		}
+		else{
+			d.setPassword(password);//CHANGE PASSWORD
+			return true;
+		}	
+	}
+	
 	public void clear(){
 		newPasswordField.setText("");
 		confirmPasswordField.setText("");

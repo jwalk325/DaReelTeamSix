@@ -104,7 +104,7 @@ public class LostPasswordUI {
 		String email = emailField.getText();
 		//create temporary patient by looking up email
 		Patient p = patientList.searchByEmail(email);
-		
+			
 		if(email.equals(INITIAL_EMAIL) || email.isEmpty()){
 			errorLabel.setText("E-Mail field is empty!");
 			return null;
@@ -121,6 +121,31 @@ public class LostPasswordUI {
 		}
 		else{
 			return p;
+		}		
+		
+	}
+	
+	public Doctor check(DoctorLinkedList doctorList){
+		String email = emailField.getText();
+		//create temporary doctor by looking up email
+		Doctor d = doctorList.searchByEmail(email); 
+		
+		if(email.equals(INITIAL_EMAIL) || email.isEmpty()){
+			errorLabel.setText("E-Mail field is empty!");
+			return null;
+		}
+		else if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") == false){
+			errorLabel.setText("E-mail format is not valid!");
+			return null;
+		}
+		else if (d == null)
+		{
+			errorLabel.setText("E-mail does not exist!");
+			return null;
+		}
+		else{
+			return d;
 		}
 	}
 	

@@ -136,13 +136,26 @@ public class DoctorLoginUI{
 		return doctorLoginPanel;
 	}
 	
-	public boolean check()
+	public boolean check(DoctorLinkedList doctorList)
 	{
 		char[] pass = passwordField.getPassword();
 		String password = new String(pass);
+		//create temporary patient by looking up email
+		Doctor d = doctorList.searchByEmail(getEmail());
 		
 		if(emailField.getText().isEmpty() || password.isEmpty()){
 			errorLabel.setText("Please enter e-mail and password.");
+			return false;
+		}
+		//check if patient exists
+		else if(d == null){
+			errorLabel.setText("Email not found.");
+			return false;
+		}
+		//check it passwords match
+		else if(d.getPassword().compareTo(getPassword()) != 0)
+		{
+			errorLabel.setText("Incorrect Password.");
 			return false;
 		}
 		else{
