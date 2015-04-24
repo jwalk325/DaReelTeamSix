@@ -53,7 +53,7 @@ public class DoctorSelectionUI {
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
 		
-		String[] hospitals = {"", "Hospital1", "Hospital2", "Hospital3"};
+		String[] hospitals = {"", "Tempe St. Luke's Hospital", "Phoenix Childrun's Hospital", "Arizona State Hospital"};
 		String[] doctors = {"", "Doctor1", "Doctor2", "Doctor3"};
 		hospitalCombo = new JComboBox<String>(hospitals);
 		doctorCombo = new JComboBox<String>(doctors);

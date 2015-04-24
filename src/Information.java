@@ -4,13 +4,13 @@ import java.io.Serializable;
 public class Information implements Serializable {
 
 	//variables
-	String name;
-	String email;
-	String phone;
-	String password;
-	String hospital;
-	String question;
-	String answer;
+	protected String name;
+	protected String email;
+	protected String phone;
+	protected String password;
+	protected String hospital;
+	protected String question;
+	protected String answer;
 	
 	//constructor
 	public Information(String n, String e, String ph, String p, String h, String q, String a) 

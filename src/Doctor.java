@@ -2,7 +2,7 @@
 public class Doctor extends Information {
 	
 	//variables
-	PatientLinkedList patientList;
+	private PatientLinkedList patientList;
 	
 	//constructor
 	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a) 

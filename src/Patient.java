@@ -4,13 +4,13 @@ import java.io.Serializable;
 public class Patient extends Information implements Serializable{
 	
 	//variables
-	String DOB;
-	String address;
-	String city;
-	String state;
-	String zip;
-	String preferredDoctor;
-	PatientRecordLinkedList patientRecordList;
+	private String DOB;
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String preferredDoctor;
+	private PatientRecordLinkedList patientRecordList;
 	
 	//constructor
 	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String h, String q, String a) 

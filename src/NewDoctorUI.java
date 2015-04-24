@@ -86,7 +86,7 @@ public class NewDoctorUI {
 		questionField.setForeground(Color.LIGHT_GRAY);
 		extensionField.setForeground(Color.LIGHT_GRAY);
 		
-		String[] hospitals = {"Hospital1", "Hospital2", "Hospital3"};
+		String[] hospitals = {"Tempe St. Luke's Hospital", "Phoenix Childrun's Hospital", "Arizona State Hospital"};
 		hospitalCombo = new JComboBox<String>(hospitals);
 		
 		
