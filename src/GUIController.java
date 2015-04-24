@@ -592,6 +592,7 @@ public class GUIController{
 		//Action performed when submit button is pushed in Doctor Login UI
 		doctorLoginUI.registerListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 doctorLoginUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -604,7 +605,8 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(doctorLoginUI.check(doctorList))
 				{
-				 System.out.println("Success");
+					doctorLoginUI.clear();
+					System.out.println("Success");
 				}
 		    }
 		});
@@ -612,6 +614,7 @@ public class GUIController{
 		//Action performed when back button is pushed in Doctor Login UI
 		doctorLoginUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 doctorLoginUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -623,6 +626,7 @@ public class GUIController{
 		//Action performed when forgot password button is pushed in Doctor Login UI
 		doctorLoginUI.forgotListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 doctorLoginUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
