@@ -342,6 +342,8 @@ public class NewDoctorUI {
 		confirmEmailField.setText("");
 		phoneNumberField.setForeground(Color.LIGHT_GRAY);
 		phoneNumberField.setText(INITIAL_PHONE);
+		extensionField.setForeground(Color.LIGHT_GRAY);
+		extensionField.setText(INITIAL_EXTENSION);
 		passwordField.setText("");
 		confirmPasswordField.setText("");
 		questionField.setForeground(Color.LIGHT_GRAY);
