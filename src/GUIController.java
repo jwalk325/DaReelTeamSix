@@ -806,12 +806,14 @@ public class GUIController{
 		patientRecordUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(patientRecordReturn.equals(notification)){
-					patientRecordUI.clear();
-					mainPanel.removeAll();
-			    	mainPanel.revalidate();
-			    	mainPanel.repaint();
-			    	 
-			    	mainPanel.add(notificationsUI.getNotificationsPanel());
+					if(patientRecordUI.check()){
+						patientRecordUI.clear();
+						mainPanel.removeAll();
+				    	mainPanel.revalidate();
+				    	mainPanel.repaint();
+				    	 
+				    	mainPanel.add(notificationsUI.getNotificationsPanel());
+					}				
 				}
 				else{
 					patientRecordUI.error();

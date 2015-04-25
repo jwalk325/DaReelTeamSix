@@ -235,6 +235,16 @@ public class PatientRecordUI {
 		errorLabel.setText("Record already submitted!");
 	}
 	
+	public boolean check(){
+		if(doctorCommentsArea.getText().isEmpty()){
+			errorLabel.setText("Please enter comments before submitting.");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
 	public void clear(){
 		errorLabel.setText(" ");
 	}
