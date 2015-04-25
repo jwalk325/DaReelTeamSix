@@ -191,7 +191,7 @@ public class PatientRecordUI {
 		submitButton = new JButton("Submit");
 		contactButton = new JButton("Contact");
 		buttonLayout.add(backButton);
-		buttonLayout.add(Box.createRigidArea(new Dimension (165,0)));
+		buttonLayout.add(Box.createRigidArea(new Dimension (163,0)));
 		buttonLayout.add(contactButton);
 		buttonLayout.add(Box.createRigidArea(new Dimension (5,0)));
 		buttonLayout.add(submitButton);
