@@ -22,6 +22,11 @@ public class GUIController{
 	private ResetPasswordUI resetPasswordUI = new ResetPasswordUI();
 	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
 	private NewDoctorUI newDoctorUI = new NewDoctorUI();
+	private DoctorDashboardUI doctorDashboardUI = new DoctorDashboardUI();
+	private SelectRecordUI selectRecordUI = new SelectRecordUI();
+	private NotificationsUI notificationsUI = new NotificationsUI();
+	private PatientRecordUI patientRecordUI = new PatientRecordUI();
+	private ContactUI contactUI = new ContactUI();
 	
 	//CREATE NEW PATIENTLINKEDLIST
 	PatientLinkedList patientList = new PatientLinkedList();
@@ -37,6 +42,10 @@ public class GUIController{
 	private String doctor = "Doctor";
 	private String patient = "Patient";
 	private String user;
+	
+	private String selectRecord = "select";
+	private String notification = "notification";
+	private String patientRecordReturn;
 		
 	public GUIController(){
 		
@@ -319,7 +328,8 @@ public class GUIController{
 		//Action performed when submit button is pushed in Patient Login UI
 		patientLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(patientLoginUI.check(patientList) != null){
+				if(patientLoginUI.check(patientList) != null)
+				{
 					p = patientLoginUI.check(patientList); //temp patient is updated (logged in)
 					patientLoginUI.clear();
 					mainPanel.removeAll();
@@ -618,7 +628,11 @@ public class GUIController{
 				if(doctorLoginUI.check(doctorList))
 				{
 					doctorLoginUI.clear();
-					System.out.println("Success");
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(doctorDashboardUI.getDoctorDashboardPanel());
 				}
 		    }
 		});
@@ -675,14 +689,169 @@ public class GUIController{
 		//Action performed when back button is pushed in New Doctor UI
 		newDoctorUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				 newDoctorUI.clear();
+				 warningPrompt();
+		    }
+		});
+		
+		//Action performed when notifications button is pushed in Doctor Dashboard UI
+		doctorDashboardUI.notificationsListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+		    	 mainPanel.add(notificationsUI.getNotificationsPanel());
 		    }
 		});
+		
+		//Action performed when Patient Records button is pushed in Doctor Dashboard UI
+		doctorDashboardUI.recordsListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(selectRecordUI.getSelectRecordPanel());
+		    }
+		});	
+		
+		//Action performed when Log Out button is pushed in Doctor Dashboard UI
+		doctorDashboardUI.logoutListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(logoutUI.getLogoutPanel());
+		   }
+		});
+		
+		//Action performed when Back button is pushed in Patient Records UI
+		selectRecordUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				 selectRecordUI.clear();
+		    	 mainPanel.removeAll();
+		    	 mainPanel.revalidate();
+		    	 mainPanel.repaint();
+		    	 
+		    	 mainPanel.add(doctorDashboardUI.getDoctorDashboardPanel());
+		   }
+		});
+		
+		//Action performed when View Record button is pushed in Patient Records UI
+		selectRecordUI.viewRecordListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(selectRecordUI.check()){
+					selectRecordUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(patientRecordUI.getPatientRecordPanel());
+			    	patientRecordReturn = selectRecord;
+				}			
+		   }
+		});	
+		
+		//Action performed when Back button is pushed in Notifications UI
+		notificationsUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				notificationsUI.clear();
+				mainPanel.removeAll();
+		    	mainPanel.revalidate();
+		    	mainPanel.repaint();
+		    	 
+		    	mainPanel.add(doctorDashboardUI.getDoctorDashboardPanel());
+		   }
+		});		
+		
+		//Action performed when View button is pushed in Notifications UI
+		notificationsUI.viewListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(notificationsUI.check()){
+					notificationsUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(patientRecordUI.getPatientRecordPanel());
+			    	patientRecordReturn = notification;
+				}
+		   }
+		});		
+		
+		//Action performed when Back button is pushed in Patient Record UI
+		patientRecordUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(patientRecordReturn.equals(notification)){
+					patientRecordUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(notificationsUI.getNotificationsPanel());
+				}
+				else{
+					patientRecordUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(selectRecordUI.getSelectRecordPanel());
+				}
+		   }
+		});	
+		
+		//Action performed when Submit button is pushed in Patient Record UI
+		patientRecordUI.submitListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				if(patientRecordReturn.equals(notification)){
+					patientRecordUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(notificationsUI.getNotificationsPanel());
+				}
+				else{
+					patientRecordUI.error();
+				}
+		   }
+		});			
+		
+		//Action performed when Contact button is pushed in Patient Record UI
+		patientRecordUI.contactListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				patientRecordUI.clear();
+				mainPanel.removeAll();
+		    	mainPanel.revalidate();
+		    	mainPanel.repaint();
+		    	 
+		    	mainPanel.add(contactUI.getContactPanel());
+		   }
+		});	
+		
+		//Action performed when Back button is pushed in Contact UI
+		contactUI.backListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+		    	mainPanel.revalidate();
+		    	mainPanel.repaint();
+		    	 
+		    	mainPanel.add(patientRecordUI.getPatientRecordPanel());
+		   }
+		});
+		
+		//Action performed when Dashboard button is pushed in Contact UI
+		contactUI.dashboardListener(new ActionListener() {	       
+			public void actionPerformed(ActionEvent arg0) {
+				mainPanel.removeAll();
+		    	mainPanel.revalidate();
+		    	mainPanel.repaint();
+		    	 
+		    	mainPanel.add(doctorDashboardUI.getDoctorDashboardPanel());
+		   }
+		});			
 	}
 	
 	public void warningPrompt(){
@@ -690,7 +859,13 @@ public class GUIController{
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBackground(Color.WHITE);
 		
-		JLabel questionLabel = new JLabel("Are you sure you want to return to the Welcome screen?");
+		JLabel questionLabel;
+		if(user.equals(patient)){
+			questionLabel = new JLabel("Are you sure you want to return to the Welcome screen?");
+		}
+		else{
+			questionLabel = new JLabel("Are you sure you want to return to the Log In screen?");
+		}
 		JLabel warningLabel = new JLabel("All progress will be lost.");
 		
 		JPanel buttonLayout = new JPanel();
@@ -724,16 +899,28 @@ public class GUIController{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				symptoms1UI.clear();
-				symptoms2UI.clear();
-				newPatientUI.clear();
-				doctorSelectionUI.clear();
-				mainPanel.removeAll();
-		    	mainPanel.revalidate();
-		    	mainPanel.repaint();
-		    	 
-		    	mainPanel.add(welcomeUI.getWelcomePanel());
-				frame.dispose();
+				if(user.equals(patient)){
+					symptoms1UI.clear();
+					symptoms2UI.clear();
+					newPatientUI.clear();
+					doctorSelectionUI.clear();
+					mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(welcomeUI.getWelcomePanel());
+					frame.dispose();
+				}
+				else{
+					newDoctorUI.clear();
+			    	mainPanel.removeAll();
+			    	mainPanel.revalidate();
+			    	mainPanel.repaint();
+			    	 
+			    	mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
+			    	frame.dispose();
+				}
+				
 			}
 		});
 		
