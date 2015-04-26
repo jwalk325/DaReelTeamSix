@@ -1,6 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.*;
 
 public class GUIController{
@@ -532,6 +537,9 @@ public class GUIController{
 				 pr.setDepression(symptoms2UI.getDepression());
 				 pr.setAnxiety(symptoms2UI.getAnxiety());
 				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
+				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+				 Date today = Calendar.getInstance().getTime();   
+				 pr.setDate(dateFormat.format(today));
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
 				 p.setPatientRecordList(pr);//ADDS NEW RECORD
 				 savePatientFile();

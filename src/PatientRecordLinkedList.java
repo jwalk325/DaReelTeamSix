@@ -30,7 +30,6 @@ public class PatientRecordLinkedList implements Serializable
 			records[0] = "";
 			for(int i = 1; temp != null; i++)
 			{
-				System.out.println(temp.patientRecord.getDate());
 				records[i] = temp.patientRecord.getDate();
 				temp = temp.next;
 			}
