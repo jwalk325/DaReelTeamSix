@@ -8,7 +8,7 @@ public class GUIController{
 	private JPanel mainPanel = new JPanel();
 	private WelcomeUI welcomeUI  = new WelcomeUI();
 	private NewPatientUI newPatientUI = new NewPatientUI();
-	private DoctorSelectionUI doctorSelectionUI;
+	private DoctorSelectionUI doctorSelectionUI;//EDITED
 	private RegisterSuccessUI registerSuccessUI = new RegisterSuccessUI();
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
@@ -23,7 +23,7 @@ public class GUIController{
 	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
 	private NewDoctorUI newDoctorUI = new NewDoctorUI();
 	private DoctorDashboardUI doctorDashboardUI = new DoctorDashboardUI();
-	private SelectRecordUI selectRecordUI = new SelectRecordUI();
+	private SelectRecordUI selectRecordUI;
 	private NotificationsUI notificationsUI = new NotificationsUI();
 	private PatientRecordUI patientRecordUI = new PatientRecordUI();
 	private ContactUI contactUI = new ContactUI();
@@ -53,6 +53,7 @@ public class GUIController{
 		loadDoctorFile();//loadDoctorList
 		
 		doctorSelectionUI = new DoctorSelectionUI(doctorList);//fillDoctorList
+		selectRecordUI = new SelectRecordUI(patientList);//fillPatientList
 		
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
@@ -285,6 +286,8 @@ public class GUIController{
 					
 					//TEST PRINT PATIENTLINKEDLIST
 					//patientList.printList();//success
+					
+					selectRecordUI = new SelectRecordUI(patientList);//fillPatientList
 
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
@@ -530,8 +533,8 @@ public class GUIController{
 				 pr.setAnxiety(symptoms2UI.getAnxiety());
 				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
-				 //p.setPatientRecordList(pr);//ADDS NEW RECORD
-				 //savePatientFile();
+				 p.setPatientRecordList(pr);//ADDS NEW RECORD
+				 savePatientFile();
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();
 				 mainPanel.removeAll();
@@ -742,6 +745,10 @@ public class GUIController{
 		selectRecordUI.viewRecordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(selectRecordUI.check()){
+					
+					//selectRecordUI.getSelectedPatient();
+					//selectRecordUI.getSelectedRecord();
+					
 					selectRecordUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();

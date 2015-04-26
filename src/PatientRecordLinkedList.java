@@ -22,6 +22,33 @@ public class PatientRecordLinkedList implements Serializable
 		head = null;
 	}
 	
+	//print patient list
+		public String[] fillRecordDates()
+		{
+			PatientRecordNode temp = head;
+			String[] records = new String[count()+1];
+			records[0] = "";
+			for(int i = 1; temp != null; i++)
+			{
+				System.out.println(temp.patientRecord.getDate());
+				records[i] = temp.patientRecord.getDate();
+				temp = temp.next;
+			}
+			return records;
+		}
+			
+		public int count()
+		{
+			PatientRecordNode temp = head;
+			int count = 0;
+			while(temp != null)
+			{
+				count++;
+				temp = temp.next;
+			}
+			return count;
+		}	
+	
 	public void insert(PatientRecord p) 
 	{
 		PatientRecordNode temp = head;

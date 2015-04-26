@@ -1,15 +1,26 @@
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class PatientRecord implements Serializable{
 	
 	//variables
 	int pain;
+	final int painThresh = 4;
 	int tiredness;
+	final int tirednessThresh = 6;
 	int nasuea;
+	final int nasueaThresh = 6;
 	int depression;
+	final int depressionThresh = 4;
 	int anxiety;
+	final int anxietyThresh = 4;
 	int drowsiness;
+	final int drowsinessThresh = 6;
+	String recordDate;
 	
 	//default constructor
 	public PatientRecord()
@@ -31,6 +42,9 @@ public class PatientRecord implements Serializable{
 		this.depression = d;
 		this.anxiety = a;
 		this.drowsiness = dr;
+		Date today = Calendar.getInstance().getTime();   
+		DateFormat df = new SimpleDateFormat("MM/dd/yy");
+		this.recordDate = df.format(today);
 	 } 
 	
 	//getters
@@ -62,6 +76,11 @@ public class PatientRecord implements Serializable{
 	public int getDrowsiness()
 	{
 		return drowsiness;
+	}
+	
+	public String getDate()
+	{
+		return recordDate;
 	}
 		
 	//setters
@@ -95,9 +114,9 @@ public class PatientRecord implements Serializable{
 		this.drowsiness = d;
 	}
 	
-	public void printInfo()
+	public void setDate(String d)
 	{
-		
+		this.recordDate = d;
 	}
 	
 }

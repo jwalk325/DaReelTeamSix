@@ -14,7 +14,7 @@ public class SelectRecordUI {
 	private JButton viewRecordButton;
 	private JButton backButton;
 	
-	public SelectRecordUI(){
+	public SelectRecordUI(final PatientLinkedList patientList){
 		selectRecordPanel = new JPanel();
 		selectRecordPanel.setBackground(Color.WHITE);
 		
@@ -27,10 +27,27 @@ public class SelectRecordUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
-		String[] patients = {"", "Patient Name1", "Patient Name2", "Patient Name3"};
+		String[] patients = patientList.fillPatientNames();//get list of patients
 		patientCombo = new JComboBox<String>(patients);
-		String[] records = {"", "3/4", "4/16", "8/10"};
+		String[] records = {""};
 		recordCombo = new JComboBox<String>(records);
+		
+		recordCombo.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				//grab patient recordLinkedList from String in patientComboBox
+				if (!String.valueOf(patientCombo.getSelectedItem()).isEmpty())
+				{
+					String patientName = (String)patientCombo.getSelectedItem();
+					Patient p = patientList.searchByName(patientName);
+					JComboBox<String> temp = new JComboBox<String>(p.getPatientRecordList().fillRecordDates());
+					recordCombo =  temp;
+				}
+				
+			} 
+			public void focusLost(FocusEvent e){
+				
+			}
+		});
 		
 		viewRecordButton = new JButton("View Record");
 		backButton = new JButton("Back");
@@ -91,6 +108,14 @@ public class SelectRecordUI {
 	
 	public JPanel getSelectRecordPanel(){
 		return selectRecordPanel;
+	}
+	
+	public String getSelectedPatient(){
+		return (String)patientCombo.getSelectedItem();
+	}
+	
+	public String getSelectedRecord(){
+		return (String)recordCombo.getSelectedItem();
 	}
 	
 	public void backListener (ActionListener bl){
