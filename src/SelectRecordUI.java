@@ -29,25 +29,24 @@ public class SelectRecordUI {
 		
 		String[] patients = patientList.fillPatientNames();//get list of patients
 		patientCombo = new JComboBox<String>(patients);
-		String[] records = {""};
-		recordCombo = new JComboBox<String>(records);
-		
-		recordCombo.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				//grab patient recordLinkedList from String in patientComboBox
-				if (!String.valueOf(patientCombo.getSelectedItem()).isEmpty())
-				{
+		String[] temp = {""};
+		recordCombo = new JComboBox<String>(temp);	
+		patientCombo.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e){
+               if(e.getStateChange() == ItemEvent.SELECTED && !String.valueOf(patientCombo.getSelectedItem()).isEmpty()){
 					String patientName = (String)patientCombo.getSelectedItem();
 					Patient p = patientList.searchByName(patientName);
-					JComboBox<String> temp = new JComboBox<String>(p.getPatientRecordList().fillRecordDates());
-					recordCombo =  temp;
-				}
-				
-			} 
-			public void focusLost(FocusEvent e){
-				
-			}
-		});
+					String[] records = p.getPatientRecordList().fillRecordDates();
+					DefaultComboBoxModel model = new DefaultComboBoxModel(records);
+					recordCombo.setModel(model);    
+               }
+               else{
+            	   String[] temp = {""};
+            	   DefaultComboBoxModel model = new DefaultComboBoxModel(temp);
+				   recordCombo.setModel(model);    
+               }
+            }
+        });
 		
 		viewRecordButton = new JButton("View Record");
 		backButton = new JButton("Back");
