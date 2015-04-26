@@ -25,8 +25,9 @@ public class DoctorSelectionUI {
 	private String state;
 	private String zip;
 	private String doctor;
+	private DoctorLinkedList doctorList = new DoctorLinkedList();
 	
-	public DoctorSelectionUI(DoctorLinkedList doctorList){
+	public DoctorSelectionUI(){
 		doctorSelectionPanel = new JPanel();
 		doctorSelectionPanel.setBackground(Color.WHITE);
 		
@@ -202,6 +203,13 @@ public class DoctorSelectionUI {
 	public String getDoctor(){
 		doctor = String.valueOf(doctorCombo.getSelectedItem());
 		return doctor;
+	}
+	
+	//ADDED
+	public void setDoctorList(DoctorLinkedList dl){
+		doctorList = dl;
+		DefaultComboBoxModel model = new DefaultComboBoxModel(dl.fillDoctorNames());
+		doctorCombo.setModel(model);
 	}
 
 }

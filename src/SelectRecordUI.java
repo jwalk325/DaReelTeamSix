@@ -13,8 +13,9 @@ public class SelectRecordUI {
 	private JComboBox<String> recordCombo;
 	private JButton viewRecordButton;
 	private JButton backButton;
+	private PatientLinkedList patientList = new PatientLinkedList();
 	
-	public SelectRecordUI(final PatientLinkedList patientList){
+	public SelectRecordUI(){
 		selectRecordPanel = new JPanel();
 		selectRecordPanel.setBackground(Color.WHITE);
 		
@@ -27,7 +28,7 @@ public class SelectRecordUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
-		String[] patients = patientList.fillPatientNames();//get list of patients
+		String[] patients = {""};
 		patientCombo = new JComboBox<String>(patients);
 		String[] temp = {""};
 		recordCombo = new JComboBox<String>(temp);	
@@ -137,5 +138,12 @@ public class SelectRecordUI {
 		patientCombo.setSelectedIndex(0);
 		recordCombo.setSelectedIndex(0);
 		errorLabel.setText(" ");
+	}
+	
+	//ADDED
+	public void setPatientList(PatientLinkedList pl){
+		patientList = pl;
+		DefaultComboBoxModel model = new DefaultComboBoxModel(pl.fillPatientNames());
+		patientCombo.setModel(model); 
 	}
 }

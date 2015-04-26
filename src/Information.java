@@ -11,6 +11,17 @@ public class Information implements Serializable {
 	protected String question;
 	protected String answer;
 	
+	//default constructor
+	public Information() 
+	{
+		this.name = "";
+		this.email = "";
+		this.phone = "";
+		this.password = "";
+		this.question = "";
+		this.answer = "";
+    }
+	
 	//constructor
 	public Information(String n, String e, String ph, String p, String q, String a) 
 	{

@@ -13,7 +13,7 @@ public class GUIController{
 	private JPanel mainPanel = new JPanel();
 	private WelcomeUI welcomeUI  = new WelcomeUI();
 	private NewPatientUI newPatientUI = new NewPatientUI();
-	private DoctorSelectionUI doctorSelectionUI;//EDITED
+	private DoctorSelectionUI doctorSelectionUI = new DoctorSelectionUI();
 	private RegisterSuccessUI registerSuccessUI = new RegisterSuccessUI();
 	private PatientLoginUI patientLoginUI = new PatientLoginUI();
 	private DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
@@ -28,7 +28,7 @@ public class GUIController{
 	private ResetSuccessUI resetSuccessUI = new ResetSuccessUI();
 	private NewDoctorUI newDoctorUI = new NewDoctorUI();
 	private DoctorDashboardUI doctorDashboardUI = new DoctorDashboardUI();
-	private SelectRecordUI selectRecordUI;
+	private SelectRecordUI selectRecordUI = new SelectRecordUI();
 	private NotificationsUI notificationsUI = new NotificationsUI();
 	private PatientRecordUI patientRecordUI = new PatientRecordUI();
 	private ContactUI contactUI = new ContactUI();
@@ -57,8 +57,8 @@ public class GUIController{
 		loadPatientFile();//loadPatientList
 		loadDoctorFile();//loadDoctorList
 		
-		doctorSelectionUI = new DoctorSelectionUI(doctorList);//fillDoctorList
-		selectRecordUI = new SelectRecordUI(patientList);//fillPatientList
+		doctorSelectionUI.setDoctorList(doctorList);
+		selectRecordUI.setPatientList(patientList);
 		
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
@@ -291,8 +291,8 @@ public class GUIController{
 					
 					//TEST PRINT PATIENTLINKEDLIST
 					//patientList.printList();//success
-					
-					selectRecordUI = new SelectRecordUI(patientList);//fillPatientList
+
+					selectRecordUI.setPatientList(patientList);
 
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
@@ -684,8 +684,8 @@ public class GUIController{
 					
 					 saveDoctorFile();//success
 					 
-					 doctorSelectionUI = new DoctorSelectionUI(doctorList);//fillDoctorList
-					
+					 doctorSelectionUI.setDoctorList(doctorList);
+					 
 					 newDoctorUI.clear();
 					 mainPanel.removeAll();
 					 mainPanel.revalidate();

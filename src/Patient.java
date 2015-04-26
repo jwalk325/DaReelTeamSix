@@ -12,6 +12,19 @@ public class Patient extends Information implements Serializable{
 	private String preferredDoctor;
 	private PatientRecordLinkedList patientRecordList;
 	
+	//default constructor
+	public Patient() 
+	 {
+		 super();
+		 this.DOB = "";
+		 this.address = "";
+		 this.city = "";
+		 this.state = "";
+		 this.zip = "";
+		 this.preferredDoctor = "";
+		 patientRecordList = new PatientRecordLinkedList();
+	 } 
+	
 	//constructor
 	public Patient(String d, String ad, String c, String s, String z, String pd, String n, String e, String ph, String p, String q, String a) 
 	 {
