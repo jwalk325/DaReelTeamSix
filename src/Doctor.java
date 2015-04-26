@@ -3,12 +3,14 @@ public class Doctor extends Information {
 	
 	//variables
 	private PatientLinkedList patientList;
+	private NotificationLinkedList notificationList;
 	
 	//constructor
 	 public Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String q, String a) 
 	 {
 		 super(n, e, ph, p, q, a);
 		 this.patientList = pl;
+		 notificationList = new NotificationLinkedList();
 	 } 
 	
 	//getters
@@ -23,10 +25,15 @@ public class Doctor extends Information {
 		this.patientList = p;
 	}
 	
-	//testable print method
-	public String printInfo()
+	public void insertNoticationList(String name, PatientRecord pr)
 	{
-		return super.email + super.name + super.password + super.phone;
+		notificationList.insert(name, pr);
 	}
+	
+	public NotificationLinkedList getNotifcationsList()
+	{
+		return notificationList;
+	}
+	
 }
 

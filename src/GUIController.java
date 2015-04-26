@@ -537,12 +537,17 @@ public class GUIController{
 				 pr.setDepression(symptoms2UI.getDepression());
 				 pr.setAnxiety(symptoms2UI.getAnxiety());
 				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
+				 pr.setComment1(symptoms1UI.getComments());
+				 pr.setComment2(symptoms2UI.getComments());
 				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 				 Date today = Calendar.getInstance().getTime();   
 				 pr.setDate(dateFormat.format(today));
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
-				 p.setPatientRecordList(pr);//ADDS NEW RECORD
-				 savePatientFile();
+				 //p.insertPatientRecordList(pr);//ADDS NEW RECORD
+				 //savePatientFile();
+				 d = doctorList.searchByName(p.getPreferredDoctor());
+				 d.insertNoticationList(p.getName(), pr);
+				 saveDoctorFile();
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();
 				 mainPanel.removeAll();
@@ -707,6 +712,7 @@ public class GUIController{
 		//Action performed when notifications button is pushed in Doctor Dashboard UI
 		doctorDashboardUI.notificationsListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 //fill table
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();

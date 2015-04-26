@@ -105,7 +105,7 @@ public class Patient extends Information implements Serializable{
 		this.preferredDoctor = p;
 	}
 	
-	public void setPatientRecordList(PatientRecord pr)
+	public void insertPatientRecordList(PatientRecord pr)
 	{
 		patientRecordList.insert(pr);
 	}

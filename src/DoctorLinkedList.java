@@ -63,4 +63,19 @@ public class DoctorLinkedList implements Serializable
 		
 		return null;
 	}
+	
+	//SEARCH FOR DOCTOR BY NAME
+		public Doctor searchByName(String name)
+		{
+			DoctorNode temp = head;
+				
+			while(temp != null)
+			{
+					if (name.compareTo(temp.doctor.getName())==0)//doctor found
+					return temp.doctor;
+				temp = temp.next;
+			}
+			
+			return null;
+		}
 }

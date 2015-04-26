@@ -17,6 +17,8 @@ public class PatientRecord implements Serializable{
 	int drowsiness;
 	final int drowsinessThresh = 6;
 	String recordDate;
+	String comment1;
+	String comment2;
 	
 	//default constructor
 	public PatientRecord()
@@ -76,6 +78,11 @@ public class PatientRecord implements Serializable{
 	{
 		return recordDate;
 	}
+	
+	public String getComments()
+	{
+		return comment1 + "\n\n" + comment2;
+	}
 		
 	//setters
 	public void setPain(int p)
@@ -111,6 +118,16 @@ public class PatientRecord implements Serializable{
 	public void setDate(String d)
 	{
 		this.recordDate = d;
+	}
+	
+	public void setComment1(String c)
+	{
+		this.comment1 = c;
+	}
+	
+	public void setComment2(String c)
+	{
+		this.comment2 = c;
 	}
 	
 }

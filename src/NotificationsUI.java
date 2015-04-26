@@ -101,4 +101,8 @@ public class NotificationsUI {
 		notificationsTable.clearSelection();
 		errorLabel.setText(" ");
 	}
+	
+	public void setName(String name){
+		
+	}
 }
