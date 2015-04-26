@@ -130,5 +130,31 @@ public class PatientRecord implements Serializable{
 		this.comment2 = c;
 	}
 	
+	public String getSeverity()
+	{
+		if
+		(
+			pain >= painThresh+3 ||
+			tiredness >= tirednessThresh+3 ||
+			nasuea >= tirednessThresh+3 ||
+			depression >= depressionThresh+3 ||
+			anxiety >= anxietyThresh+3 ||
+			drowsiness >= drowsinessThresh+3
+		)
+			return "High";
+		else if
+		(
+				pain >= painThresh+2 ||
+				tiredness >= tirednessThresh+2 ||
+				nasuea >= tirednessThresh+2 ||
+				depression >= depressionThresh+2 ||
+				anxiety >= anxietyThresh+2 ||
+				drowsiness >= drowsinessThresh+2	
+		)
+			return "Medium";
+		else
+			return "Low";
+	}
+	
 }
 
