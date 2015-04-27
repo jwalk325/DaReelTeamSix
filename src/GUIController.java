@@ -34,15 +34,15 @@ public class GUIController{
 	private ContactUI contactUI = new ContactUI();
 	
 	//CREATE NEW PATIENTLINKEDLIST
-	PatientLinkedList patientList = new PatientLinkedList();
+	private PatientLinkedList patientList = new PatientLinkedList();
 	//CREATE NEW PATIENTLINKEDLIST
-	DoctorLinkedList doctorList = new DoctorLinkedList();
+	private DoctorLinkedList doctorList = new DoctorLinkedList();
 	//CREATE NEW PATIENT 
-	Patient p;
+	private Patient p;
 	//CREATE NEW DOCTOR
-	Doctor d;
+	private Doctor d;
 	//CREATE NEW PATIENTRECORD
-	PatientRecord pr;
+	private PatientRecord pr;
 	
 	private String doctor = "Doctor";
 	private String patient = "Patient";
@@ -706,7 +706,7 @@ public class GUIController{
 		doctorDashboardUI.notificationsListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				 //fill table
-				notificationsUI.createColumns();
+				notificationsUI.createTable();
 				NotificationNode temp = d.getNotifcationsList().getHead();
 				while (temp != null){
 					String lastName = temp.getLastName();
@@ -718,7 +718,6 @@ public class GUIController{
 					notificationsUI.addRow(row);
 					temp = temp.next;
 				}				
-				notificationsUI.createTable();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -894,7 +893,7 @@ public class GUIController{
 						saveDoctorFile();
 						
 						notificationsUI.clear();
-						notificationsUI.createColumns();
+						notificationsUI.createTable();
 						NotificationNode temp = d.getNotifcationsList().getHead();
 						while (temp != null){
 							String lastName = temp.getLastName();
@@ -906,7 +905,6 @@ public class GUIController{
 							notificationsUI.addRow(row);
 							temp = temp.next;
 						}				
-						notificationsUI.createTable();
 						
 						patientRecordUI.clear();
 						mainPanel.removeAll();

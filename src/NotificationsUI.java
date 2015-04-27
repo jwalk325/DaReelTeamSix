@@ -100,13 +100,6 @@ public class NotificationsUI {
 		errorLabel.setText(" ");
 	}
 	
-	public void createColumns(){
-		model.addColumn("Last Name");
-		model.addColumn("First Name");
-		model.addColumn("Priority");
-		model.addColumn("Date Receieved");
-	}
-	
 	public void addRow(Object[] row){
 		model.addRow(row);
 	}
@@ -116,6 +109,13 @@ public class NotificationsUI {
 		notificationsTable.setRowSelectionAllowed(true);
 		notificationsTable.setColumnSelectionAllowed(false);
 		notificationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		model.addColumn("Last Name");
+		model.addColumn("First Name");
+		model.addColumn("Priority");
+		model.addColumn("Date Receieved");
+		notificationsTable.getColumnModel().getColumn(0).setPreferredWidth(52);
+		notificationsTable.getColumnModel().getColumn(1).setPreferredWidth(52);
+		notificationsTable.getColumnModel().getColumn(2).setPreferredWidth(18);
 	}
 	
 	public String getSelectedPatientName(){

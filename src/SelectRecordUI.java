@@ -31,8 +31,10 @@ public class SelectRecordUI {
 		
 		String[] patients = {""};
 		patientCombo = new JComboBox<String>(patients);
+		patientCombo.setPreferredSize(new Dimension(200, 25));
 		String[] temp = {""};
 		recordCombo = new JComboBox<String>(temp);	
+		recordCombo.setPreferredSize(new Dimension(200, 25));
 		patientCombo.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
                if(e.getStateChange() == ItemEvent.SELECTED && !String.valueOf(patientCombo.getSelectedItem()).isEmpty()){
@@ -101,7 +103,7 @@ public class SelectRecordUI {
 		layout.add(selectionLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(buttonLayout1);
-		layout.add(Box.createRigidArea(new Dimension (0,64)));
+		layout.add(Box.createRigidArea(new Dimension (0,69)));
 		layout.add(buttonLayout2);
 		
 		selectRecordPanel.add(layout);
