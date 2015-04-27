@@ -35,14 +35,17 @@ public class PatientLinkedList implements Serializable
 	}
 	
 	//print patient list
-		public String[] fillPatientNames()
+		public String[] fillPatientNames(String doctorName)
 		{
 			PatientNode temp = head;
 			String[] patients = new String[count()+1];
 			patients[0] = "";
 			for(int i = 1; temp != null; i++)
 			{
-				patients[i] = temp.patient.getName();
+				if (temp.patient.getPreferredDoctor().compareTo(doctorName) == 0)
+				{
+					patients[i] = temp.patient.getName();
+				}
 				temp = temp.next;
 			}
 			return patients;

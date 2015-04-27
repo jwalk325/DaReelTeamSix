@@ -13,6 +13,7 @@ public class SelectRecordUI {
 	private JComboBox<String> recordCombo;
 	private JButton viewRecordButton;
 	private JButton backButton;
+	private String doctorName;
 	private PatientLinkedList patientList = new PatientLinkedList();
 	
 	public SelectRecordUI(){
@@ -141,9 +142,15 @@ public class SelectRecordUI {
 	}
 	
 	//ADDED
+	
+	public void setDoctorName(String dn)
+	{
+		doctorName = dn;
+	}
+	
 	public void setPatientList(PatientLinkedList pl){
 		patientList = pl;
-		DefaultComboBoxModel model = new DefaultComboBoxModel(pl.fillPatientNames());
+		DefaultComboBoxModel model = new DefaultComboBoxModel(pl.fillPatientNames(doctorName));
 		patientCombo.setModel(model); 
 	}
 }

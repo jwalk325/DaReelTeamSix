@@ -58,7 +58,6 @@ public class GUIController{
 		loadDoctorFile();//loadDoctorList
 		
 		doctorSelectionUI.setDoctorList(doctorList);
-		selectRecordUI.setPatientList(patientList);
 		
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
@@ -291,8 +290,6 @@ public class GUIController{
 					
 					//TEST PRINT PATIENTLINKEDLIST
 					//patientList.printList();//success
-
-					selectRecordUI.setPatientList(patientList);
 
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
@@ -634,6 +631,11 @@ public class GUIController{
 				if(doctorLoginUI.check(doctorList))
 				{
 					d = doctorList.searchByEmail(doctorLoginUI.getEmail());
+					
+
+					selectRecordUI.setDoctorName(d.getName());//sends doctorName
+					selectRecordUI.setPatientList(patientList);
+					
 					doctorLoginUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
