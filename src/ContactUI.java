@@ -100,9 +100,9 @@ public class ContactUI {
 		
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(titleLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,130)));
+		layout.add(Box.createRigidArea(new Dimension (0,120)));
 		layout.add(infoLayout);
-		layout.add(Box.createRigidArea(new Dimension (0,135)));
+		layout.add(Box.createRigidArea(new Dimension (0,145)));
 		layout.add(buttonLayout);
 		
 		contactPanel.add(layout);
@@ -118,5 +118,33 @@ public class ContactUI {
 	
 	public void dashboardListener (ActionListener dl){
 		dashboardButton.addActionListener(dl);
+	}
+	
+	public void setPatientName(String name){
+		patientNameLabel.setText(name);
+	}
+	
+	public void setAddress(String address){
+		this.address.setText(address);
+	}
+	
+	public void setCity(String city){
+		this.city.setText(city + ",");
+	}
+	
+	public void setState(String state){
+		this.state.setText(state);
+	}
+	
+	public void setZIP(String zip){
+		this.zip.setText(zip);
+	}
+	
+	public void setPhoneNumber(String phoneNumber){
+		this.phoneNumber.setText(phoneNumber);
+	}
+	
+	public void setEmail(String email){
+		this.email.setText(email);
 	}
 }

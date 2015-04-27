@@ -17,8 +17,9 @@ public class PatientRecord implements Serializable{
 	int drowsiness;
 	final int drowsinessThresh = 6;
 	String recordDate;
-	String comment1;
-	String comment2;
+	String pComment1;
+	String pComment2;
+	String dComments;
 	
 	//default constructor
 	public PatientRecord()
@@ -32,7 +33,7 @@ public class PatientRecord implements Serializable{
 	}
 	
 	//constructor
-	public PatientRecord(int p, int t, int n, int d, int a, int dr, String r) 
+	public PatientRecord(int p, int t, int n, int d, int a, int dr, String r, String c1, String c2) 
 	 {
 		this.pain = p;
 		this.tiredness = t;
@@ -41,6 +42,8 @@ public class PatientRecord implements Serializable{
 		this.anxiety = a;
 		this.drowsiness = dr;
 		this.recordDate = r;
+		this.pComment1 = c1;
+		this.pComment2 = c2;
 	 } 
 	
 	//getters
@@ -81,7 +84,11 @@ public class PatientRecord implements Serializable{
 	
 	public String getComments()
 	{
-		return comment1 + "\n\n" + comment2;
+		return pComment1 + "\n\n" + pComment2;
+	}
+	
+	public String getDComments(){
+		return dComments;
 	}
 		
 	//setters
@@ -122,12 +129,42 @@ public class PatientRecord implements Serializable{
 	
 	public void setComment1(String c)
 	{
-		this.comment1 = c;
+		this.pComment1 = c;
 	}
 	
 	public void setComment2(String c)
 	{
-		this.comment2 = c;
+		this.pComment2 = c;
+	}
+	
+	public void setDComments(String d){
+		dComments = d;
+	}
+	
+	public String getPriority(){
+		if (
+			pain >= painThresh + 3 ||
+			tiredness >= tirednessThresh + 3 ||
+			nasuea >= nasueaThresh + 3 ||
+			depression >= depressionThresh + 3 ||
+			anxiety >= anxietyThresh + 3 ||
+			drowsiness >= drowsinessThresh + 3
+		){
+			return "High";
+		}
+		else if (
+				pain >= painThresh + 2 ||
+				tiredness >= tirednessThresh + 2 ||
+				nasuea >= nasueaThresh + 2 ||
+				depression >= depressionThresh + 2 ||
+				anxiety >= anxietyThresh + 2 ||
+				drowsiness >= drowsinessThresh + 2
+			){
+				return "Medium";
+			}
+		else {
+			return "Low";
+		}
 	}
 	
 }

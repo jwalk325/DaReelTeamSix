@@ -33,6 +33,12 @@ public class PatientRecordUI {
 	private JButton backButton;
 	private JButton submitButton;
 	private JButton contactButton;
+	final int painThresh = 4;
+	final int tirednessThresh = 6;
+	final int nasueaThresh = 6;
+	final int depressionThresh = 4;
+	final int anxietyThresh = 4;
+	final int drowsinessThresh = 6;
 	
 	public PatientRecordUI(){
 		patientRecordPanel = new JPanel();
@@ -108,15 +114,16 @@ public class PatientRecordUI {
 		
 		c.gridy = 5;
 		c.gridx = 0;
-		symptomsLayout.add(drowsinessLabel,c);
-		c.gridx++;
-		symptomsLayout.add(drowsinessValue,c);
-		
-		c.gridy = 6;
-		c.gridx = 0;
 		symptomsLayout.add(anxietyLabel,c);
 		c.gridx++;
 		symptomsLayout.add(anxietyValue,c);
+
+		c.gridy = 6;
+		c.gridx = 0;
+		symptomsLayout.add(drowsinessLabel,c);
+		c.gridx++;
+		symptomsLayout.add(drowsinessValue,c);
+
 		
 		JPanel severityLayout = new JPanel();
 		severityLayout.setBackground(Color.WHITE);
@@ -164,6 +171,7 @@ public class PatientRecordUI {
 		doctorCommentsLabel = new JLabel("Doctor Comments", SwingConstants.CENTER);
 		patientCommentsArea = new JTextArea(5,17);
 		patientCommentsArea.setLineWrap(true);
+		patientCommentsArea.setEditable(false);
 		JScrollPane patientCommentsPane = new JScrollPane(patientCommentsArea);
 		patientCommentsPane.setBackground(Color.LIGHT_GRAY);
 		doctorCommentsArea = new JTextArea(5,17);
@@ -247,5 +255,99 @@ public class PatientRecordUI {
 	
 	public void clear(){
 		errorLabel.setText(" ");
+		doctorCommentsArea.setText("");
+		painValue.setForeground(Color.BLACK);
+		tirednessValue.setForeground(Color.BLACK);
+		nasueaValue.setForeground(Color.BLACK);
+		depressionValue.setForeground(Color.BLACK);
+		anxietyValue.setForeground(Color.BLACK);
+		drowsinessValue.setForeground(Color.BLACK);
+	}
+	
+	public void clear2(){
+		errorLabel.setText(" ");
+	}
+	
+	public void setPatientName(String name){
+		patientNameLabel.setText(name);
+	}
+	
+	public void setPain(int pain){
+		painValue.setText(Integer.toString(pain));
+	}
+	
+	public void setTiredness(int tiredness){
+		tirednessValue.setText(Integer.toString(tiredness));
+	}
+	
+	public void setNasuea(int nasuea){
+		nasueaValue.setText(Integer.toString(nasuea));
+	}
+	
+	public void setDepression(int depression){
+		depressionValue.setText(Integer.toString(depression));
+	}
+	
+	public void setDrowsiness(int drowsiness){
+		drowsinessValue.setText(Integer.toString(drowsiness));
+	}
+	
+	public void setAnxiety(int anxiety){
+		anxietyValue.setText(Integer.toString(anxiety));
+	}
+	
+	public void setPatientComments(String comments){
+		patientCommentsArea.setText(comments);
+	}
+	
+	public void setDoctorComments(String comments){
+		doctorCommentsArea.setText(comments);
+	}
+	
+	public String getPatientName(){
+		return patientNameLabel.getText();
+	}
+	
+	public String getDoctorComments(){
+		return doctorCommentsArea.getText();
+	}
+	
+	public void colorSymptoms(){
+		if(Integer.parseInt(painValue.getText()) >= painThresh + 3){
+			painValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(painValue.getText()) >= painThresh + 2){
+			painValue.setForeground(Color.ORANGE);
+		}
+		if(Integer.parseInt(tirednessValue.getText()) >= tirednessThresh + 3){
+			tirednessValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(tirednessValue.getText()) >= tirednessThresh + 2){
+			tirednessValue.setForeground(Color.ORANGE);
+		}
+		if(Integer.parseInt(nasueaValue.getText()) >= nasueaThresh + 3){
+			nasueaValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(nasueaValue.getText()) >= nasueaThresh + 2){
+			nasueaValue.setForeground(Color.ORANGE);
+		}
+		if(Integer.parseInt(depressionValue.getText()) >= depressionThresh + 3){
+			depressionValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(depressionValue.getText()) >= depressionThresh + 2){
+			depressionValue.setForeground(Color.ORANGE);
+		}
+		if(Integer.parseInt(anxietyValue.getText()) >= anxietyThresh + 3){
+			anxietyValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(anxietyValue.getText()) >= anxietyThresh + 2){
+			anxietyValue.setForeground(Color.ORANGE);
+		}
+		if(Integer.parseInt(drowsinessValue.getText()) >= drowsinessThresh + 3){
+			drowsinessValue.setForeground(Color.RED);
+		}
+		else if(Integer.parseInt(drowsinessValue.getText()) >= drowsinessThresh + 2){
+			drowsinessValue.setForeground(Color.ORANGE);
+		}
 	}
 }

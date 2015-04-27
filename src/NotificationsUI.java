@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class NotificationsUI {
 	private JPanel notificationsPanel;
@@ -10,6 +11,8 @@ public class NotificationsUI {
 	private JTable notificationsTable;
 	private JButton backButton;
 	private JButton viewButton;
+	private DefaultTableModel model = new DefaultTableModel();
+
 	
 	public NotificationsUI(){
 		notificationsPanel = new JPanel();
@@ -24,26 +27,14 @@ public class NotificationsUI {
 		
 		backButton = new JButton("Back");
 		viewButton = new JButton("View");
-		
-		String[] columns = {"Last Name", "First Name", "Priority", "Date Recieved"};
-		Object[][] data = {
-				{"Rivers", "Phillip", "High", "3/15"},
-				{"Drake", "Susan", "Medium", "3/14"},
-				{"Doe", "John", "Low", "3/13"}
-		};
-		
-		notificationsTable = new JTable(data, columns){
+			    
+		notificationsTable = new JTable(){
 			private static final long serialVersionUID = 1L;
 			
 			public boolean isCellEditable(int row, int column) {                
                 return false;      
 			}
 		};
-		
-		notificationsTable.setRowSelectionInterval(0,1);
-		notificationsTable.setRowSelectionAllowed(true);
-		notificationsTable.setColumnSelectionAllowed(false);
-		notificationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JScrollPane notificationsPane = new JScrollPane(notificationsTable);
 		notificationsPane.setMaximumSize(new Dimension(400,150));
@@ -99,10 +90,51 @@ public class NotificationsUI {
 	
 	public void clear(){
 		notificationsTable.clearSelection();
+		model.setColumnCount(0);
+		model.setRowCount(0);
 		errorLabel.setText(" ");
 	}
 	
-	public void setName(String name){
-		
+	public void clear2(){
+		notificationsTable.clearSelection();
+		errorLabel.setText(" ");
+	}
+	
+	public void createColumns(){
+		model.addColumn("Last Name");
+		model.addColumn("First Name");
+		model.addColumn("Priority");
+		model.addColumn("Date Receieved");
+	}
+	
+	public void addRow(Object[] row){
+		model.addRow(row);
+	}
+	
+	public void createTable(){
+		notificationsTable.setModel(model);
+		notificationsTable.setRowSelectionAllowed(true);
+		notificationsTable.setColumnSelectionAllowed(false);
+		notificationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	}
+	
+	public String getSelectedPatientName(){
+		int row = notificationsTable.getSelectedRow();
+		String firstName = (String) notificationsTable.getModel().getValueAt(row, 1);
+		String lastName = (String) notificationsTable.getModel().getValueAt(row, 0);
+		String name = firstName + lastName;
+		return name;
+	}
+	
+	public String getSelectedPatientPriority(){
+		int row = notificationsTable.getSelectedRow();
+		String priority = (String) notificationsTable.getModel().getValueAt(row, 2);
+		return priority;
+	}
+	
+	public String getSelectedPatientDate(){
+		int row = notificationsTable.getSelectedRow();
+		String date = (String) notificationsTable.getModel().getValueAt(row, 3);
+		return date;
 	}
 }

@@ -42,7 +42,7 @@ public class GUIController{
 	//CREATE NEW DOCTOR
 	Doctor d;
 	//CREATE NEW PATIENTRECORD
-	PatientRecord pr = new PatientRecord();
+	PatientRecord pr;
 	
 	private String doctor = "Doctor";
 	private String patient = "Patient";
@@ -531,20 +531,10 @@ public class GUIController{
 		//Action performed when the finish button is pushed in the second page of symptoms UI
 		symptoms2UI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				 pr.setPain(symptoms1UI.getPain());
-				 pr.setTiredness(symptoms1UI.getTiredness());
-				 pr.setNasuea(symptoms1UI.getNasuea());
-				 pr.setDepression(symptoms2UI.getDepression());
-				 pr.setAnxiety(symptoms2UI.getAnxiety());
-				 pr.setDrowsiness(symptoms2UI.getDrowsiness());
-				 pr.setComment1(symptoms1UI.getComments());
-				 pr.setComment2(symptoms2UI.getComments());
 				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 				 Date today = Calendar.getInstance().getTime();   
-				 pr.setDate(dateFormat.format(today));
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
-				 //p.insertPatientRecordList(pr);//ADDS NEW RECORD
-				 //savePatientFile();
+				 pr = new PatientRecord(symptoms1UI.getPain(), symptoms1UI.getTiredness(), symptoms1UI.getNasuea(), symptoms2UI.getDepression(), symptoms2UI.getAnxiety(), symptoms2UI.getDrowsiness(), dateFormat.format(today), symptoms1UI.getComments(), symptoms2UI.getComments());
 				 d = doctorList.searchByName(p.getPreferredDoctor());
 				 d.insertNoticationList(p.getName(), pr);
 				 saveDoctorFile();
@@ -643,6 +633,7 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(doctorLoginUI.check(doctorList))
 				{
+					d = doctorList.searchByEmail(doctorLoginUI.getEmail());
 					doctorLoginUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -713,6 +704,19 @@ public class GUIController{
 		doctorDashboardUI.notificationsListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				 //fill table
+				notificationsUI.createColumns();
+				NotificationNode temp = d.getNotifcationsList().head;
+				while (temp != null){
+					String lastName = temp.getLastName();
+					String firstName = temp.getFirstName();
+					
+					String priority = temp.patientRecord.getPriority();
+					String date = temp.patientRecord.getDate();
+					Object[] row = {lastName, firstName, priority, date};
+					notificationsUI.addRow(row);
+					temp = temp.next;
+				}				
+				notificationsUI.createTable();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -758,10 +762,34 @@ public class GUIController{
 		//Action performed when View Record button is pushed in Patient Records UI
 		selectRecordUI.viewRecordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(selectRecordUI.check()){
+				if(selectRecordUI.check()){			
+					String name = selectRecordUI.getSelectedPatient();
+					String date = selectRecordUI.getSelectedRecord();
 					
-					//selectRecordUI.getSelectedPatient();
-					//selectRecordUI.getSelectedRecord();
+					p = patientList.searchByName(name);
+					PatientRecordNode temp = p.getPatientRecordList().head;
+					
+					while(temp != null){						
+						if(temp.patientRecord.getDate().equals(date)){
+							pr = temp.patientRecord;
+							patientRecordUI.setPatientName(p.getName());
+							patientRecordUI.setPain(pr.getPain());
+							patientRecordUI.setTiredness(pr.getTiredness());
+							patientRecordUI.setNasuea(pr.getNasuea());
+							patientRecordUI.setDepression(pr.getDepression());
+							patientRecordUI.setDrowsiness(pr.getDrowsiness());
+							patientRecordUI.setAnxiety(pr.getAnxiety());
+							patientRecordUI.setPatientComments(pr.getComments());
+							patientRecordUI.setDoctorComments(pr.getDComments());
+							patientRecordUI.colorSymptoms();
+							
+							break;
+						}
+						else{
+							temp = temp.next;
+						}
+					}
+					
 					
 					selectRecordUI.clear();
 					mainPanel.removeAll();
@@ -790,7 +818,32 @@ public class GUIController{
 		notificationsUI.viewListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(notificationsUI.check()){
-					notificationsUI.clear();
+					String name = notificationsUI.getSelectedPatientName();
+					String priority = notificationsUI.getSelectedPatientPriority();
+					String date = notificationsUI.getSelectedPatientDate();
+					
+					NotificationNode temp = d.getNotifcationsList().head;
+
+					while(temp != null){						
+						if(name.equals(temp.getName()) && priority.equals(temp.patientRecord.getPriority()) && date.equals(temp.patientRecord.getDate())){
+							pr = temp.patientRecord;
+							patientRecordUI.setPatientName(temp.getName());
+							patientRecordUI.setPain(pr.getPain());
+							patientRecordUI.setTiredness(pr.getTiredness());
+							patientRecordUI.setNasuea(pr.getNasuea());
+							patientRecordUI.setDepression(pr.getDepression());
+							patientRecordUI.setDrowsiness(pr.getDrowsiness());
+							patientRecordUI.setAnxiety(pr.getAnxiety());
+							patientRecordUI.setPatientComments(pr.getComments());
+							patientRecordUI.colorSymptoms();
+							break;
+						}
+						else{
+							temp = temp.next;
+						}
+					}
+					
+					notificationsUI.clear2();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
 			    	mainPanel.repaint();
@@ -828,6 +881,31 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(patientRecordReturn.equals(notification)){
 					if(patientRecordUI.check()){
+						String name = patientRecordUI.getPatientName();
+						String dComments = patientRecordUI.getDoctorComments();
+						pr.setDComments(dComments);
+						p = patientList.searchByName(name);
+						p.getPatientRecordList().insert(pr);
+						savePatientFile();				
+						
+						d.getNotifcationsList().delete(p.getName(), pr);
+						saveDoctorFile();
+						
+						notificationsUI.clear();
+						notificationsUI.createColumns();
+						NotificationNode temp = d.getNotifcationsList().head;
+						while (temp != null){
+							String lastName = temp.getLastName();
+							String firstName = temp.getFirstName();
+							
+							String priority = temp.patientRecord.getPriority();
+							String date = temp.patientRecord.getDate();
+							Object[] row = {lastName, firstName, priority, date};
+							notificationsUI.addRow(row);
+							temp = temp.next;
+						}				
+						notificationsUI.createTable();
+						
 						patientRecordUI.clear();
 						mainPanel.removeAll();
 				    	mainPanel.revalidate();
@@ -845,7 +923,16 @@ public class GUIController{
 		//Action performed when Contact button is pushed in Patient Record UI
 		patientRecordUI.contactListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				patientRecordUI.clear();
+				p = patientList.searchByName(patientRecordUI.getPatientName());
+				contactUI.setPatientName(p.getName());
+				contactUI.setAddress(p.getAddress());
+				contactUI.setCity(p.getCity());
+				contactUI.setState(p.getState());
+				contactUI.setZIP(p.getZip());
+				contactUI.setPhoneNumber(p.getPhone());
+				contactUI.setEmail(p.getEmail());
+				
+				patientRecordUI.clear2();
 				mainPanel.removeAll();
 		    	mainPanel.revalidate();
 		    	mainPanel.repaint();
@@ -868,6 +955,7 @@ public class GUIController{
 		//Action performed when Dashboard button is pushed in Contact UI
 		contactUI.dashboardListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				notificationsUI.clear();
 				mainPanel.removeAll();
 		    	mainPanel.revalidate();
 		    	mainPanel.repaint();
