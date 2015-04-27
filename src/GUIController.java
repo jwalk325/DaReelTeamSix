@@ -531,7 +531,7 @@ public class GUIController{
 		//Action performed when the finish button is pushed in the second page of symptoms UI
 		symptoms2UI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 				 Date today = Calendar.getInstance().getTime();   
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
 				 pr = new PatientRecord(symptoms1UI.getPain(), symptoms1UI.getTiredness(), symptoms1UI.getNasuea(), symptoms2UI.getDepression(), symptoms2UI.getAnxiety(), symptoms2UI.getDrowsiness(), dateFormat.format(today), symptoms1UI.getComments(), symptoms2UI.getComments());
