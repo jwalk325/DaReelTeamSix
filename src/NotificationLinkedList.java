@@ -68,6 +68,7 @@ public class NotificationLinkedList implements Serializable
 				}
 				else{
 					prev.next = current.next;
+					return;
 				}			
 			}
 			else{
