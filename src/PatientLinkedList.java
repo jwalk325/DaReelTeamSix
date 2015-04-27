@@ -1,20 +1,21 @@
 import java.io.Serializable;
 
-class PatientNode implements Serializable
-{
-	PatientNode next;
-    Patient patient;
-
-    public PatientNode(Patient p) 
-    {
-        patient = p;
-        next = null;
-    }
-}
-
 public class PatientLinkedList implements Serializable
 {
-	PatientNode head;
+	
+	class PatientNode implements Serializable
+	{
+		private PatientNode next;
+	    private Patient patient;
+
+	    public PatientNode(Patient p) 
+	    {
+	        patient = p;
+	        next = null;
+	    }
+	}
+	
+	private PatientNode head;
 	
 	public void insert(Patient p) 
 	{
@@ -38,26 +39,27 @@ public class PatientLinkedList implements Serializable
 		public String[] fillPatientNames(String doctorName)
 		{
 			PatientNode temp = head;
-			String[] patients = new String[count()+1];
+			String[] patients = new String[count(doctorName)+1];
 			patients[0] = "";
-			for(int i = 1; temp != null; i++)
+			for(int i = 1; temp != null; temp = temp.next)
 			{
 				if (temp.patient.getPreferredDoctor().compareTo(doctorName) == 0)
 				{
 					patients[i] = temp.patient.getName();
+					i++;
 				}
-				temp = temp.next;
 			}
 			return patients;
 		}
 		
-		public int count()
+		public int count(String doctorName)
 		{
 			PatientNode temp = head;
 			int count = 0;
 			while(temp != null)
 			{
-				count++;
+				if (temp.patient.getPreferredDoctor().compareTo(doctorName) == 0)
+					count++;
 				temp = temp.next;
 			}
 			return count;

@@ -1,20 +1,21 @@
 import java.io.Serializable;
 
-class DoctorNode implements Serializable
-{
-	DoctorNode next;
-    Doctor doctor;
-
-    public DoctorNode(Doctor d) 
-    {
-        doctor = d;
-        next = null;
-    }
-}
-
 public class DoctorLinkedList implements Serializable
 {
-	DoctorNode head;
+	
+	class DoctorNode implements Serializable
+	{
+		private DoctorNode next;
+	    private Doctor doctor;
+
+	    public DoctorNode(Doctor d) 
+	    {
+	        doctor = d;
+	        next = null;
+	    }
+	}
+	
+	private DoctorNode head;
 	
 	public void insert(Doctor d) 
 	{

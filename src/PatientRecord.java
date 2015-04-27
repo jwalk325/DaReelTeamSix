@@ -4,22 +4,22 @@ import java.io.Serializable;
 public class PatientRecord implements Serializable{
 	
 	//variables
-	int pain;
-	final int painThresh = 4;
-	int tiredness;
-	final int tirednessThresh = 6;
-	int nasuea;
-	final int nasueaThresh = 6;
-	int depression;
-	final int depressionThresh = 4;
-	int anxiety;
-	final int anxietyThresh = 4;
-	int drowsiness;
-	final int drowsinessThresh = 6;
-	String recordDate;
-	String pComment1;
-	String pComment2;
-	String dComments;
+	private int pain;
+	private final int painThresh = 4;
+	private int tiredness;
+	private final int tirednessThresh = 6;
+	private int nasuea;
+	private final int nasueaThresh = 6;
+	private int depression;
+	private final int depressionThresh = 4;
+	private int anxiety;
+	private final int anxietyThresh = 4;
+	private int drowsiness;
+	private final int drowsinessThresh = 6;
+	private String recordDate;
+	private String pComment1;
+	private String pComment2;
+	private String dComments;
 	
 	//default constructor
 	public PatientRecord()

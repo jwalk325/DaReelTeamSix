@@ -2,8 +2,8 @@ import java.io.Serializable;
 
 class PatientRecordNode implements Serializable
 {
-	PatientRecordNode next;
-    PatientRecord patientRecord;
+	protected PatientRecordNode next;
+    protected PatientRecord patientRecord;
 
     public PatientRecordNode(PatientRecord p) 
     {
@@ -14,12 +14,18 @@ class PatientRecordNode implements Serializable
 
 public class PatientRecordLinkedList implements Serializable
 {
-	PatientRecordNode head;
+
+	private PatientRecordNode head;
 	
 	//constructor
 	PatientRecordLinkedList()
 	{
 		head = null;
+	}
+	
+	public PatientRecordNode getHead()
+	{
+		return head;
 	}
 	
 	//print patient list

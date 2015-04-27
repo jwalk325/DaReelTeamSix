@@ -2,9 +2,9 @@ import java.io.Serializable;
 
 class NotificationNode implements Serializable
 {
-	NotificationNode next;
-	String name;
-    PatientRecord patientRecord;
+	protected NotificationNode next;
+	protected String name;
+	protected PatientRecord patientRecord;
 
     public NotificationNode(String n, PatientRecord pr) 
     {
@@ -32,12 +32,16 @@ class NotificationNode implements Serializable
 
 public class NotificationLinkedList implements Serializable
 {
-	NotificationNode head;
+	private NotificationNode head;
 	
 	//constructor
 	NotificationLinkedList()
 	{
 		head = null;
+	}
+	
+	public NotificationNode getHead(){
+		return head;
 	}
 	
 	public void insert(String name, PatientRecord pr) 

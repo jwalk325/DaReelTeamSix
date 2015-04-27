@@ -707,7 +707,7 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				 //fill table
 				notificationsUI.createColumns();
-				NotificationNode temp = d.getNotifcationsList().head;
+				NotificationNode temp = d.getNotifcationsList().getHead();
 				while (temp != null){
 					String lastName = temp.getLastName();
 					String firstName = temp.getFirstName();
@@ -769,7 +769,7 @@ public class GUIController{
 					String date = selectRecordUI.getSelectedRecord();
 					
 					p = patientList.searchByName(name);
-					PatientRecordNode temp = p.getPatientRecordList().head;
+					PatientRecordNode temp = p.getPatientRecordList().getHead();
 					
 					while(temp != null){						
 						if(temp.patientRecord.getDate().equals(date)){
@@ -824,7 +824,7 @@ public class GUIController{
 					String priority = notificationsUI.getSelectedPatientPriority();
 					String date = notificationsUI.getSelectedPatientDate();
 					
-					NotificationNode temp = d.getNotifcationsList().head;
+					NotificationNode temp = d.getNotifcationsList().getHead();
 
 					while(temp != null){						
 						if(name.equals(temp.getName()) && priority.equals(temp.patientRecord.getPriority()) && date.equals(temp.patientRecord.getDate())){
@@ -895,7 +895,7 @@ public class GUIController{
 						
 						notificationsUI.clear();
 						notificationsUI.createColumns();
-						NotificationNode temp = d.getNotifcationsList().head;
+						NotificationNode temp = d.getNotifcationsList().getHead();
 						while (temp != null){
 							String lastName = temp.getLastName();
 							String firstName = temp.getFirstName();
