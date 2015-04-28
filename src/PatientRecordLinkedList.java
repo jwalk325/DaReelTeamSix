@@ -10,6 +10,11 @@ class PatientRecordNode implements Serializable
         patientRecord = p;
         next = null;
     }
+    
+    public PatientRecordNode getNext()
+    {
+    	return next;
+    }
 }
 
 public class PatientRecordLinkedList implements Serializable
