@@ -55,6 +55,7 @@ public class Symptoms2UI {
 		
 		commentsArea = new JTextArea(4,0);
 		commentsArea.setLineWrap(true);
+		commentsArea.setWrapStyleWord(true);
 		commentsPane = new JScrollPane(commentsArea);
 		commentsPane.setBackground(Color.LIGHT_GRAY);
 		commentsPane.setMaximumSize(new Dimension(300,300));

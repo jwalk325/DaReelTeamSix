@@ -740,6 +740,7 @@ public class GUIController{
 		//Action performed when Log Out button is pushed in Doctor Dashboard UI
 		doctorDashboardUI.logoutListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				 patientRecordUI.clear();
 		    	 mainPanel.removeAll();
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
@@ -819,6 +820,7 @@ public class GUIController{
 		notificationsUI.viewListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(notificationsUI.check()){
+					patientRecordUI.clear2();
 					String name = notificationsUI.getSelectedPatientName();
 					String priority = notificationsUI.getSelectedPatientPriority();
 					String date = notificationsUI.getSelectedPatientDate();
@@ -956,6 +958,7 @@ public class GUIController{
 		contactUI.dashboardListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				notificationsUI.clear();
+				patientRecordUI.clear();
 				mainPanel.removeAll();
 		    	mainPanel.revalidate();
 		    	mainPanel.repaint();

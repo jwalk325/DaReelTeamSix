@@ -47,7 +47,7 @@ public class Symptoms1UI {
 		painLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
 		tirednessLabel = new JLabel("Tiredness", SwingConstants.CENTER);
 		tirednessLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
-		nasueaLabel = new JLabel("Nasuea", SwingConstants.CENTER);
+		nasueaLabel = new JLabel("Nausea", SwingConstants.CENTER);
 		nasueaLabel.setFont(new Font("Helvetica",Font.BOLD, 14));
 		commentsLabel = new JLabel("Comments:");
 		filler = new JLabel(""); //filler is a blank JLabel
@@ -55,6 +55,7 @@ public class Symptoms1UI {
 		
 		commentsArea = new JTextArea(4,0);
 		commentsArea.setLineWrap(true);
+		commentsArea.setWrapStyleWord(true);
 		commentsPane = new JScrollPane(commentsArea);
 		commentsPane.setBackground(Color.LIGHT_GRAY);
 		commentsPane.setMaximumSize(new Dimension(300,300));

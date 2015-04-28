@@ -71,7 +71,7 @@ public class PatientRecordUI {
 		symptomsLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
 		painLabel = new JLabel("Pain:", SwingConstants.RIGHT);
 		tirednessLabel = new JLabel("Tiredness:", SwingConstants.RIGHT);
-		nasueaLabel = new JLabel("Nasuea:", SwingConstants.RIGHT);
+		nasueaLabel = new JLabel("Nausea:", SwingConstants.RIGHT);
 		depressionLabel = new JLabel("Depression:", SwingConstants.RIGHT);
 		drowsinessLabel = new JLabel("Drowsiness:", SwingConstants.RIGHT);
 		anxietyLabel = new JLabel("Anxiety:", SwingConstants.RIGHT);
@@ -171,11 +171,13 @@ public class PatientRecordUI {
 		doctorCommentsLabel = new JLabel("Doctor Comments", SwingConstants.CENTER);
 		patientCommentsArea = new JTextArea(5,17);
 		patientCommentsArea.setLineWrap(true);
+		patientCommentsArea.setWrapStyleWord(true);
 		patientCommentsArea.setEditable(false);
 		JScrollPane patientCommentsPane = new JScrollPane(patientCommentsArea);
 		patientCommentsPane.setBackground(Color.LIGHT_GRAY);
 		doctorCommentsArea = new JTextArea(5,17);
 		doctorCommentsArea.setLineWrap(true);
+		doctorCommentsArea.setWrapStyleWord(true);
 		JScrollPane doctorCommentsPane = new JScrollPane(doctorCommentsArea);
 		doctorCommentsPane.setBackground(Color.LIGHT_GRAY);
 		
