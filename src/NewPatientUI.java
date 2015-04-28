@@ -39,10 +39,10 @@ public class NewPatientUI{
 	private String answer;
 	
 	//final variables
-	final String INITIAL_DOB = "MM/DD/YYYY";
-	final String INITIAL_EMAIL = "example@domain.com";
-	final String INITIAL_PHONE = "XXX-XXX-XXXX";
-	final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
+	private final String INITIAL_DOB = "MM/DD/YYYY";
+	private final String INITIAL_EMAIL = "example@domain.com";
+	private final String INITIAL_PHONE = "XXX-XXX-XXXX";
+	private final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
 	
 	//NewPatientUI constructor
 	public NewPatientUI(){	

@@ -14,7 +14,7 @@ public class LostPasswordUI {
 	private JButton backButton;
 	
 	private String email;
-	final String INITIAL_EMAIL = "example@domain.com";
+	private final String INITIAL_EMAIL = "example@domain.com";
 	
 	public LostPasswordUI(){
 		lostPasswordPanel = new JPanel();

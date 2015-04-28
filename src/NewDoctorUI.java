@@ -35,12 +35,11 @@ public class NewDoctorUI {
 	private String question;
 	private String answer;
 	
-	//final variables
-	
-	final String INITIAL_EMAIL = "example@domain.com";
-	final String INITIAL_PHONE = "XXX-XXX-XXXX";
-	final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
-	final String INITIAL_EXTENSION = "Ext.";
+	//final variables	
+	private final String INITIAL_EMAIL = "example@domain.com";
+	private final String INITIAL_PHONE = "XXX-XXX-XXXX";
+	private final String INITIAL_QUESTION = "Ex: Mother's maiden name?";
+	private final String INITIAL_EXTENSION = "Ext.";
 	
 	public NewDoctorUI(){
 		//create main panel

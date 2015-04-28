@@ -33,12 +33,12 @@ public class PatientRecordUI {
 	private JButton backButton;
 	private JButton submitButton;
 	private JButton contactButton;
-	final int painThresh = 4;
-	final int tirednessThresh = 6;
-	final int nasueaThresh = 6;
-	final int depressionThresh = 4;
-	final int anxietyThresh = 4;
-	final int drowsinessThresh = 6;
+	private final int painThresh = 4;
+	private final int tirednessThresh = 6;
+	private final int nasueaThresh = 6;
+	private final int depressionThresh = 4;
+	private final int anxietyThresh = 4;
+	private final int drowsinessThresh = 6;
 	
 	public PatientRecordUI(){
 		patientRecordPanel = new JPanel();
