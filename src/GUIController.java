@@ -336,6 +336,7 @@ public class GUIController{
 				if(patientLoginUI.check(patientList) != null)
 				{
 					p = patientLoginUI.check(patientList); //temp patient is updated (logged in)
+
 					patientLoginUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
