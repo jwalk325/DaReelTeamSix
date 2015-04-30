@@ -1,11 +1,17 @@
+//NotificationLinkedList contains a list of reports that have not been accessed by the doctor
+//It is used by the doctor class
+
 import java.io.Serializable;
 
+//node information
 class NotificationNode implements Serializable
 {
+	//variables
 	protected NotificationNode next;
 	protected String name;
 	protected PatientRecord patientRecord;
-
+	
+	//constructor
     public NotificationNode(String n, PatientRecord pr) 
     {
     	name = n;
@@ -13,6 +19,7 @@ class NotificationNode implements Serializable
         next = null;
     }
     
+    //getters
     public NotificationNode getNext(){
     	return next;
     }
@@ -32,6 +39,7 @@ class NotificationNode implements Serializable
 
 public class NotificationLinkedList implements Serializable
 {
+	//variables
 	private NotificationNode head;
 	
 	//constructor
@@ -40,10 +48,12 @@ public class NotificationLinkedList implements Serializable
 		head = null;
 	}
 	
+	//getters
 	public NotificationNode getHead(){
 		return head;
 	}
 	
+	//insert a new record at the head of the list
 	public void insert(String name, PatientRecord pr) 
 	{
 		NotificationNode temp = head;
@@ -51,12 +61,17 @@ public class NotificationLinkedList implements Serializable
         head.next = temp;
     }
 	
-	public void delete(String name, PatientRecord pr){
-		NotificationNode current = head;
+	//delete a record from the list
+	public void delete(String name, PatientRecord pr)
+	{
+		NotificationNode current = head;//temp pointer
 		
-		while(current != null){
-			if(current.getName().equals(name) && current.patientRecord.getDate().equals(pr.getDate())){
-				if(head == current){
+		while(current != null)//traverse list
+		{
+			if(current.getName().equals(name) && current.patientRecord.getDate().equals(pr.getDate()))//patient found
+			{
+				if(head == current)//if at the head of the list
+				{
 					head = current.next;
 					return;
 				}
@@ -66,16 +81,19 @@ public class NotificationLinkedList implements Serializable
 					prev = prev.next;
 				}
 				
-				if(current.next == null){
+				if(current.next == null)//if at the end of the list
+				{
 					prev.next = null;
 					return;
 				}
-				else{
+				else //if in-between 2 nodes
+				{
 					prev.next = current.next;
 					return;
 				}			
 			}
-			else{
+			else //next
+			{
 				current = current.next;
 			}
 		}

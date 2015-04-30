@@ -1,5 +1,6 @@
-import java.io.Serializable;
+//The information class is inherited by the doctor and patient classes
 
+import java.io.Serializable;
 
 public class Information implements Serializable {
 

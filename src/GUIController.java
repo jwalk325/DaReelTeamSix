@@ -57,7 +57,7 @@ public class GUIController{
 		loadPatientFile();//loadPatientList
 		loadDoctorFile();//loadDoctorList
 		
-		doctorSelectionUI.setDoctorList(doctorList);
+		doctorSelectionUI.setDoctorList(doctorList);//set the list of doctors in the doctorSelctionUI
 		
 		//add welcomeUI to main JPanel
 		mainPanel.add(welcomeUI.getWelcomePanel());
@@ -81,22 +81,22 @@ public class GUIController{
 		FileOutputStream file = null;
 		try 
 		{
-			file = new FileOutputStream("patient_info.ser");
+			file = new FileOutputStream("patient_info.ser");//create file
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException e) //FileNotFoundException
 		{
 			System.out.println("FileNotFoundException");
 			e.printStackTrace();
 		}
 	   
-		ObjectOutputStream out = null;
+		ObjectOutputStream out = null;//initialize
 		try 
 		{
 			out = new ObjectOutputStream(file);
-			out.writeObject(patientList);
-			out.close();
+			out.writeObject(patientList);//write file
+			out.close();//close file
 		} 
-		catch (IOException e) 
+		catch (IOException e) //IOException
 		{
 			System.out.println("IOException");
 			e.printStackTrace();
@@ -109,9 +109,9 @@ public class GUIController{
 		InputStream file = null;
 		try 
 		{
-			file = new FileInputStream("patient_info.ser");
+			file = new FileInputStream("patient_info.ser");//locateFile
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException e) //FileNotFoundException
 		{
 			System.out.println("FileNotFoundException");
 			e.printStackTrace();
@@ -123,16 +123,16 @@ public class GUIController{
 			input = new ObjectInputStream (buffer);
 			try 
 			{
-				patientList = (PatientLinkedList)input.readObject();
+				patientList = (PatientLinkedList)input.readObject();//readFile
 			} 
-			catch (ClassNotFoundException e) 
+			catch (ClassNotFoundException e) //ClassNotFoundException
 			{
 				System.out.println("ClassNotFoundException");
 				e.printStackTrace();
 			}
-			input.close();
+			input.close();//close file
 		} 
-		catch (IOException e) 
+		catch (IOException e) //IOException
 		{
 			System.out.println("IOException");
 			e.printStackTrace();
@@ -145,9 +145,9 @@ public class GUIController{
 		FileOutputStream file = null;
 		try 
 		{
-			file = new FileOutputStream("doctor_info.ser");
+			file = new FileOutputStream("doctor_info.ser");//create file
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException e) //FileNotFoundException
 		{
 			System.out.println("FileNotFoundException");
 			e.printStackTrace();
@@ -157,10 +157,10 @@ public class GUIController{
 		try 
 		{
 			out = new ObjectOutputStream(file);
-			out.writeObject(doctorList);
-			out.close();
+			out.writeObject(doctorList);//write file
+			out.close();//close file
 		} 
-		catch (IOException e) 
+		catch (IOException e) //IOException
 		{
 			System.out.println("IOException");
 			e.printStackTrace();
@@ -173,9 +173,9 @@ public class GUIController{
 		InputStream file = null;
 		try 
 		{
-			file = new FileInputStream("doctor_info.ser");
+			file = new FileInputStream("doctor_info.ser");//locateFile
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException e) //FileNotFoundException
 		{
 			System.out.println("FileNotFoundException");
 			e.printStackTrace();
@@ -187,16 +187,16 @@ public class GUIController{
 			input = new ObjectInputStream (buffer);
 			try 
 			{
-				doctorList = (DoctorLinkedList)input.readObject();
+				doctorList = (DoctorLinkedList)input.readObject();//loadFile
 			} 
-			catch (ClassNotFoundException e) 
+			catch (ClassNotFoundException e) //ClassNotFoundException
 			{
 				System.out.println("ClassNotFoundException");
 				e.printStackTrace();
 			}
-			input.close();
+			input.close();//close file
 		} 
-		catch (IOException e) 
+		catch (IOException e) //IOException
 		{
 			System.out.println("IOException");
 			e.printStackTrace();
@@ -381,20 +381,20 @@ public class GUIController{
 		//Action performed when continue button is pushed in Forgot Password UI
 		lostPasswordUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(user.equals(patient)){
+				if(user.equals(patient)){//patient
 					if (lostPasswordUI.check(patientList) != null){
 					 p = lostPasswordUI.check(patientList);//temp patient used in securityQuestionUI
-					 securityQuestionUI.setQuestion(p);
+					 securityQuestionUI.setQuestion(p);//set security question for patient
 					 mainPanel.removeAll();
 			    	 mainPanel.revalidate();
 			    	 mainPanel.repaint();    	 
 			    	 mainPanel.add(securityQuestionUI.getSecurityQuestionPanel());
 					}
 				}
-				else {
+				else {//doctor
 					if (lostPasswordUI.check(doctorList) != null){
 						 d = lostPasswordUI.check(doctorList);//temp patient used in securityQuestionUI
-						 securityQuestionUI.setQuestion(d);
+						 securityQuestionUI.setQuestion(d);//set security question for doctor
 						 mainPanel.removeAll();
 				    	 mainPanel.revalidate();
 				    	 mainPanel.repaint();
@@ -419,7 +419,7 @@ public class GUIController{
 		securityQuestionUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(user.equals(patient)){
-					if(securityQuestionUI.check(p)){
+					if(securityQuestionUI.check(p)){//patient
 					mainPanel.removeAll();
 			    	 mainPanel.revalidate();
 			    	 mainPanel.repaint();
@@ -427,7 +427,7 @@ public class GUIController{
 			    	 mainPanel.add(resetPasswordUI.getResetPasswordPanel());
 					}	    	
 				}
-				else {
+				else {//doctor
 					if(securityQuestionUI.check(d)){
 					mainPanel.removeAll();
 			    	 mainPanel.revalidate();
@@ -467,7 +467,7 @@ public class GUIController{
 				}
 				else{
 					if(resetPasswordUI.check(d)){
-						 saveDoctorFile();//UPDATE SAVED PATIENT PASSWORD
+						 saveDoctorFile();//UPDATE SAVED DOCTOR PASSWORD
 						 lostPasswordUI.clear();
 						 securityQuestionUI.clear();
 						 resetPasswordUI.clear();
@@ -488,10 +488,10 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
-		    	 if(user.equals(patient)){
+		    	 if(user.equals(patient)){//patient
 		    		 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    	 }
-		    	 else{
+		    	 else{//doctor
 		    		 mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
 		    	 }
 		    }
@@ -530,12 +530,12 @@ public class GUIController{
 		symptoms2UI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss"); //changed date
-				 Date today = Calendar.getInstance().getTime();   
+				 Date today = Calendar.getInstance().getTime();//get current time  
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
 				 pr = new PatientRecord(symptoms1UI.getPain(), symptoms1UI.getTiredness(), symptoms1UI.getNasuea(), symptoms2UI.getDepression(), symptoms2UI.getAnxiety(), symptoms2UI.getDrowsiness(), dateFormat.format(today), symptoms1UI.getComments(), symptoms2UI.getComments());
-				 d = doctorList.searchByName(p.getPreferredDoctor());
-				 d.insertNoticationList(p.getName(), pr);
-				 saveDoctorFile();
+				 d = doctorList.searchByName(p.getPreferredDoctor());//find doctor
+				 d.insertNoticationList(p.getName(), pr);//insert new notification
+				 saveDoctorFile();//update doctorFile
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();
 				 mainPanel.removeAll();
@@ -590,10 +590,10 @@ public class GUIController{
 		updateInfoUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(updateInfoUI.check()){
-					p.setAddress(updateInfoUI.getAddress());
-					p.setEmail(updateInfoUI.getEmail());
-					p.setPhone(updateInfoUI.getPhoneNumber());
-					savePatientFile();
+					p.setAddress(updateInfoUI.getAddress());//set patient address
+					p.setEmail(updateInfoUI.getEmail());//set patient email
+					p.setPhone(updateInfoUI.getPhoneNumber());//set patient phone #
+					savePatientFile();//update patient file
 					updateInfoUI.clear();
 					mainPanel.removeAll();
 					mainPanel.revalidate();
@@ -631,11 +631,11 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(doctorLoginUI.check(doctorList))
 				{
-					d = doctorList.searchByEmail(doctorLoginUI.getEmail());
+					d = doctorList.searchByEmail(doctorLoginUI.getEmail());//find doctor
 					
 
 					selectRecordUI.setDoctorName(d.getName());//sends doctorName
-					selectRecordUI.setPatientList(patientList);
+					selectRecordUI.setPatientList(patientList);//set list of patients for doctor record view
 					
 					doctorLoginUI.clear();
 					mainPanel.removeAll();
@@ -679,11 +679,11 @@ public class GUIController{
 					//CONSTRUCTOR = Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a)
 					 d = new Doctor(patientList, newDoctorUI.getName() , newDoctorUI.getEmail(), newDoctorUI.getPhoneNumber(), newDoctorUI.getPassword(), newDoctorUI.getQuestion(), newDoctorUI.getAnswer());
 					 
-					 doctorList.insert(d);
+					 doctorList.insert(d);//insert new doctor
 					
 					 saveDoctorFile();//success
 					 
-					 doctorSelectionUI.setDoctorList(doctorList);
+					 doctorSelectionUI.setDoctorList(doctorList);//set list of doctors for patient selection
 					 
 					 newDoctorUI.clear();
 					 mainPanel.removeAll();

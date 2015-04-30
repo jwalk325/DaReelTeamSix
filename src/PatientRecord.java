@@ -1,9 +1,11 @@
-import java.io.Serializable;
+//PatientRecord contains information from a report that they have submitted
 
+import java.io.Serializable;
 
 public class PatientRecord implements Serializable{
 	
 	//variables
+	//thresh = threshold
 	private int pain;
 	private final int painThresh = 4;
 	private int tiredness;
@@ -141,8 +143,9 @@ public class PatientRecord implements Serializable{
 		dComments = d;
 	}
 	
+	//getPriority determines the priority of the patient's attention: high, medium, or low
 	public String getPriority(){
-		if (
+		if (//if any are 3 above the threshold
 			pain >= painThresh + 3 ||
 			tiredness >= tirednessThresh + 3 ||
 			nasuea >= nasueaThresh + 3 ||
@@ -152,7 +155,7 @@ public class PatientRecord implements Serializable{
 		){
 			return "High";
 		}
-		else if (
+		else if (//if any are 2 above the threshold
 				pain >= painThresh + 2 ||
 				tiredness >= tirednessThresh + 2 ||
 				nasuea >= nasueaThresh + 2 ||
@@ -162,7 +165,7 @@ public class PatientRecord implements Serializable{
 			){
 				return "Medium";
 			}
-		else {
+		else {//if none are above the threshold
 			return "Low";
 		}
 	}

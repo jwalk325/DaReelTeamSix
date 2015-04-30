@@ -1,3 +1,5 @@
+//The doctor class includes doctor information, a list of patients, and a notification list
+//It also inherits information from the information class
 
 public class Doctor extends Information {
 	
@@ -18,6 +20,11 @@ public class Doctor extends Information {
 	{
 		return patientList;
 	}
+	
+	public NotificationLinkedList getNotifcationsList()
+	{
+		return notificationList;
+	}
 		
 	//setters
 	public void setPatientlist(PatientLinkedList p)
@@ -25,14 +32,10 @@ public class Doctor extends Information {
 		this.patientList = p;
 	}
 	
+	//insert a new notification
 	public void insertNoticationList(String name, PatientRecord pr)
 	{
 		notificationList.insert(name, pr);
-	}
-	
-	public NotificationLinkedList getNotifcationsList()
-	{
-		return notificationList;
 	}
 	
 }
