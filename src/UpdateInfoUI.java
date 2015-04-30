@@ -1,9 +1,12 @@
+//UpdateInfoUI class returns a JPanel containing all UI elemets for the Update Information GUI
+//this UI allows a patient to update their contact information
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class UpdateInfoUI {
+	//instance data
 	private JPanel updateInfoPanel;
 	private JLabel updateInformationLabel;
 	private JLabel addressLabel;
@@ -33,9 +36,12 @@ public class UpdateInfoUI {
 	private String phoneNumber;
 	
 	public UpdateInfoUI(){
+		//initialize main panel
 		updateInfoPanel = new JPanel();
 		updateInfoPanel.setBackground(Color.WHITE);
 		
+		//initialize instance data
+		//labels
 		updateInformationLabel = new JLabel("Update Information");
 		updateInformationLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
@@ -54,22 +60,25 @@ public class UpdateInfoUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
+		//text fields
 		addressField = new JTextField(16);
 		cityField = new JTextField(10);
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
-		
 		emailField = new JTextField(12);
 		confirmEmailField = new JTextField(12);
 		phoneNumberField = new JTextField(10);
 		
+		//buttons
 		submitButton = new JButton("Submit");
 		cancelButton = new JButton("Cancel");
 		
+		//create JPanel to hold input elements
 		JPanel inputLayout = new JPanel();
 		inputLayout.setLayout(new GridBagLayout());
 		inputLayout.setBackground(Color.WHITE);
-
+		
+		//add elements to inputLayout
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		
@@ -124,18 +133,20 @@ public class UpdateInfoUI {
 		c.gridx++;
 		inputLayout.add(phoneNumberField,c);
 		
+		//create JPanel to hold buttons and add them
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
-		
 		buttonLayout.add(cancelButton);
 		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
 		buttonLayout.add(submitButton);
 		
+		//create JPanel to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		layout.setBackground(Color.WHITE);
 		
+		//add all UI elements to layout
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(updateInformationLabel);
 		updateInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -147,14 +158,16 @@ public class UpdateInfoUI {
 		layout.add(errorLabel);
 		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		updateInfoPanel.add(layout);
+		updateInfoPanel.add(layout); //add layout to main panel
 	}
 	
+	//returns JPanel with all UI elements
 	public JPanel getUpdateInfoPanel(){
 		errorLabel.setText(" ");
 		return updateInfoPanel;
 	}
 	
+	//add action listeners to buttons
 	public void submitListener (ActionListener sl){
 		submitButton.addActionListener(sl);
 	}
@@ -163,6 +176,7 @@ public class UpdateInfoUI {
 		cancelButton.addActionListener(cl);
 	}
 	
+	//check method to check for input errors
 	public boolean check(){
 		String email = emailField.getText();
 		String confirmEmail = confirmEmailField.getText();
@@ -221,6 +235,7 @@ public class UpdateInfoUI {
 		}
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		addressField.setText("");
 		cityField.setText("");

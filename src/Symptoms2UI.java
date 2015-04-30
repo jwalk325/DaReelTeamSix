@@ -1,9 +1,13 @@
+//Symptoms1UI returns a JPanel that contains all UI elements for Symptoms 1 GUI
+//this UI allows the patient to rank their symptom severity from 0-10 for the last 3 symptoms
+//patients can also add any additional comments about their symptoms
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class Symptoms2UI {
+	//instance data
 	private JPanel symptoms2Panel;
 	private JLabel feelingLabel;
 	private JLabel noneLabel1;
@@ -31,9 +35,12 @@ public class Symptoms2UI {
 	private String comments;
 	
 	public Symptoms2UI(){
+		//initialize main panel
 		symptoms2Panel = new JPanel();
 		symptoms2Panel.setBackground(Color.WHITE);
 		
+		//initialize instance data
+		//labels
 		feelingLabel = new JLabel("How Are You Feeling? (2/2)");
 		feelingLabel.setFont(new Font("Helvetica",Font.BOLD, 22));
 		
@@ -53,6 +60,7 @@ public class Symptoms2UI {
 		filler = new JLabel(""); //filler is a blank JLabel
 		filler.setPreferredSize(new Dimension(5,5)); //set dimensions as needed to center grid objects
 		
+		//comment area and its scroll pane
 		commentsArea = new JTextArea(4,0);
 		commentsArea.setLineWrap(true);
 		commentsArea.setWrapStyleWord(true);
@@ -60,6 +68,7 @@ public class Symptoms2UI {
 		commentsPane.setBackground(Color.LIGHT_GRAY);
 		commentsPane.setMaximumSize(new Dimension(300,300));
 		
+		//sliders
 		depressionSlider = new JSlider(JSlider.VERTICAL,0, 10, 0);
 		depressionSlider.setMajorTickSpacing(1);
 		depressionSlider.setFont(new Font("Helvetica",Font.PLAIN,10));
@@ -76,14 +85,17 @@ public class Symptoms2UI {
 		anxietySlider.setFont(new Font("Helvetica",Font.PLAIN,10));
 		anxietySlider.setPaintLabels(true);
 		anxietySlider.setPaintTicks(true);
-
+		
+		//buttons
 		backButton = new JButton("Back");
 		finishButton = new JButton("Finish");
 		
+		//create JPanel to hold input elements
 		JPanel inputLayout = new JPanel();		
 		inputLayout.setLayout(new GridBagLayout());
 		inputLayout.setBackground(Color.WHITE); //background color
 
+		//add elemetns to inputLayout
 		GridBagConstraints c = new GridBagConstraints(); //create variable to control constraints
 		c.fill = GridBagConstraints.NONE; //determines if object takes available space in vertical and/or horizontal directions
 		
@@ -127,36 +139,40 @@ public class Symptoms2UI {
 		c.gridx++;
 		inputLayout.add(drowsinessLabel,c);			
 		
+		//create JPanel to hold title and add
 		JPanel titleLayout = new JPanel();
 		titleLayout.setBackground(Color.WHITE);
 		titleLayout.setLayout(new BoxLayout(titleLayout, BoxLayout.X_AXIS));
-		
 		titleLayout.add(feelingLabel);
 		titleLayout.add(Box.createRigidArea(new Dimension (2,0)));
 
-		
+		//create JPanel to hold comment UI elements
 		JPanel commentsLayout = new JPanel();
 		commentsLayout.setBackground(Color.WHITE);
 		commentsLayout.setLayout(new BoxLayout(commentsLayout, BoxLayout.X_AXIS)); 
 		
+		//add elements to commentsLayout
 		commentsLayout.add(commentsLabel);
 		commentsLayout.add(Box.createRigidArea(new Dimension (5,0)));
 		commentsLayout.add(commentsPane);
 		commentsLayout.add(Box.createRigidArea(new Dimension (2,0)));
 
+		//create JPanel to hold buttons
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
+		//add elements to buttonLayout
 		buttonLayout.add(backButton);
 		buttonLayout.add(Box.createRigidArea(new Dimension (150,0)));
 		buttonLayout.add(finishButton);
 		
+		//create JPanel to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		layout.setBackground(Color.WHITE);
 		
-		//Adding title label on top, followed by the panel with grid of labels and text fields, and finally button panel on bottom.
+		//add all UI elements to layout
 		layout.add(Box.createRigidArea(new Dimension (0,15)));//add space to top so label isn't smashed at the top
 		layout.add(titleLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,15))); //add space between label and middle panel
@@ -167,13 +183,15 @@ public class Symptoms2UI {
 		layout.add(buttonLayout); //add button panel
 		layout.add(Box.createRigidArea(new Dimension (0,50))); //add space to the bottom
 		
-		symptoms2Panel.add(layout);		
+		symptoms2Panel.add(layout);	//add layout to main panel	
 	}
 	
+	//returns JPanel with all UI elements
 	public JPanel getSymptoms2Panel(){
 		return symptoms2Panel;
 	}
 	
+	//add action listeners to buttons
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -182,6 +200,7 @@ public class Symptoms2UI {
 		finishButton.addActionListener(fl);
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		depressionSlider.setValue(0);
 		anxietySlider.setValue(0);

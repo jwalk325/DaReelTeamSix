@@ -1,6 +1,8 @@
+//DoctorLoginUI class returns a JPanel containing all UI elements for the doctor login GUI
+//this UI is where the doctor can login using their email and password
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class DoctorLoginUI{
@@ -136,6 +138,7 @@ public class DoctorLoginUI{
 		return doctorLoginPanel;
 	}
 	
+	//check method to check for input errors
 	public boolean check(DoctorLinkedList doctorList)
 	{
 		char[] pass = passwordField.getPassword();
@@ -164,6 +167,7 @@ public class DoctorLoginUI{
 		
 	}
 	
+	//clear method to reset UI elements
 	public void clear()
 	{
 		

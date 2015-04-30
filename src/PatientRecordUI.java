@@ -1,9 +1,14 @@
+//PatientRecordUI returns a JPanel that contains all UI elements for the Patient Record GUI
+//this UI displays the patient's symptom values and their severity from high to low
+//a doctor can view comments submitted to him by patient and can submit his 
+//diagnosis based on the information
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class PatientRecordUI {
+	//instance data
 	private JPanel patientRecordPanel;
 	private JLabel patientRecordLabel;
 	private JLabel patientNameLabel;
@@ -33,6 +38,8 @@ public class PatientRecordUI {
 	private JButton backButton;
 	private JButton submitButton;
 	private JButton contactButton;
+	
+	//thresholds for symptoms
 	private final int painThresh = 4;
 	private final int tirednessThresh = 6;
 	private final int nasueaThresh = 6;
@@ -41,18 +48,22 @@ public class PatientRecordUI {
 	private final int drowsinessThresh = 6;
 	
 	public PatientRecordUI(){
+		//create main JPanel that contains all UI elements
 		patientRecordPanel = new JPanel();
 		patientRecordPanel.setBackground(Color.WHITE);
 		
+		//initialize labels
 		patientRecordLabel = new JLabel("Patient Record: ");
 		patientRecordLabel.setFont(new Font("Helvetica",Font.BOLD, 24));
 		patientNameLabel = new JLabel("Patient Name");
 		patientNameLabel.setFont(new Font("Helvetica",Font.BOLD, 24));
 		
+		//error label
 		errorLabel = new JLabel(" ");
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);
 		
+		//create JPanel for title and add elements
 		JPanel titleLayout = new JPanel();
 		titleLayout.setBackground(Color.WHITE);
 		titleLayout.setLayout(new BoxLayout(titleLayout, BoxLayout.X_AXIS));
@@ -61,12 +72,16 @@ public class PatientRecordUI {
 		titleLayout.add(patientNameLabel);
 		patientNameLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
+		//create JPanel to hold symptom information
 		JPanel symptomsLayout = new JPanel();
 		symptomsLayout.setBackground(Color.WHITE);
 		symptomsLayout.setLayout(new GridBagLayout());
+		
+		//add elements to symptomsLayout
 		GridBagConstraints c = new GridBagConstraints(); //create variable to control constraints
 		c.fill = GridBagConstraints.BOTH;
 		
+		//initialize instance data
 		symptomsLabel = new JLabel("        Symptoms", SwingConstants.CENTER);
 		symptomsLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
 		painLabel = new JLabel("Pain:", SwingConstants.RIGHT);
@@ -124,7 +139,7 @@ public class PatientRecordUI {
 		c.gridx++;
 		symptomsLayout.add(drowsinessValue,c);
 
-		
+		//create JPanel to hold legend for symptom severity
 		JPanel severityLayout = new JPanel();
 		severityLayout.setBackground(Color.WHITE);
 		severityLayout.setLayout(new BoxLayout(severityLayout, BoxLayout.Y_AXIS));
@@ -139,6 +154,7 @@ public class PatientRecordUI {
 		lowLabel = new JLabel("Low");
 		lowLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		
+		//add UI elements to severityLayout
 		severityLayout.add(severityLabel);
 		severityLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		severityLayout.add(Box.createRigidArea(new Dimension (0,10)));
@@ -150,7 +166,8 @@ public class PatientRecordUI {
 		severityLayout.add(Box.createRigidArea(new Dimension (0,5)));
 		severityLayout.add(lowLabel);
 		lowLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
+		
+		//create Panel to hold both the symptomLayout and severityLayout and add both
 		JPanel centerLayout = new JPanel();
 		centerLayout.setBackground(Color.WHITE);
 		centerLayout.setLayout(new BoxLayout(centerLayout, BoxLayout.X_AXIS));
@@ -161,12 +178,16 @@ public class PatientRecordUI {
 		filler.setPreferredSize(new Dimension(100,0));
 		centerLayout.add(filler);
 		
+		//create layout to hold doctor and patient comments
 		JPanel commentsLayout = new JPanel();
 		commentsLayout.setBackground(Color.WHITE);
 		commentsLayout.setLayout(new GridBagLayout());
+		
+		//add elements to commentsLayout
 		GridBagConstraints d = new GridBagConstraints(); //create variable to control constraints
 		d.fill = GridBagConstraints.BOTH;
 		
+		//initialize instance data
 		patientCommentsLabel = new JLabel("Patient Comments", SwingConstants.CENTER);
 		doctorCommentsLabel = new JLabel("Doctor Comments", SwingConstants.CENTER);
 		patientCommentsArea = new JTextArea(5,17);
@@ -194,6 +215,7 @@ public class PatientRecordUI {
 		d.gridx++;
 		commentsLayout.add(doctorCommentsPane,d);
 		
+		//create Layout to hold buttons and add them
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS));
@@ -206,6 +228,7 @@ public class PatientRecordUI {
 		buttonLayout.add(Box.createRigidArea(new Dimension (5,0)));
 		buttonLayout.add(submitButton);
 		
+		//create Layout to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setBackground(Color.WHITE);
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
@@ -220,15 +243,16 @@ public class PatientRecordUI {
 		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
 		layout.add(buttonLayout);
-
-		
-		patientRecordPanel.add(layout);
+	
+		patientRecordPanel.add(layout); //add layout to main panel
 	}
 	
+	//returns JPanel containing all UI elements
 	public JPanel getPatientRecordPanel(){
 		return patientRecordPanel;
 	}
 	
+	//add action listeners to buttons
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -241,10 +265,12 @@ public class PatientRecordUI {
 		contactButton.addActionListener(cl);
 	}
 	
+	//method to show error
 	public void error(){
 		errorLabel.setText("Record already submitted!");
 	}
 	
+	//method to check to see if doctor has entered comments
 	public boolean check(){
 		if(doctorCommentsArea.getText().isEmpty()){
 			errorLabel.setText("Please enter comments before submitting.");
@@ -255,6 +281,7 @@ public class PatientRecordUI {
 		}
 	}
 	
+	//method to clear UI elements for 2 different scenarios
 	public void clear(){
 		errorLabel.setText(" ");
 		doctorCommentsArea.setText("");
@@ -270,6 +297,7 @@ public class PatientRecordUI {
 		errorLabel.setText(" ");
 	}
 	
+	//setters
 	public void setPatientName(String name){
 		patientNameLabel.setText(name);
 	}
@@ -306,6 +334,7 @@ public class PatientRecordUI {
 		doctorCommentsArea.setText(comments);
 	}
 	
+	//getters
 	public String getPatientName(){
 		return patientNameLabel.getText();
 	}
@@ -314,6 +343,10 @@ public class PatientRecordUI {
 		return doctorCommentsArea.getText();
 	}
 	
+	//method to color symptoms based on their severity
+	//3 and more above their threshold is high/red
+	//2 above their threshold is medium/orange
+	//all other instances the color remains black
 	public void colorSymptoms(){
 		if(Integer.parseInt(painValue.getText()) >= painThresh + 3){
 			painValue.setForeground(Color.RED);

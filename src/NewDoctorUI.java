@@ -1,9 +1,12 @@
+//NewDoctorUI class returns a JPanel containing UI elements for the New Doctor GUI
+//this UI allows a doctor to create an account
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class NewDoctorUI {
+	//instance data
 	private JPanel newDoctorPanel;
 	private JLabel createDoctorLabel;
 	private JLabel nameLabel;
@@ -60,6 +63,7 @@ public class NewDoctorUI {
 		confirmPasswordLabel = new JLabel("Confirm Password:", SwingConstants.RIGHT);
 		answerLabel = new JLabel("Answer:", SwingConstants.RIGHT);
 		
+		//error label
 		errorLabel = new JLabel();
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);
@@ -81,7 +85,7 @@ public class NewDoctorUI {
 		questionField.setForeground(Color.LIGHT_GRAY);
 		extensionField.setForeground(Color.LIGHT_GRAY);
 		
-		//Focus listeners
+		//Focus listeners to set temp text
 		emailField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (emailField.getText().equals(INITIAL_EMAIL)) {
@@ -150,6 +154,7 @@ public class NewDoctorUI {
 	            }
 	        }
 	    });
+		
 		//Asterisk password fields
 		passwordField.setEchoChar('*');
 		confirmPasswordField.setEchoChar('*');
@@ -253,11 +258,13 @@ public class NewDoctorUI {
 		newDoctorPanel.add(layout); //add layout to main panel			
 	}
 	
+	//return JPanel with all UI elements
 	public JPanel getNewDoctorPanel(){
 		errorLabel.setText(" ");
 		return newDoctorPanel;
 	}
 	
+	//add action listeners to buttons
 	public void submitListener (ActionListener sl){
 		submitButton.addActionListener(sl);
 	}
@@ -266,14 +273,14 @@ public class NewDoctorUI {
 		backButton.addActionListener(nl);
 	}
 	
+	//check method to check for input errors
 	public boolean check(){
 		String email = emailField.getText();
 		String confirmEmail = confirmEmailField.getText();
 		char[] pass = passwordField.getPassword();
 		char [] confirmPass = confirmPasswordField.getPassword();
 		String password = new String(pass);		
-		String confirmPassword = new String(confirmPass);
-		
+		String confirmPassword = new String(confirmPass);		
 		
 		if(nameField.getText().isEmpty()){
 			errorLabel.setText("Name field is empty!");
@@ -328,12 +335,12 @@ public class NewDoctorUI {
 			errorLabel.setText("Answer field is empty!");
 			return false;
 		}
-		//check if email exists
 		else {
 			return true;
 		}		
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		nameField.setText("");
 		emailField.setForeground(Color.LIGHT_GRAY);

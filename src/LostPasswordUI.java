@@ -1,9 +1,12 @@
+//LostPasswordUI returns a JPanel containing all UI elements for the Lost Password GUI
+//this UI asks the user for their email to start the password reset process
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class LostPasswordUI {
+	//instance data
 	private JPanel lostPasswordPanel;
 	private JLabel lostPasswordLabel;
 	private JLabel enterInfoLabel;
@@ -17,9 +20,11 @@ public class LostPasswordUI {
 	private final String INITIAL_EMAIL = "example@domain.com";
 	
 	public LostPasswordUI(){
+		//initialzing main panel
 		lostPasswordPanel = new JPanel();
 		lostPasswordPanel.setBackground(Color.WHITE);
 		
+		//initializing instance data
 		lostPasswordLabel = new JLabel("Lost Password?");
 		lostPasswordLabel.setFont(new Font("Helvetica",Font.BOLD, 20));
 		enterInfoLabel = new JLabel("Enter Information Below");
@@ -30,6 +35,7 @@ public class LostPasswordUI {
 		continueButton = new JButton("Continue");
 		backButton = new JButton("Back to Log In");
 		
+		//add focus listener to email field to properly set temp text
 		emailField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (emailField.getText().equals(INITIAL_EMAIL)) {
@@ -48,23 +54,28 @@ public class LostPasswordUI {
 	        }
 	    });
 		
+		//error label
 		errorLabel = new JLabel();
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);	
 		
+		//create JPanel for email elements
 		JPanel emailLayout = new JPanel();
 		emailLayout.setBackground(Color.WHITE);
 		emailLayout.setLayout(new BoxLayout(emailLayout, BoxLayout.X_AXIS));
 		
+		//add elements to emailLayout
 		emailLayout.add(emailLabel);
 		emailLayout.add(Box.createRigidArea(new Dimension (5,0)));
 		emailLayout.add(emailField);
 		emailLayout.add(Box.createRigidArea(new Dimension (52,0)));
 		
+		//create JPanel to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setBackground(Color.WHITE);
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		
+		//add all UI elements to layout
 		layout.add(Box.createRigidArea(new Dimension (0,50)));
 		layout.add(lostPasswordLabel);
 		layout.add(Box.createRigidArea(new Dimension (0,10)));
@@ -84,14 +95,16 @@ public class LostPasswordUI {
 		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
-		lostPasswordPanel.add(layout);
+		lostPasswordPanel.add(layout); //add layout to main panel
 	}
 	
+	//returns JPanel containing all UI elements
 	public JPanel getLostPasswordPanel(){
 		errorLabel.setText(" ");
 		return lostPasswordPanel;
 	}
 	
+	//add actionlisteners to buttons
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -100,6 +113,7 @@ public class LostPasswordUI {
 		continueButton.addActionListener(cl);
 	}
 	
+	//check method to check for input errors (user is a patient)
 	public Patient check(PatientLinkedList patientList){
 		String email = emailField.getText();
 		//create temporary patient by looking up email
@@ -125,6 +139,7 @@ public class LostPasswordUI {
 		
 	}
 	
+	//check method to check for input errors (user is a doctor)
 	public Doctor check(DoctorLinkedList doctorList){
 		String email = emailField.getText();
 		//create temporary doctor by looking up email
@@ -149,12 +164,13 @@ public class LostPasswordUI {
 		}
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		emailField.setForeground(Color.LIGHT_GRAY);
 		emailField.setText(INITIAL_EMAIL);
 	}
 	
-	//get method
+	//get method that returns email
 	public String getEmail(){
 		email = emailField.getText();
 		return email;

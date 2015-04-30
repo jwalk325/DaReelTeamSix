@@ -1,6 +1,8 @@
+//PatientLoginUI returns a JPanel containing all UI elements for the Patient Login GUI
+//this UI allows a patient to login with their email and password
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class PatientLoginUI{
@@ -127,6 +129,7 @@ public class PatientLoginUI{
 		return patientLoginPanel;
 	}
 	
+	//check method to check for input errors
 	public Patient check(PatientLinkedList patientList){
 		char[] pass = passwordField.getPassword();
 		String password = new String(pass);
@@ -153,8 +156,8 @@ public class PatientLoginUI{
 		}
 	}
 	
-	public void clear(){
-		
+	//clear method to reset UI elements
+	public void clear(){	
 		emailField.setText("");
 		passwordField.setText("");
 	}

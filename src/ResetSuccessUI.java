@@ -1,18 +1,23 @@
+//ResetSuccessUI class returns a JPanel containing all UI elements for the Reset Success GUI
+//this UI is displayed when a user has successfully reset their password
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class ResetSuccessUI {
+	//instance data
 	private JPanel resetSuccessPanel;
 	private JLabel resetSuccessLabel;
 	private JLabel clickLoginLabel;
 	private JButton continueButton;
 	
 	public ResetSuccessUI(){
+		//initialize main panel
 		resetSuccessPanel = new JPanel();
 		resetSuccessPanel.setBackground(Color.WHITE);
 		
+		//initialize instance data
 		resetSuccessLabel = new JLabel("Password Reset Successful!");
 		resetSuccessLabel.setFont(new Font("Helvetica",Font.BOLD, 18));
 		clickLoginLabel = new JLabel("Click Continue to return to Log In.");
@@ -35,13 +40,15 @@ public class ResetSuccessUI {
 		clickLoginLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
-		resetSuccessPanel.add(layout);
+		resetSuccessPanel.add(layout); //add layout to main panel
 	}
 	
+	//add action listener to continue button
 	public void continueListener (ActionListener ll){
 		continueButton.addActionListener(ll);
 	}
 	
+	//returns JPanel with all UI elements
 	public JPanel getResetSuccessPanel(){
 		return resetSuccessPanel;
 	}

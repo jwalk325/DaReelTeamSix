@@ -1,9 +1,13 @@
+//DoctorSelectionUI class returns a JPanel with the UI elements for the doctor selection GUI
+//this UI is where the patient enters their address information and selects their doctor
+//during sign-up
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class DoctorSelectionUI {
+	//instance variables
 	private JPanel doctorSelectionPanel;
 	private JLabel enterInformationLabel;
 	private JLabel addressLabel;
@@ -28,9 +32,11 @@ public class DoctorSelectionUI {
 	private DoctorLinkedList doctorList = new DoctorLinkedList();
 	
 	public DoctorSelectionUI(){
+		//initializing JPanel to be returned
 		doctorSelectionPanel = new JPanel();
 		doctorSelectionPanel.setBackground(Color.WHITE);
 		
+		//initializing labels
 		enterInformationLabel = new JLabel("Enter Your Information");
 		enterInformationLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
@@ -45,21 +51,26 @@ public class DoctorSelectionUI {
 		errorLabel.setFont(new Font("Helvetica", Font.BOLD, 12));
 		errorLabel.setForeground(Color.RED);		
 		
+		//initializing text fields
 		addressField = new JTextField(16);
 		cityField = new JTextField(10);
 		stateField = new JTextField (2);
 		zipField = new JTextField (4);
 		
+		//inserting list of doctors into combo box
 		String[] doctors = doctorList.fillDoctorNames();//get list of doctors
 		doctorCombo = new JComboBox<String>(doctors);
 		
+		//initializing buttons
 		backButton = new JButton("Back");
 		finishButton = new JButton("Finish");
 		
+		//creating JPanel to hold input elements
 		JPanel inputLayout = new JPanel();
 		inputLayout.setLayout(new GridBagLayout());
 		inputLayout.setBackground(Color.WHITE);
-
+		
+		//inserting elements into inputLayout
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		
@@ -98,18 +109,22 @@ public class DoctorSelectionUI {
 		c.gridwidth = 3;
 		inputLayout.add(doctorCombo,c);
 		
+		//creating panel to hold buttons
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS)); 
 		
+		//inserting elements into buttonLayout
 		buttonLayout.add(backButton);
 		buttonLayout.add(Box.createRigidArea(new Dimension (120,0)));
 		buttonLayout.add(finishButton);
 		
+		//creating JPanel to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		layout.setBackground(Color.WHITE);
 		
+		//adding all UI elements to layout panel
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(enterInformationLabel);
 		enterInformationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -121,9 +136,10 @@ public class DoctorSelectionUI {
 		layout.add(errorLabel);
 		errorLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		doctorSelectionPanel.add(layout);
+		doctorSelectionPanel.add(layout); //adding layout to main panel
 	}
 	
+	//add action listeners to buttons
 	public void backListener (ActionListener dl){
 		backButton.addActionListener(dl);
 	}
@@ -132,11 +148,13 @@ public class DoctorSelectionUI {
 		finishButton.addActionListener(fl);
 	}
 	
+	//return JPanel containing all UI elements
 	public JPanel getDoctorSelctionPanel(){
 		errorLabel.setText(" ");
 		return doctorSelectionPanel;
 	}
 	
+	//check method to check for input errors
 	public boolean check(){
 		if(addressField.getText().isEmpty()){
 			errorLabel.setText("Address field blank!");
@@ -171,6 +189,7 @@ public class DoctorSelectionUI {
 		}
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		addressField.setText("");
 		cityField.setText("");
@@ -205,7 +224,7 @@ public class DoctorSelectionUI {
 		return doctor;
 	}
 	
-	//ADDED
+	//method to fill doctor names inot combo box
 	public void setDoctorList(DoctorLinkedList dl){
 		doctorList = dl;
 		DefaultComboBoxModel model = new DefaultComboBoxModel(dl.fillDoctorNames());

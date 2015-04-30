@@ -1,5 +1,7 @@
-import java.io.Serializable;
+//The patient class includes patient information and a list of records
+//It also inherits information from the information class
 
+import java.io.Serializable;
 
 public class Patient extends Information implements Serializable{
 	

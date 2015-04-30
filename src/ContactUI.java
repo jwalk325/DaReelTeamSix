@@ -1,9 +1,12 @@
+//ContactUI class returns a JPanel with the UI elements of the Contact page
+//The contact page contains the current patients contact information for the doctor to view
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class ContactUI {
+	//instance variables
 	private JPanel contactPanel;
 	private JLabel patientInfoLabel;
 	private JLabel patientNameLabel;
@@ -20,14 +23,17 @@ public class ContactUI {
 	private JButton dashboardButton;
 	
 	public ContactUI(){
+		//initializing JPanel to be returned
 		contactPanel = new JPanel();
 		contactPanel.setBackground(Color.WHITE);
 		
+		//initializing variables for title section
 		patientInfoLabel = new JLabel("Patient Info: ");
 		patientInfoLabel.setFont(new Font("Helvetica",Font.BOLD, 24));
 		patientNameLabel = new JLabel("Patient Name");
 		patientNameLabel.setFont(new Font("Helvetica",Font.BOLD, 24));
 		
+		//creating title panel
 		JPanel titleLayout = new JPanel();
 		titleLayout.setBackground(Color.WHITE);
 		titleLayout.setLayout(new BoxLayout(titleLayout, BoxLayout.X_AXIS));
@@ -36,12 +42,14 @@ public class ContactUI {
 		titleLayout.add(patientNameLabel);
 		patientNameLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
+		//creating panel that will contain patient info
 		JPanel infoLayout = new JPanel();
 		infoLayout.setBackground(Color.WHITE);
 		infoLayout.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints(); //create variable to control constraints
 		c.fill = GridBagConstraints.BOTH;
 		
+		//initializing variables for infoLayout
 		addressLabel = new JLabel("Address:", SwingConstants.RIGHT);
 		phoneNumberLabel = new JLabel("Phone Number:", SwingConstants.RIGHT);
 		emailLabel = new JLabel("E-Mail:", SwingConstants.RIGHT);
@@ -52,6 +60,7 @@ public class ContactUI {
 		phoneNumber = new JLabel("123-123-1234");
 		email = new JLabel("example@domain.com");
 		
+		//adding elements to JPanel
 		c.insets = new Insets(5,5,0,0);	//provides space between objects
 		c.gridx = 0;
 		c.gridy = 0;
@@ -83,10 +92,12 @@ public class ContactUI {
 		c.gridwidth = 3;
 		infoLayout.add(email,c);
 		
+		//creating JPanel for buttons
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setBackground(Color.WHITE);;
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS));
 		
+		//intializing buttons
 		backButton = new JButton("Back");
 		dashboardButton = new JButton("Dashboard");
 		buttonLayout.add(backButton);
@@ -94,10 +105,12 @@ public class ContactUI {
 		buttonLayout.add(dashboardButton);
 		backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
+		//creating JPanel to hold all elements
 		JPanel layout = new JPanel();
 		layout.setBackground(Color.WHITE);
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		
+		//add all elements to layout Panel
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(titleLayout);
 		layout.add(Box.createRigidArea(new Dimension (0,120)));
@@ -105,13 +118,15 @@ public class ContactUI {
 		layout.add(Box.createRigidArea(new Dimension (0,145)));
 		layout.add(buttonLayout);
 		
-		contactPanel.add(layout);
+		contactPanel.add(layout); //add layout panel to main panel
 	}
 	
+	//returns panel with all UI elements
 	public JPanel getContactPanel(){
 		return contactPanel;
 	}
 	
+	//add action listeners to buttons
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -120,6 +135,7 @@ public class ContactUI {
 		dashboardButton.addActionListener(dl);
 	}
 	
+	//setters
 	public void setPatientName(String name){
 		patientNameLabel.setText(name);
 	}

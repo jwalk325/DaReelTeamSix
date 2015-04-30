@@ -1,6 +1,8 @@
+//NewPatientUI class returns a JPanel containing all UI elements for the New Patient GUI
+//this UI is where a patient starts account creation
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class NewPatientUI{
@@ -86,6 +88,7 @@ public class NewPatientUI{
 		emailField.setForeground(Color.LIGHT_GRAY);
 		phoneNumberField.setForeground(Color.LIGHT_GRAY);
 		questionField.setForeground(Color.LIGHT_GRAY);
+		
 		//Adding FocusListeners to JTextFields
 		dobField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {

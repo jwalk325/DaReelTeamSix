@@ -1,9 +1,13 @@
+//SelectRecordUI class returns a JPanel with all UI elements for the Select Record GUI
+//this UI allows a doctor to view records that have already been submitted for
+//all of his patients
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class SelectRecordUI {
+	//instance data
 	private JPanel selectRecordPanel;
 	private JLabel patientRecordsLabel;
 	private JLabel patientLabel;
@@ -17,9 +21,11 @@ public class SelectRecordUI {
 	private PatientLinkedList patientList = new PatientLinkedList();
 	
 	public SelectRecordUI(){
+		//initialize main panel
 		selectRecordPanel = new JPanel();
 		selectRecordPanel.setBackground(Color.WHITE);
 		
+		//initialize instance panel
 		patientRecordsLabel = new JLabel("Patient Records");
 		patientRecordsLabel.setFont(new Font("Helvetica",Font.BOLD, 28));
 		
@@ -35,6 +41,8 @@ public class SelectRecordUI {
 		String[] temp = {""};
 		recordCombo = new JComboBox<String>(temp);	
 		recordCombo.setPreferredSize(new Dimension(200, 25));
+		
+		//item listener to display appropriate records depending on which patient is selected
 		patientCombo.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
                if(e.getStateChange() == ItemEvent.SELECTED && !String.valueOf(patientCombo.getSelectedItem()).isEmpty()){
@@ -55,10 +63,12 @@ public class SelectRecordUI {
 		viewRecordButton = new JButton("View Record");
 		backButton = new JButton("Back");
 		
+		//create JPanel to hold input elements
 		JPanel selectionLayout = new JPanel();
 		selectionLayout.setLayout(new GridBagLayout());
 		selectionLayout.setBackground(Color.WHITE);
 		
+		//add elements to selectionLayout
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		
@@ -75,6 +85,7 @@ public class SelectRecordUI {
 		c.gridx++;
 		selectionLayout.add(recordCombo, c);
 		
+		//create JPanels to hold buttons and add
 		JPanel buttonLayout1 = new JPanel();
 		buttonLayout1.setBackground(Color.WHITE);
 		buttonLayout1.setLayout(new BoxLayout(buttonLayout1, BoxLayout.Y_AXIS));
@@ -92,10 +103,12 @@ public class SelectRecordUI {
 		buttonLayout2.add(Box.createRigidArea(new Dimension (225,0)));
 		backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
+		//create JPanel to hold all UI elements
 		JPanel layout = new JPanel();
 		layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 		layout.setBackground(Color.WHITE);
 		
+		//add all UI elements to layout
 		layout.add(Box.createRigidArea(new Dimension (0,25)));
 		layout.add(patientRecordsLabel);
 		patientRecordsLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -106,13 +119,15 @@ public class SelectRecordUI {
 		layout.add(Box.createRigidArea(new Dimension (0,69)));
 		layout.add(buttonLayout2);
 		
-		selectRecordPanel.add(layout);
+		selectRecordPanel.add(layout); //add layout to main panel
 	}
 	
+	//return JPanel that contains all UI elements
 	public JPanel getSelectRecordPanel(){
 		return selectRecordPanel;
 	}
 	
+	//get methods
 	public String getSelectedPatient(){
 		return (String)patientCombo.getSelectedItem();
 	}
@@ -121,6 +136,7 @@ public class SelectRecordUI {
 		return (String)recordCombo.getSelectedItem();
 	}
 	
+	//add actionlisters to buttons
 	public void backListener (ActionListener bl){
 		backButton.addActionListener(bl);
 	}
@@ -129,6 +145,7 @@ public class SelectRecordUI {
 		viewRecordButton.addActionListener(vrl);
 	}
 	
+	//check method to check for input errors
 	public boolean check(){
 		if(String.valueOf(patientCombo.getSelectedItem()).isEmpty() || String.valueOf(recordCombo.getSelectedItem()).isEmpty()){
 			errorLabel.setText("Please select Patient and Record.");
@@ -137,19 +154,20 @@ public class SelectRecordUI {
 		return true;
 	}
 	
+	//clear method to reset UI elements
 	public void clear(){
 		patientCombo.setSelectedIndex(0);
 		recordCombo.setSelectedIndex(0);
 		errorLabel.setText(" ");
 	}
 	
-	//ADDED
-	
+	//method to set doctor name
 	public void setDoctorName(String dn)
 	{
 		doctorName = dn;
 	}
 	
+	//method to set doctors patients in the patient combo box
 	public void setPatientList(PatientLinkedList pl){
 		patientList = pl;
 		DefaultComboBoxModel model = new DefaultComboBoxModel(pl.fillPatientNames(doctorName));

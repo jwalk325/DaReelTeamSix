@@ -1,3 +1,6 @@
+//GUIController class handles all actions to be performed by buttons in the varioius UIs
+//within the application
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -5,11 +8,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.*;
 
 public class GUIController{
-	//Instance data for UIs
+	//instance data
+	//creates instance of all UIs in application
 	private JPanel mainPanel = new JPanel();
 	private WelcomeUI welcomeUI  = new WelcomeUI();
 	private NewPatientUI newPatientUI = new NewPatientUI();
@@ -44,16 +47,18 @@ public class GUIController{
 	//CREATE NEW PATIENTRECORD
 	private PatientRecord pr;
 	
+	//used to determine if user is a patient or a doctor
 	private String doctor = "Doctor";
 	private String patient = "Patient";
 	private String user;
 	
+	//used to determine if doctor accessed a patient record through
+	//his notifications or through patient records
 	private String selectRecord = "select";
 	private String notification = "notification";
 	private String patientRecordReturn;
 		
-	public GUIController(){
-		
+	public GUIController(){	
 		loadPatientFile();//loadPatientList
 		loadDoctorFile();//loadDoctorList
 		
@@ -280,16 +285,9 @@ public class GUIController{
 					//CONSTRUCTOR = (String d, String a, String pd, String n, String e, String ph, String u, String p, String h)
 					p = new Patient(newPatientUI.getDOB(), doctorSelectionUI.getAddress(), doctorSelectionUI.getCity(), doctorSelectionUI.getState(), doctorSelectionUI.getZIP(), doctorSelectionUI.getDoctor(), newPatientUI.getName() , newPatientUI.getEmail(), newPatientUI.getPhoneNumber(), newPatientUI.getPassword(), newPatientUI.getQuestion(), newPatientUI.getAnswer());
 					
-					//TEST PRINT INFO FOR PATIENT
-					//p.printInfo();//success
-					
-					//ADD NEW PATIENT NODE TO PATIENT LINKEDLIST
-					patientList.insert(p);
-					
+					//ADD NEW PATIENT NODE TO PATIENT LINKEDLIST AND SAVE
+					patientList.insert(p);				
 					savePatientFile();//success
-					
-					//TEST PRINT PATIENTLINKEDLIST
-					//patientList.printList();//success
 
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
@@ -309,6 +307,7 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
+		    	 //returns to proper login depending on what kind of user
 		    	 if(user.equals(patient)){
 			    	 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    	 }
@@ -369,6 +368,7 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
+		    	 //returns to proper login screen depending on type of user
 		    	 if(user.equals(patient)){
 		    		 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    	 }
@@ -381,6 +381,7 @@ public class GUIController{
 		//Action performed when continue button is pushed in Forgot Password UI
 		lostPasswordUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				//loads proper linked list depending on type of user
 				if(user.equals(patient)){//patient
 					if (lostPasswordUI.check(patientList) != null){
 					 p = lostPasswordUI.check(patientList);//temp patient used in securityQuestionUI
@@ -418,6 +419,7 @@ public class GUIController{
 		//Action performed when continue button is pushed in Security Question UI
 		securityQuestionUI.continueListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				//checks security answer for doctor or patient
 				if(user.equals(patient)){
 					if(securityQuestionUI.check(p)){//patient
 					mainPanel.removeAll();
@@ -453,7 +455,8 @@ public class GUIController{
 		//Action performed when reset password button is pushed in Reset Password UI
 		resetPasswordUI.resetPasswordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(user.equals(patient)){
+				//saves proper file after successful password reset for patient or doctor
+				if(user.equals(patient)){//patient
 					if(resetPasswordUI.check(p)){
 						savePatientFile();//UPDATE SAVED PATIENT PASSWORD
 						lostPasswordUI.clear();
@@ -465,7 +468,7 @@ public class GUIController{
 						mainPanel.add(resetSuccessUI.getResetSuccessPanel());
 					}
 				}
-				else{
+				else{//doctor
 					if(resetPasswordUI.check(d)){
 						 saveDoctorFile();//UPDATE SAVED DOCTOR PASSWORD
 						 lostPasswordUI.clear();
@@ -488,6 +491,7 @@ public class GUIController{
 		    	 mainPanel.revalidate();
 		    	 mainPanel.repaint();
 		    	 
+		    	 //returns to proper login depending on type of user
 		    	 if(user.equals(patient)){//patient
 		    		 mainPanel.add(patientLoginUI.getPatientLoginPanel());
 		    	 }
@@ -529,13 +533,16 @@ public class GUIController{
 		//Action performed when the finish button is pushed in the second page of symptoms UI
 		symptoms2UI.finishListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				//records current date
 				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss"); //changed date
-				 Date today = Calendar.getInstance().getTime();//get current time  
+				 Date today = Calendar.getInstance().getTime();//get current time 
+				 
 				 //ADD PATIENT RECORD TO DOCTOR NOTICATION LINKED LIST
 				 pr = new PatientRecord(symptoms1UI.getPain(), symptoms1UI.getTiredness(), symptoms1UI.getNasuea(), symptoms2UI.getDepression(), symptoms2UI.getAnxiety(), symptoms2UI.getDrowsiness(), dateFormat.format(today), symptoms1UI.getComments(), symptoms2UI.getComments());
 				 d = doctorList.searchByName(p.getPreferredDoctor());//find doctor
 				 d.insertNoticationList(p.getName(), pr);//insert new notification
 				 saveDoctorFile();//update doctorFile
+				 
 				 symptoms1UI.clear();
 				 symptoms2UI.clear();
 				 mainPanel.removeAll();
@@ -549,12 +556,14 @@ public class GUIController{
 		//Action performed when yes button is pushed in Update Info Check UI
 		updateInfoCheckUI.yesListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				//sets UI elements with patient information
 				updateInfoUI.setAddressField(p.getAddress());
 				updateInfoUI.setCityField(p.getCity());
 				updateInfoUI.setStateField(p.getState());
 				updateInfoUI.setZIPField(p.getZip());
 				updateInfoUI.setEmailField(p.getEmail());
 				updateInfoUI.setPhoneNumberField(p.getPhone());
+				
 				mainPanel.removeAll();
 				mainPanel.revalidate();
 				mainPanel.repaint();
@@ -590,10 +599,12 @@ public class GUIController{
 		updateInfoUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(updateInfoUI.check()){
+					//updates information for patient and saves
 					p.setAddress(updateInfoUI.getAddress());//set patient address
 					p.setEmail(updateInfoUI.getEmail());//set patient email
 					p.setPhone(updateInfoUI.getPhoneNumber());//set patient phone #
 					savePatientFile();//update patient file
+					
 					updateInfoUI.clear();
 					mainPanel.removeAll();
 					mainPanel.revalidate();
@@ -615,7 +626,7 @@ public class GUIController{
 			}
 		});
 		
-		//Action performed when submit button is pushed in Doctor Login UI
+		//Action performed when register button is pushed in Doctor Login UI
 		doctorLoginUI.registerListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				 doctorLoginUI.clear();
@@ -627,13 +638,12 @@ public class GUIController{
 		    }
 		});
 		
+		//Action performed when submit button is pushed in Doctor Login UI
 		doctorLoginUI.submitListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
 				if(doctorLoginUI.check(doctorList))
 				{
 					d = doctorList.searchByEmail(doctorLoginUI.getEmail());//find doctor
-					
-
 					selectRecordUI.setDoctorName(d.getName());//sends doctorName
 					selectRecordUI.setPatientList(patientList);//set list of patients for doctor record view
 					
@@ -676,11 +686,9 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				 if(newDoctorUI.check() == true)
 				 {
-					//CONSTRUCTOR = Doctor(PatientLinkedList pl, String n, String e, String ph, String p, String h, String q, String a)
-					 d = new Doctor(patientList, newDoctorUI.getName() , newDoctorUI.getEmail(), newDoctorUI.getPhoneNumber(), newDoctorUI.getPassword(), newDoctorUI.getQuestion(), newDoctorUI.getAnswer());
-					 
-					 doctorList.insert(d);//insert new doctor
-					
+					 //create new doctor, insert into doctor linkedlist and save doctor file
+					 d = new Doctor(patientList, newDoctorUI.getName() , newDoctorUI.getEmail(), newDoctorUI.getPhoneNumber(), newDoctorUI.getPassword(), newDoctorUI.getQuestion(), newDoctorUI.getAnswer());				 
+					 doctorList.insert(d);//insert new doctor				
 					 saveDoctorFile();//success
 					 
 					 doctorSelectionUI.setDoctorList(doctorList);//set list of doctors for patient selection
@@ -689,9 +697,7 @@ public class GUIController{
 					 mainPanel.removeAll();
 					 mainPanel.revalidate();
 					 mainPanel.repaint();
-				 }
-				
-		    	 
+				 }	    	 
 		    	 mainPanel.add(registerSuccessUI.getRegisterSuccessPanel());
 		    }
 		});
@@ -706,17 +712,20 @@ public class GUIController{
 		//Action performed when notifications button is pushed in Doctor Dashboard UI
 		doctorDashboardUI.notificationsListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				 //fill table
-				notificationsUI.createTable();
-				NotificationNode temp = d.getNotifcationsList().getHead();
+				notificationsUI.createTable(); //create empty JTable
+				NotificationNode temp = d.getNotifcationsList().getHead(); //get doctor's notification linked list
+				
+				//fill table with doctor's notifications
 				while (temp != null){
+					//get patient's name
 					String lastName = temp.getLastName();
 					String firstName = temp.getFirstName();
 					
-					String priority = temp.patientRecord.getPriority();
-					String date = temp.patientRecord.getDate();
-					Object[] row = {lastName, firstName, priority, date};
-					notificationsUI.addRow(row);
+					String priority = temp.patientRecord.getPriority(); //get their priority
+					String date = temp.patientRecord.getDate(); //get date of notification submission
+					
+					Object[] row = {lastName, firstName, priority, date}; //create object with data
+					notificationsUI.addRow(row); //add notification to JTable
 					temp = temp.next;
 				}				
 		    	 mainPanel.removeAll();
@@ -765,16 +774,20 @@ public class GUIController{
 		//Action performed when View Record button is pushed in Patient Records UI
 		selectRecordUI.viewRecordListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(selectRecordUI.check()){			
+				if(selectRecordUI.check()){		
+					//get selected patient and record
 					String name = selectRecordUI.getSelectedPatient();
 					String date = selectRecordUI.getSelectedRecord();
 					
-					p = patientList.searchByName(name);
-					PatientRecordNode temp = p.getPatientRecordList().getHead();
+					p = patientList.searchByName(name); //find patient 
+					PatientRecordNode temp = p.getPatientRecordList().getHead(); //get their records
 					
+					//search for proper record in patient's record linked list
 					while(temp != null){						
-						if(temp.patientRecord.getDate().equals(date)){
-							pr = temp.patientRecord;
+						if(temp.patientRecord.getDate().equals(date)){//record found
+							pr = temp.patientRecord; //hold patient record
+							
+							//display info in patient record
 							patientRecordUI.setPatientName(p.getName());
 							patientRecordUI.setPain(pr.getPain());
 							patientRecordUI.setTiredness(pr.getTiredness());
@@ -784,16 +797,13 @@ public class GUIController{
 							patientRecordUI.setAnxiety(pr.getAnxiety());
 							patientRecordUI.setPatientComments(pr.getComments());
 							patientRecordUI.setDoctorComments(pr.getDComments());
-							patientRecordUI.colorSymptoms();
-							
+							patientRecordUI.colorSymptoms(); //color code symptom severity							
 							break;
 						}
 						else{
 							temp = temp.next;
 						}
-					}
-					
-					
+					}				
 					selectRecordUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -822,15 +832,20 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(notificationsUI.check()){
 					patientRecordUI.clear2();
+					
+					//get info from selected record
 					String name = notificationsUI.getSelectedPatientName();
 					String priority = notificationsUI.getSelectedPatientPriority();
 					String date = notificationsUI.getSelectedPatientDate();
 					
-					NotificationNode temp = d.getNotifcationsList().getHead();
-
+					NotificationNode temp = d.getNotifcationsList().getHead(); //get doctor's notification linked list
+					
+					//find record in doctor's notification linked list
 					while(temp != null){						
 						if(name.equals(temp.getName()) && priority.equals(temp.patientRecord.getPriority()) && date.equals(temp.patientRecord.getDate())){
-							pr = temp.patientRecord;
+							pr = temp.patientRecord; //hold record
+							
+							//display info in patient record
 							patientRecordUI.setPatientName(temp.getName());
 							patientRecordUI.setPain(pr.getPain());
 							patientRecordUI.setTiredness(pr.getTiredness());
@@ -839,14 +854,13 @@ public class GUIController{
 							patientRecordUI.setDrowsiness(pr.getDrowsiness());
 							patientRecordUI.setAnxiety(pr.getAnxiety());
 							patientRecordUI.setPatientComments(pr.getComments());
-							patientRecordUI.colorSymptoms();
+							patientRecordUI.colorSymptoms(); //color code symptom severity
 							break;
 						}
 						else{
 							temp = temp.next;
 						}
-					}
-					
+					}					
 					notificationsUI.clear2();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -861,7 +875,8 @@ public class GUIController{
 		//Action performed when Back button is pushed in Patient Record UI
 		patientRecordUI.backListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
-				if(patientRecordReturn.equals(notification)){
+				//returns to proper screen depending on how doctor accessed the patient record
+				if(patientRecordReturn.equals(notification)){//through notifications
 					patientRecordUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -869,7 +884,7 @@ public class GUIController{
 			    	 
 			    	mainPanel.add(notificationsUI.getNotificationsPanel());
 				}
-				else{
+				else{//through patient records
 					patientRecordUI.clear();
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
@@ -885,30 +900,37 @@ public class GUIController{
 			public void actionPerformed(ActionEvent arg0) {
 				if(patientRecordReturn.equals(notification)){
 					if(patientRecordUI.check()){
-						String name = patientRecordUI.getPatientName();
-						String dComments = patientRecordUI.getDoctorComments();
-						pr.setDComments(dComments);
-						p = patientList.searchByName(name);
-						p.getPatientRecordList().insert(pr);
-						savePatientFile();				
 						
+						String name = patientRecordUI.getPatientName(); //get patient's name
+						String dComments = patientRecordUI.getDoctorComments(); //get comments made by doctor
+						pr.setDComments(dComments); //save doctors comments to record
+						p = patientList.searchByName(name); //search for patient
+						p.getPatientRecordList().insert(pr); //insert record into patient's record linked list
+						savePatientFile(); //save				
+						
+						//delete record from doctor's notifications and save
 						d.getNotifcationsList().delete(p.getName(), pr);
 						saveDoctorFile();
 						
-						notificationsUI.clear();
-						notificationsUI.createTable();
-						NotificationNode temp = d.getNotifcationsList().getHead();
+						notificationsUI.clear(); //clear old table data
+						notificationsUI.createTable(); //create empty table
+						
+						NotificationNode temp = d.getNotifcationsList().getHead(); //get doctor's updated notification list
+						
+						//fill table with doctor's updated notification list
 						while (temp != null){
+							//get notification information
 							String lastName = temp.getLastName();
-							String firstName = temp.getFirstName();
-							
+							String firstName = temp.getFirstName();						
 							String priority = temp.patientRecord.getPriority();
 							String date = temp.patientRecord.getDate();
+							
+							//create data object and add to table
 							Object[] row = {lastName, firstName, priority, date};
 							notificationsUI.addRow(row);
+							
 							temp = temp.next;
-						}				
-						
+						}										
 						patientRecordUI.clear();
 						mainPanel.removeAll();
 				    	mainPanel.revalidate();
@@ -926,6 +948,7 @@ public class GUIController{
 		//Action performed when Contact button is pushed in Patient Record UI
 		patientRecordUI.contactListener(new ActionListener() {	       
 			public void actionPerformed(ActionEvent arg0) {
+				//find patient and display their contact information
 				p = patientList.searchByName(patientRecordUI.getPatientName());
 				contactUI.setPatientName(p.getName());
 				contactUI.setAddress(p.getAddress());
@@ -969,11 +992,15 @@ public class GUIController{
 		});			
 	}
 	
+	//method that pops up a warning prompt notifying user that progress will be lost
+	//if they return to previoius screen
 	public void warningPrompt(){
+		//create main panel
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBackground(Color.WHITE);
 		
+		//displays proper prompt depending if user is patient or doctor
 		JLabel questionLabel;
 		if(user.equals(patient)){
 			questionLabel = new JLabel("Are you sure you want to return to the Welcome screen?");
@@ -983,6 +1010,7 @@ public class GUIController{
 		}
 		JLabel warningLabel = new JLabel("All progress will be lost.");
 		
+		//create JPanel for buttons and add them
 		JPanel buttonLayout = new JPanel();
 		buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.X_AXIS));
 		buttonLayout.setBackground(Color.WHITE);
@@ -992,6 +1020,7 @@ public class GUIController{
 		buttonLayout.add(Box.createRigidArea(new Dimension (125,0)));
 		buttonLayout.add(noButton);
 		
+		//add all UI elements to main panel
 		panel.add(Box.createRigidArea(new Dimension (0,85)));
 		panel.add(questionLabel);
 		panel.add(warningLabel);
@@ -1000,8 +1029,8 @@ public class GUIController{
 		questionLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		warningLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		final JFrame frame = new JFrame();
-		
+		//create JFrame
+		final JFrame frame = new JFrame();		
 		frame.setSize(400, 300); //window size
 		frame.setTitle("Warning!");
 		frame.setResizable(false); //do not allow window to be resized
@@ -1010,40 +1039,47 @@ public class GUIController{
 		frame.getContentPane().add(panel); //add main Panel to frame
 		frame.setVisible(true); //frame is visible	
 		
+		//add action listeners to buttons
+		//Action performed if Yes button is clicked
 		yesButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				//Action if user is patient
 				if(user.equals(patient)){
+					//clear all relevant patient UIs
 					symptoms1UI.clear();
 					symptoms2UI.clear();
 					newPatientUI.clear();
 					doctorSelectionUI.clear();
+					
 					mainPanel.removeAll();
 			    	mainPanel.revalidate();
 			    	mainPanel.repaint();
 			    	 
 			    	mainPanel.add(welcomeUI.getWelcomePanel());
-					frame.dispose();
+					frame.dispose(); //close frame
 				}
+				//Action if user is doctor
 				else{
-					newDoctorUI.clear();
+					newDoctorUI.clear(); //clear doctor sign up UI
 			    	mainPanel.removeAll();
 			    	mainPanel.revalidate();
 			    	mainPanel.repaint();
 			    	 
 			    	mainPanel.add(doctorLoginUI.getDoctorLoginPanel());
-			    	frame.dispose();
+			    	frame.dispose(); //close frame
 				}
 				
 			}
 		});
 		
+		//Action performed if No button is clicked
 		noButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				frame.dispose();
+				frame.dispose(); //close frome
 			}
 		});
 	}

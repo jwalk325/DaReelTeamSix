@@ -1,3 +1,6 @@
+//WelcomeUI class returns a JPanel containing all UI elements for the Welcome GUI
+//this UI is where all users start and the home page for the application
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

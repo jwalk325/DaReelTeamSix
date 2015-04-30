@@ -1,18 +1,23 @@
+//RegisterSuccessUI class returns a JPanel containing all UI elements for Register Sucess GUI
+//this UI is displayed when a user has successfully registered
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class RegisterSuccessUI {
+	//instance data
 	private JPanel registerSuccessPanel;
 	private JLabel thankYouLabel;
 	private JLabel clickContinueLabel;
 	private JButton continueButton;
 	
 	public RegisterSuccessUI() {
+		//initialize main panel
 		registerSuccessPanel = new JPanel();
 		registerSuccessPanel.setBackground(Color.WHITE);
 		
+		//initialize instance data
 		thankYouLabel = new JLabel("Thank you for registering with us!");
 		thankYouLabel.setFont(new Font("Helvetica",Font.BOLD, 18));
 		clickContinueLabel = new JLabel("Click continue to go to the login page.");
@@ -35,13 +40,15 @@ public class RegisterSuccessUI {
 		clickContinueLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		continueButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
-		registerSuccessPanel.add(layout);
+		registerSuccessPanel.add(layout); //add layout to main panel
 	}
 	
+	//add action listener to continue button
 	public void continueListener (ActionListener cl){
 		continueButton.addActionListener(cl);
 	}
 	
+	//returns JPanel containing all UI elements
 	public JPanel getRegisterSuccessPanel(){
 		return registerSuccessPanel;
 	}

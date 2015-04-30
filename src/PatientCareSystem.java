@@ -1,7 +1,9 @@
+//main
+
 public class PatientCareSystem {			
 	public static void main(String[] args) 
 	{						
 		GUIController gui = new GUIController(); //create GUI Controller object, constructor creates JFrame
-		gui.enableGUI(); //enable navigation between UIs  
+		gui.enableGUI(); //enable navigation and button actions
 	}
 }
